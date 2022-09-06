@@ -5,7 +5,39 @@
   min-height: 1217px;
 
   margin: 0 auto;
+
+   /*Сглаживание шрифтов*/
+   -webkit-font-smoothing: antialiased;
+   -moz-osx-font-smoothing: grayscale;
+    
+   /*Подгонка размера текста*/
+   -webkit-text-size-adjust: 100%;
+   -ms-text-size-adjust: 100%;
+   -moz-text-size-adjust: 100%;
+   text-rendering: optimizeLegibility;
 }
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./vendor/fonts/Inter-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: url(./vendor/fonts/Inter-Medium.woff) format('woff');
+}
+  
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 900;
+  src: url(./vendor/fonts/Inter-Black.woff) format('woff');
+}
+
 
 .header {
   display: flex;
@@ -27,3 +59,71 @@
 .header__line {
   padding: 74px 0 0 0;
 }
+
+.profile {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 100%;
+
+  margin: 40px 0 51px 0;
+  padding: 0 200px 0 200px;
+  border: 1px solid red;
+}
+
+.profile__avatar {
+  object-fit: cover;
+  width: 120px;
+  height: 120px;
+
+  border: 1px solid red;
+}
+
+.profile__info {
+  width: 336px;
+  min-height: 73px;
+  border: 1px solid red;
+}
+
+.profile__name {
+  font-family: 'Inter', 'Areal', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 42px;
+  height: 1.14;
+
+  max-width: 294px;
+  height: 39px;
+
+  color: #FFFFFF;
+
+  margin: 0 0 16px 0;
+  border: 1px solid red;
+}
+
+.profile__description {
+  font-family: 'Inter', 'Areal', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 1.2;
+  
+  color: #FFFFFF;  
+
+  margin: 0;
+  border: 1px solid red;
+}
+
+.profile__edit_button {
+  margin-right: auto;
+   
+  border: 1px solid red;
+}
+
+.profile__add_button {
+  margin: 35px 0 35px 0;
+
+  border: 1px solid red;
+}
+
