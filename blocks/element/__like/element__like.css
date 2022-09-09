@@ -1,0 +1,11 @@
+.element__like {
+  background-image: url(./images/Vector\ \(Stroke\).jpg);
+  background-repeat: no-repeat;
+  cursor: pointer;
+  background-size: contain;
+  
+  width: 22px;
+  height: 19px;
+  
+  padding: 0;
+}
