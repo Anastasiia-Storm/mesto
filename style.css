@@ -36,14 +36,10 @@
   font-style: normal;
   font-weight: 900;
   src: url(./vendor/fonts/Inter-Black.woff) format('woff');
-}
+} */
 
 
 .header {
-  display: flex;
-  position: relative;
-  align-items: center;
-  justify-content: space-between;
   max-width: 100%;
   min-height: 74px;
 
@@ -79,6 +75,13 @@
   }
 }
 
+@media screen and (max-width: 400px) {
+  .header__logo {
+    width: 103.74px;
+    height: 24.4px;
+  }
+}
+
 .profile {
   display: flex;
   position: relative;
@@ -103,7 +106,7 @@
   }
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 698px) {
   .profile {
     flex-direction: column;
   }
@@ -127,13 +130,15 @@
   border: 1px solid red;
 }
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 698px) {
   .profile__avatar {
     margin-right: 0;
   }
 }
 
 .profile__info {
+  display: flex;
+  flex-wrap: wrap;
   max-width: 336px;
   min-height: 73px;
 
@@ -142,8 +147,9 @@
 }
 
 
-@media screen and (max-width: 660px) {
+@media screen and (max-width: 698px) {
   .profile__info {
+    justify-content: center;
     margin: 22.25px auto 0;
   }
 }
@@ -161,12 +167,19 @@
   color: #FFFFFF;
 
   margin: 0 0 16px 0;
-  border: 1px solid red;
 }
 
 @media screen and (max-width: 1210px) {
   .profile__name {
     font-size: 35px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .profile__name {
+    font-weight: 500;
+    font-size: 27px; 
+    line-height: 1.22;
   }
 }
 
@@ -183,8 +196,31 @@
   border: 1px solid red;
 }
 
+@media screen and (max-width: 320px) {
+  .profile__description {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+}
+
 .profile__edit_button {
-  box-sizing: border-box;
+  height: 24px;
+
+  margin: 15px 0 0 18px;
+}
+
+.profile__edit_button:hover {
+  opacity: 0.6;
+}
+
+@media screen and (max-width: 320px) {
+  .profile__edit_button {
+    width: 18px;
+    height: 18px;
+
+    margin: 8px 0 0 10px;
+  }
 }
 
 .profile__add_button {
@@ -198,6 +234,10 @@
     width: 282px;
     height: 50px;
   }
+}
+
+.profile__add_button:hover {
+  opacity: 0.6;
 }
 
 
@@ -343,5 +383,6 @@
   .footer__copyright {
     font-size: 14px;
     line-height: 1.2;
+    max-width: 282px;
     }
   }
