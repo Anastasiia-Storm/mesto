@@ -1,0 +1,9 @@
+.popup__save {
+  width: 358px;
+  height: 50px;
+  border-radius: 2px;
+
+  background-color: #000000; 
+
+  margin: 48px 36px 37px 36px;
+}

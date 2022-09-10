@@ -1,0 +1,9 @@
+.popup {
+  
+  max-width: 430px;
+  min-height: 330px;
+  border-radius: 10px;
+  background-color: #FFFFFF;
+
+  margin: 195px 425px 195px 425px;
+}
