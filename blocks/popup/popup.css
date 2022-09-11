@@ -1,9 +1,23 @@
 .popup {
-  
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+
+
   max-width: 430px;
   min-height: 330px;
   border-radius: 10px;
   background-color: #FFFFFF;
 
-  margin: 195px 425px 195px 425px;
+  margin: 195px auto;
+}
+/* 
+.popup_opened {
+  display: block;
+}  */
+
+@media screen and (max-width: 320px) {
+  .popup {
+    margin: 123px 19px ;
+  }
 }

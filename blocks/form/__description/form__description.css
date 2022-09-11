@@ -1,4 +1,4 @@
-.popup__description {
+.form__description {
   font-family: 'Inter', 'Areal', sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -6,7 +6,17 @@
   line-height: 1.2;
   border: 0;
 
+  width: 358px;
+  
   color: #000000;
-
+  
   padding: 30px 36px 0 36px;
+}
+
+@media screen and (max-width: 320px) {
+  .form__description {
+    width: 238px;
+
+    padding: 30px 22px 0 22px;
+  }
 }

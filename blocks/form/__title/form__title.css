@@ -1,4 +1,4 @@
-.popup__title {
+.form__title {
   font-family: 'Inter', 'Areal', sans-serif;
   font-style: normal;
   font-weight: 900;
@@ -11,4 +11,15 @@
 
   margin: 0;
   padding: 34px 64px 0 36px;
+}
+
+
+@media screen and (max-width: 320px) {
+  .form__title {
+    font-size: 18px;
+    
+    width: 238px;
+
+    padding: 25px 22px 0 22px;
+  }
 }

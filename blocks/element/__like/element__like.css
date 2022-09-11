@@ -1,5 +1,5 @@
 .element__like {
-  background-image: url(./images/Vector\ \(Stroke\).jpg);
+  background-image: url("../../../images/Vector.svg");
   background-repeat: no-repeat;
   cursor: pointer;
   background-size: contain;
@@ -9,3 +9,7 @@
   
   padding: 0;
 }
+
+/* .element__like:hover {
+  background-image: url("../../../images/Union.svg");
+} */

@@ -1,15 +1,10 @@
-.popup__subtitle {
+.button__form-save {
   font-family: 'Inter', 'Areal', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 18px;
   line-height: 1.2;
   text-align: center;
-
-  width: 109px;
-  height: 18px;
-    
+      
   color: #FFFFFF;
-
-  margin: 14px 124px 18px 125px;
 }
