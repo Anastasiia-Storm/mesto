@@ -2,7 +2,7 @@ let overlayElement = document.querySelector('.overlay')
 // Нахожу и выбираю элементы по имени класса
 let openEditButton = document.querySelector('.profile__edit-button')
 // Нахожу кнопку открытия
-let closeButton = overlayElement.querySelector('.button__form-close')
+let closeButton = overlayElement.querySelector('.form__close-button')
 // Нахожу кнопку закрытия
 
 let toggleOverlay = () => {
