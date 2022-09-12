@@ -30,8 +30,6 @@ let jobInput = document.querySelector('.form__author');// Воспользуйт
 // она никуда отправляться не будет
 function formSubmitHandler (evt) {
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-    console.log(nameInput.value);
-    console.log(jobInput.value);
     // Получите значение полей jobInput и nameInput из свойства value
 
     let profileName = document.querySelector('');
