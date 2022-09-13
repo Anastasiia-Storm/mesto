@@ -1,7 +1,7 @@
 .profile__info {
   display: flex;
   flex-wrap: wrap;
-  max-width: 336px;
+  width: 336px;
   min-height: 73px;
   
   margin-right: auto;
@@ -14,4 +14,12 @@
     margin: 22.25px auto 0;
   }
 }
+
+  
+@media screen and (max-width: 320px) {
+  .profile__info {
+    margin: 26px auto 0;
+  }
+}
+  
   

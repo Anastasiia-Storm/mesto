@@ -1,25 +1,24 @@
-.form__title {
+.popup__title {
+  text-align: center;
   font-family: 'Inter', 'Areal', sans-serif;
   font-style: normal;
   font-weight: 900;
   font-size: 24px;
   line-height: 1.2;
 
-  width: 330px;
+  width: 100%;
 
   color: #000000;
 
-  margin: 0;
-  padding: 34px 64px 0 36px;
+  margin: 34px 0 0 0;
 }
-
 
 @media screen and (max-width: 320px) {
-  .form__title {
+  .popup__title{
     font-size: 18px;
-    
     width: 238px;
-
     padding: 25px 22px 0 22px;
+    margin: 0;
   }
 }
+  

@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="./pages/index.css"> 
+  <link rel="stylesheet" href="./normalize.css"> <!-- Сначала normalize.css -->
+  <link rel="stylesheet" href="./pages/index.css"> <!-- Потом свои стили -->
   <title>Жак-Ив Кусто</title>
 </head>
 <body class="page">
   <header class="header">
     <img class="header__logo" src="./images/Логотип.svg" alt="Место">
-    <div class="header__line"></div>
   </header>
   <main class="content">
     <section class="profile">
@@ -22,68 +22,64 @@
       <img class="profile__add-button" src="./images/Кнопка.добавить.svg" alt="Кнопка">
     </section>
     <section class="elements">
-      <div class="element">
+      <article class="element">
         <img class="element__photo" src="./images/Домики.jpg" alt="Исландские домики">
         <div class="element__info">
           <h2 class="element__name">Исландские домики</h2>
           <img class="element__like" src="./images/Лайк.svg" alt="Лайк">
         </div>
-      </div>
-      <div class="element">
+      </article>
+      <article class="element">
         <img class="element__photo" src="./images/Свартифосс.jpg" alt="Водопад Свартифосс">
         <div class="element__info">
           <h2 class="element__name">Водопад Свартифосс</h2>
           <img class="element__like" src="./images/Лайк.svg" alt="Лайк">
         </div>
-      </div>
-      <div class="element">
+      </article>
+      <article class="element">
         <img class="element__photo" src="./images/Исландия.jpg" alt="Исландия">
         <div class="element__info">
           <h2 class="element__name">Исландия</h2>
           <img class="element__like" src="./images/Лайк.svg" alt="Лайк">
         </div>
-      </div>
-      <div class="element">
+      </article>
+      <article class="element">
         <img class="element__photo" src="./images/Водопад.jpg" alt="Водопад Годафосс">
         <div class="element__info">
           <h2 class="element__name">Водопад Годафосс</h2>
           <img class="element__like" src="./images/Лайк.svg" alt="Лайк">
         </div>
-      </div>
-      <div class="element">
+      </article>
+      <article class="element">
         <img class="element__photo" src="./images/Норвегия.jpg" alt="Норвегия">
         <div class="element__info">
           <h2 class="element__name">Норвегия</h2>
           <img class="element__like" src="./images/Лайк.svg" alt="Лайк">
         </div>
-      </div>
-      <div class="element">
+      </article>
+      <article class="element">
         <img class="element__photo" src="./images/Пляж.jpg" alt="Пляж с черным песком, Исландия">
         <div class="element__info">
           <h2 class="element__name">Пляж с черным песком</h2>
           <img class="element__like" src="./images/Лайк.svg" alt="Лайк">
         </div>
-      </div>
+      </article>
       </section>
       <footer class="footer">
         <p class="footer__copyright">&copy; 2022 Mesto Russia</p>
       </footer>
-  </main>
+    </main>
 
 
-      <section class="overlay">
-        <div class="popup">
-          <form class="form">
-          <img class="form__close-button" src="./images/Кнопка.закрыть.svg" alt="Крестик">
-            <h2 class="form__title">Редактировать профиль</h2>
-            <input type="text" placeholder="Жак-Ив Кусто" class="form__author">
-            <div class="form__line"></div>
-            <input type="text" placeholder="Исследователь океана" class="form__description">
-            <div class="form__line"></div>
-            <button class="button form__save-button" type="submit">Сохранить</button>
-          </form>
-        </div>
-      </section>
+        <section class="popup">
+          <div class="popup__container">
+          <img class="popup__close-button" src="./images/Кнопка.закрыть.svg" alt="Крестик">
+            <h2 class="popup__title">Редактировать профиль</h2>
+            <input type="text" placeholder="Жак-Ив Кусто" class="popup__author">
+            <input type="text" placeholder="Исследователь океана" class="popup__description">
+            <button class="button popup__save-button" type="submit">Сохранить</button>
+          </div>
+        </section>
       
       <script src="./scripts/index.js"></script>
 </body>

@@ -1,0 +1,16 @@
+.popup__close-button {
+  /* display: flex; */
+  position: absolute;
+
+  margin: 155px 385px 533px 863px;
+  
+}
+
+@media screen and (max-width: 320px) {
+  .popup__close-button {
+    top: 0;
+    width: 20px;
+    height: 20px;
+    margin: 87px 19px 16px 281px;
+  }
+}
