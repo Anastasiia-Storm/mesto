@@ -1,5 +1,15 @@
 .element {
   border-radius: 10px;
-  width: 100%;
+  overflow: hidden;
+  
+  max-width: 282px;
+
+  background-color: #FFFFFF;
+  color: #000000;
 }
     
+@media screen and (max-width: 500px) {
+  .element {
+    margin: auto;
+  }
+}

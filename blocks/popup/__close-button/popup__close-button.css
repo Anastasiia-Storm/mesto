@@ -6,6 +6,20 @@
   
 }
 
+@media screen and (max-width: 545px) {
+  .popup__close-button {
+    top: 0;
+    margin: 155px 385px 553px 780px;
+  }
+}
+
+@media screen and (max-width: 545px) {
+  .popup__close-button {
+    top: 0;
+    margin: 155px 385px 553px 650px;
+  }
+}
+
 @media screen and (max-width: 320px) {
   .popup__close-button {
     top: 0;

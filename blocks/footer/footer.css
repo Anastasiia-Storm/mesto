@@ -8,11 +8,11 @@
   }
 }
   
-@media screen and (max-width: 950px) {
+@media screen and (max-width: 845px) {
   .footer {
     padding: 0 0 60px 50px;
   }
-}
+} 
   
 @media screen and (max-width: 400px) {
   .footer {

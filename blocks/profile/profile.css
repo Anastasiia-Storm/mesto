@@ -8,24 +8,24 @@
   margin: 40px 0 51px 0;
   padding: 0 200px 0 200px;
 }
-  
-@media screen and (max-width: 1150px) {
+
+@media screen and (max-width: 1050px) {
   .profile {
     padding: 0 100px 0 100px;
   }
 }
-  
-@media screen and (max-width: 950px) {
+
+@media screen and (max-width: 845px) {
   .profile {
     padding: 0 50px 0 50px;
   }
 }
-  
-@media screen and (max-width: 698px) {
+
+@media screen and (max-width: 650px) {
   .profile {
     flex-direction: column;
   }
-}
+} 
   
 @media screen and (max-width: 400px) {
   .profile {

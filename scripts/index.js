@@ -15,35 +15,34 @@ closeButton.addEventListener('click', () => {
 
 
 // Находим форму в DOM 
-let ElementPopup = document.queryCommandValue('.popup__container');// Воспользуйтесь методом querySelector() 
+// let popupContainer = document.queryCommandValue('.popup__container');// Воспользуйтесь методом querySelector() 
 
 // Находим поля формы в DOM 
 let nameInput = document.querySelector('.popup__author');// Воспользуйтесь инструментом .querySelector() 
 let jobInput = document.querySelector('.popup__description');// Воспользуйтесь инструментом .querySelector() 
 let popupSaveButton = document.querySelector('.popup__save-button');
+
+let profileName = document.querySelector('.profile__name'); 
+let profileJob = document.querySelector('.profile__description'); 
+// Выберите элементы, куда должны быть вставлены значения полей 
  
 // Обработчик «отправки» формы, хотя пока 
 // она никуда отправляться не будет 
 
 function popupSubmitHandler (evt) { 
     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы. 
-    console.log(nameInput.value); 
-    console.log(jobInput.value); 
     // Получите значение полей jobInput и nameInput из свойства value 
-
-    let profileName = document.querySelector('.profile__name'); 
-    let profileJob = document.querySelector('.profile__description'); 
-    // Выберите элементы, куда должны быть вставлены значения полей 
 
     profileName.textContent = nameInput.value 
     profileJob.textContent = jobInput.value 
     // Вставьте новые значения с помощью textContent 
+
+    // popupSaveButton.addEventListener('click', () => {
+    //     popupElement.remove('popup_opened')
+    // })
 } 
 
-popupSaveButton.addEventListener('click', () => {
-    ElementPopup.classList.remove('.popup_opened')
-})
 
 // Прикрепляем обработчик к форме: 
 // он будет следить за событием “submit” - «отправка» 
-ElementPopup.addEventListener('submit', popupSubmitHandler);
+popupElement.addEventListener('submit', popupSubmitHandler);

@@ -4,7 +4,11 @@
   font-weight: 400;
   font-size: 18px;
   line-height: 1.2;
-    
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+
   color: #FFFFFF;
 
   margin: 0;
@@ -12,6 +16,7 @@
   
 @media screen and (max-width: 320px) {
   .profile__description {
+    text-align: center;
     font-size: 14px;
   }
 }
