@@ -42,7 +42,6 @@ function popupSubmitHandler (evt) {
     // })
 } 
 
-
 // Прикрепляем обработчик к форме: 
 // он будет следить за событием “submit” - «отправка» 
 popupElement.addEventListener('submit', popupSubmitHandler);
