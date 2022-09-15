@@ -3,11 +3,18 @@
     padding: 0 0 0 27px;
   }
 }
+
+@media screen and (max-width: 900px) {
+  .header__logo {
+    padding: 0 0 0 20px;
+  }
+}
   
 @media screen and (max-width: 400px) {
   .header__logo {
     width: 103.74px;
     height: 24.4px;
+
+    padding: 0 0 0 27px;
   }
 }
-  

@@ -5,12 +5,19 @@
   grid-row-gap: 16px;
   grid-column-gap: 18px;
   min-height: 73px;
+  max-width: 336px;
 
   margin: 22px 0 0;
   margin-right: auto; 
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 744px) {
+  .profile__info {
+    grid-column-gap: 10px;
+  }
+}
+
+@media screen and (max-width: 666px) {
   .profile__info {
     margin: 26px 0 0 0;
   }
