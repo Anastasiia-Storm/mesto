@@ -10,7 +10,7 @@
 
   height: 14px;
   color: #000000;
-  border-bottom: 1px solid #545454;
+  border-bottom: 1px solid rgba(0, 0, 0, 1);
 
   padding: 0;
   margin: 54px 36px 13px 36px;
