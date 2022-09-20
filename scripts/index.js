@@ -26,12 +26,12 @@ let profileJob = document.querySelector('.profile__description')
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 savePopupButton.addEventListener('click',function formSubmitHandler (evt) {
-    evt.preventDefault();  
+    evt.preventDefault();     // Эта строчка отменяет стандартную отправку формы.
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     formElement.classList.remove('popup_opened');
     }); 
-    // Эта строчка отменяет стандартную отправку формы.
+ 
                                                 // Так мы можем определить свою логику отправки.
                                                 // О том, как это делать, расскажем позже.
 
