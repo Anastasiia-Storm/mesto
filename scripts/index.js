@@ -5,11 +5,11 @@ let openEditButton = document.querySelector('.profile__edit-button')
 let closeButton = popupElement.querySelector('.popup__close-button')
 // Нахожу кнопку закрытия
 
-openEditButton.addEventListener('click', () => {
+openEditButton.addEventListener('click', function() {
     popupElement.classList.add('popup_opened')
 })
     
-closeButton.addEventListener('click', () => {
+closeButton.addEventListener('click', function() {
     popupElement.classList.remove('popup_opened')
 })
 
