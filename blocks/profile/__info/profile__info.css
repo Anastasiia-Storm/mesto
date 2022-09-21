@@ -1,31 +1,21 @@
 .profile__info {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-  grid-row-gap: 16px;
-  grid-column-gap: 18px;
-  min-height: 73px;
-  max-width: 336px;
-
-  margin: 22px 0 0;
-  margin-right: auto; 
+  display: flex;
 }
 
-@media screen and (max-width: 744px) {
+@media screen and (max-width: 650px) {
   .profile__info {
-    grid-column-gap: 10px;
+    margin: auto;
   }
 }
 
-@media screen and (max-width: 666px) {
+@media screen and (max-width: 540px) {
   .profile__info {
-    margin: 26px 0 0 0;
+    margin: 0;
   }
 }
-  
-@media screen and (max-width: 320px) {
-  .profile__info {
-    grid-row-gap: 14px;
-    grid-column-gap: 10px;
+
+@media screen and (max-width: 450px) {
+.profile__info {
+  flex-direction: column;
   }
 }
