@@ -18,11 +18,11 @@ let profileJob = document.querySelector('.profile__job')
 // Обработчик «отправки» формы, хотя пока
 // она никуда отправляться не будет
 function formSubmitHandler (evt) {
-    evt.preventDefault();     // Эта строчка отменяет стандартную отправку формы.
+    evt.preventDefault();  // Эта строчка отменяет стандартную отправку формы.
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     formElement.classList.remove('popup_opened'); 
-}
+};
 
   // Получите значение полей jobInput и nameInput из свойства value
     // let profileName = document.querySelector('.profile__name');
