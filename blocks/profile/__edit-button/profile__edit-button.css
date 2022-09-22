@@ -3,7 +3,8 @@
   background-repeat: no-repeat;
   background-position: center;
   border: 1px solid #FFFFFF;
-  min-width: 24px;
+  background-size: 10px;
+  width: 24px;
   height: 24px;
   box-sizing: border-box;
   cursor: pointer;
@@ -28,6 +29,7 @@
     width: 18px;
     height: 18px;
   
-    margin: 8px 0 0 0;
+    /* margin: 8px 0 0 0; */
+    background-size: 7.5px;
   }
 }

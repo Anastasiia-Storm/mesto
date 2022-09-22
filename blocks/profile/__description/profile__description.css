@@ -48,7 +48,10 @@
   
 @media screen and (max-width: 320px) {
   .profile__description {
+    box-sizing: border-box;
     grid-row-gap: 14px;
     grid-column-gap: 10px;
+
+    padding: 26px 19px 0 19px;
   }
 } 
