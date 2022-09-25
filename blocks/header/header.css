@@ -6,24 +6,6 @@
   padding: 45px 0 0 0;
   border-bottom: 1px solid #545454;
 }
-
-/* @media screen and (max-width: 1050px) {
-  .header {
-    padding: 35px 0 0 0;
-  }
-} */
-
-/* @media screen and (max-width: 1050px) {
-  .header {
-    padding: 45px 100px 0 100px;
-  }
-}
-
-@media screen and (max-width: 845px) {
-  .header {
-    padding: 45px 50px 0 50px;
-  }
-} */
    
 @media screen and (max-width: 929px) {
   .header {
@@ -33,7 +15,7 @@
 
 @media screen and (max-width: 500px) {
   .header {
-    min-height: 84px;
-    padding: 0;
+    min-height: 56px;
+    padding: 28px 0 0 0;
   }
 }

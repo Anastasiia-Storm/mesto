@@ -40,17 +40,17 @@ function formSubmitHandler (evt) {
 
 formElement.addEventListener('submit', formSubmitHandler); 
 
-openEditButton.addEventListener('click', function() {
+openEditButton.addEventListener('click', function() {  // Добавить слушатель события 
   let title = document.querySelector(".profile__name");
   let about = document.querySelector(".profile__job");
   let inputName = document.querySelector(".popup__input_type_name");
   let inputJob = document.querySelector(".popup__input_type_job");
-  inputName.value = title.textContent
+  inputName.value = title.textContent // textContent позволяет получить или перезаписать текстовое содержимое элемента.
   inputJob.value = about.textContent
-  popupElement.classList.add('popup_opened')
+  popupElement.classList.add('popup_opened')  // Присвоение класса элементу
 })
 
 closeButton.addEventListener('click', function() {
-    popupElement.classList.remove('popup_opened')
+    popupElement.classList.remove('popup_opened') // Удаление класса у элемента
 })
 // Функция закрытия popup

@@ -1,14 +1,11 @@
 .popup__container {
-  /* display: flex; */
   position: fixed;
-  top: 0;
   right: 0;
-  bottom: 0;
   left: 0;
   padding: 35px;
-  margin: auto;
+  margin: 155px auto;
   max-width: 430px;
-  height: 330px;
+  min-height: 330px;
 }
 
 @media screen and (max-width: 450px) {
