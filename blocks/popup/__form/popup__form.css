@@ -1,9 +1,4 @@
 .popup__form {
-  display: flex;
-  align-items: center;
-  /* justify-content: center; */
-  flex-wrap: wrap;
-
   border-radius: 10px;
   color: #000000;
   background-color: #FFFFFF;
