@@ -53,3 +53,16 @@ closeButton.addEventListener('click', function() {
     popupElement.classList.remove('popup_opened') // Удаление класса у элемента
 })
 // Функция закрытия popup
+
+
+
+// const likeElement = document.querySelector('.element__like')
+
+// // Ставлю лайк на карточку, но ставится почему-то только на первую
+// ikeElement.addEventListener('click', function (evt) { // Вешаем обработчик клика на кнопку
+//   evt.target.classList.toggle(likeElement.querySelector('element__like_active')); // Добавляю класс
+//   evt.target.classList.toggle('element__like_active'); // Настраиваю переключение класса
+// });
+
+// Шесть карточек «из коробки»
+// При загрузке на странице должно быть 6 карточек, которые добавит JavaScript.
