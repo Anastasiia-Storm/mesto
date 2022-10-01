@@ -97,7 +97,7 @@
           <form class="popup__form popup__form_add-card">
             <h2 class="popup__title">Новое место</h2>
             <input class="popup__input popup__input_card_name" type="text" name="name" placeholder="Название">
-            <input class="popup__input popup__input_card_imgae" type="text" name="image" placeholder="Ссылка на картинку">
+            <input class="popup__input popup__input_card_image" type="text" name="image" placeholder="Ссылка на картинку">
             <button type="button" class="popup__create-button" aria-label="Создать">Создать</button>
           </form>
             <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
@@ -105,9 +105,9 @@
         </div>
 
 
-        <template id="elements-template">
+        <template id="card">
           <li class="element">
-            <img class="element__photo">
+            <img class="element__photo" src="./images/Beach.jpg" alt="пляж">
             <button type="button" class="element__delete" aria-label="Удалить"></button>
             <div class="element__info">
               <h2 class="element__name"></h2>
