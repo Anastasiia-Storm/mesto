@@ -1,27 +1,28 @@
 const initialCards = [
   {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    name: 'Горы Тяньцзи',
+    // link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    link: 'https://vandruy.by/wp-content/uploads/2018/11/amazing-scenary-of-prince-tianzi-mountain-china-1024x683.jpeg'
   },
   {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    name: 'Водопад Виктория на реке Замбези',
+    link: 'https://vandruy.by/wp-content/uploads/2018/02/victoria-falls-and-zambezi-national-park-zimbabwe-5-min-1024x683.jpg'
   },
   {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    name: 'Долина Йосемити',
+    link: 'https://vandruy.by/wp-content/uploads/2018/11/gory-kamni-potok-stremnina.jpeg'
   },
   {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    name: 'Национальный приморский парк Хитачи, Япония',
+    link: 'https://i.pinimg.com/originals/a4/72/54/a472549e39762db4dfb2f3467eab7b62.jpg'
   },
   {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    name: 'Пещеры ледника Ватнайёкюдль, Исландия',
+    link: 'https://35photo.ru/photos_main/240/1202736.jpg'
   },
   {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    name: 'Памуккале, Турция',
+    link: 'http://www.orangesmile.com/extreme/img/main/pamukkale-travertine_1.jpg'
   }
 ];
 
@@ -68,18 +69,7 @@ let formElement = document.querySelector('.popup'); // Воспользуйте�
 // Находим поля формы в DOM
 let nameInput = document.querySelector('.popup__input_type_name'); // Воспользуйтесь инструментом .querySelector()
 let jobInput = document.querySelector('.popup__input_type_job'); // Воспользуйтесь инструментом .querySelector()
-
-
-const popupInput = document.querySelector(".popup__input"); // инпут формы
-
-
-let popupElement = document.querySelector('.popup')
-// Нахожу и выбираю элементы по имени класса
-let openEditButton = document.querySelector('.profile__edit-button')
-// Нахожу кнопку открытия
-let closeButton = popupElement.querySelector('.popup__close-button')
-// Нахожу кнопку закрытия
-
+let openEditButton = document.querySelector('.profile__edit-button');
 
 
 // Обработчик «отправки» формы, хотя пока
@@ -155,7 +145,6 @@ closeImageModalButton.addEventListener('click', () => {
 });
 
 
-
 // Лайк
 function handleLike(evt) {
   evt.target.classList.toggle('element__like_active');
@@ -185,7 +174,9 @@ function setEventListeners(card, text) {
   deleteButton.addEventListener('click', handDelete);
 
   const cardImage = card.querySelector('.element__photo');
-  cardImage.addEventListener('click', handlePreview);
+  cardImage.addEventListener('click', () => {
+    handlePreview(text);
+  });
 }
 
 
@@ -198,9 +189,8 @@ initialCards.forEach(render); // forEach перебирает массив и в
 function createCard(text) { // name, link
   const cardElement = cardTemplate.cloneNode(true); // Клонирую <li></li>
   const cardImage = cardElement.querySelector('.element__photo'); // Ищу и добавляю картинку
-  cardImage.style.backgroundImage = `url(${text.link})`; // Взяла img и добавила ссылку
+  cardImage.src = text.link; // Взяла img и добавила ссылку
   cardElement.querySelector('.element__name').textContent = text.name; // Взяла title и добавила текст
-
 
   setEventListeners(cardElement, text);
 
@@ -211,7 +201,7 @@ function createCard(text) { // name, link
  // Отрисовывает карточку через вспомогательную функцию
  // Принимает объект (name, link)
  // Добавляет её в DOM
- function render(text) {
+function render(text) {
  console.log(text);
 
  const newCard = createCard(text); // Это будет новая карточка
