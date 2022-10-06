@@ -76,7 +76,6 @@ function formSubmitHandler (evt) {
     evt.preventDefault();  // Эта строчка отменяет стандартную отправку формы.
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
-    // formElement.classList.remove('popup_opened'); 
     closeModal(editFormModalWindow);
 }
 
