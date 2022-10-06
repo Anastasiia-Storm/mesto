@@ -1,4 +1,4 @@
 .popup__photo {
-  max-width: 816px;
-  height: 540px;
+  max-width: 64vw; 
+  max-height: 75vh;
 }

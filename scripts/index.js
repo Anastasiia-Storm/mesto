@@ -1,7 +1,6 @@
 const initialCards = [
   {
     name: 'Горы Тяньцзи',
-    // link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
     link: 'https://vandruy.by/wp-content/uploads/2018/11/amazing-scenary-of-prince-tianzi-mountain-china-1024x683.jpeg'
   },
   {
@@ -17,7 +16,7 @@ const initialCards = [
     link: 'https://i.pinimg.com/originals/a4/72/54/a472549e39762db4dfb2f3467eab7b62.jpg'
   },
   {
-    name: 'Пещеры ледника Ватнайёкюдль, Исландия',
+    name: 'Пещеры ледника Ватнайёкюдль',
     link: 'https://35photo.ru/photos_main/240/1202736.jpg'
   },
   {
