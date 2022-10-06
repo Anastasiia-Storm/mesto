@@ -32,8 +32,8 @@ const cardTemplate = document.querySelector('#card__template')
 
 
 // Контейнеры
-const editFormModalWindow = document.querySelector('.popup__edit-profile');
-const cardFormModalWindow = document.querySelector('.popup__add-profile');
+const editFormModalWindow = document.querySelector('.popup_edit-profile');
+const cardFormModalWindow = document.querySelector('.popup_add-profile');
 const imageModalWindow = document.querySelector('.popup_type_image');
 
 
