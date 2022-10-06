@@ -48,7 +48,6 @@ const closeImageModalButton = imageModalWindow.querySelector('.popup__close-butt
 // DOM узлы профиля
 // Получаю значение полей jobInput и nameInput из свойства value
 let profileName = document.querySelector('.profile__name');
-// let profileJob = document.querySelector('.profile__description');
 let profileJob = document.querySelector('.profile__job');
 
 
