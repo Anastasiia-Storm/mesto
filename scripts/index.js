@@ -1,29 +1,4 @@
-const initialCards = [
-  {
-    name: 'Горы Тяньцзи',
-    link: 'https://vandruy.by/wp-content/uploads/2018/11/amazing-scenary-of-prince-tianzi-mountain-china-1024x683.jpeg'
-  },
-  {
-    name: 'Водопад Виктория',
-    link: 'https://vandruy.by/wp-content/uploads/2018/02/victoria-falls-and-zambezi-national-park-zimbabwe-5-min-1024x683.jpg'
-  },
-  {
-    name: 'Долина Йосемити',
-    link: 'https://vandruy.by/wp-content/uploads/2018/11/gory-kamni-potok-stremnina.jpeg'
-  },
-  {
-    name: 'Национальный парк',
-    link: 'https://i.pinimg.com/originals/a4/72/54/a472549e39762db4dfb2f3467eab7b62.jpg'
-  },
-  {
-    name: 'Пещеры',
-    link: 'https://35photo.ru/photos_main/240/1202736.jpg'
-  },
-  {
-    name: 'Памуккале, Турция',
-    link: 'http://www.orangesmile.com/extreme/img/main/pamukkale-travertine_1.jpg'
-  }
-];
+import { initialCards } from "./cards";
 
 
 // Темплейты
@@ -47,8 +22,8 @@ const closeImageModalButton = imageModalWindow.querySelector('.popup__close-butt
 
 // DOM узлы профиля
 // Получаю значение полей jobInput и nameInput из свойства value
-let profileName = document.querySelector('.profile__name');
-let profileJob = document.querySelector('.profile__job');
+const profileName = document.querySelector('.profile__name');
+const profileJob = document.querySelector('.profile__job');
 
 
 // // Данные форм и элементы форм
@@ -61,13 +36,10 @@ const imageCaption = imageModalWindow.querySelector('.popup__caption');
 // // Элемент списка
 const cards = document.querySelector('.elements'); 
 
-
-// // Находим форму в DOM
-let formElement = document.querySelector('.popup'); // Воспользуйтесь методом querySelector()
 // Находим поля формы в DOM
-let nameInput = document.querySelector('.popup__input_type_name'); // Воспользуйтесь инструментом .querySelector()
-let jobInput = document.querySelector('.popup__input_type_job'); // Воспользуйтесь инструментом .querySelector()
-let openEditButton = document.querySelector('.profile__edit-button');
+const nameInput = document.querySelector('.popup__input_type_name'); // Воспользуйтесь инструментом .querySelector()
+const jobInput = document.querySelector('.popup__input_type_job'); // Воспользуйтесь инструментом .querySelector()
+const openEditButton = document.querySelector('.profile__edit-button');
 
 
 // Обработчик «отправки» формы, хотя пока
@@ -109,7 +81,7 @@ openEditButton.addEventListener('click', function() {  // Добавить сл�
 
 // Функция открытия popup
 function openModal(modalWindow) { // Открывает модальное окно
-  console.log(modalWindow);  // Навешивает класс
+  // console.log(modalWindow);  // Навешивает класс
   modalWindow.classList.add('popup_opened');
 }
 

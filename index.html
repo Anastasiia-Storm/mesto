@@ -90,8 +90,6 @@
         <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
       </div>
     </div>
-
-
     <div class="popup popup_add-profile">
       <div class="popup__container">
       <form class="popup__form popup__form_add-card">
@@ -103,20 +101,20 @@
         <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
       </div>
     </div>
-
-
     <div class="popup popup_type_image">
       <div class="popup__container popup__container_content_image">
         <button type="button" class="popup__close-button"></button>
-        <img src="#" alt="" class="popup__photo">
+        <img src="#" alt="#" class="popup__photo">
         <p class="popup__caption"></p>
       </div>
     </div>
 
+    
+    <script type="module" src="./scripts/index.js" defer></script>
 
         <template id="card__template">
           <li class="element">
-            <img class="element__photo" src="#" alt="">
+            <img class="element__photo" src="#" alt="#">
             <button type="button" class="element__delete" aria-label="Удалить"></button>
             <div class="element__info">
               <h2 class="element__name"></h2>
@@ -124,8 +122,5 @@
             </div>
           </li>
         </template> 
-
-
-      <script src="./scripts/index.js" defer></script>
 </body>
 </html>
