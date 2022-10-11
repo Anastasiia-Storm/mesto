@@ -1,4 +1,30 @@
-import { initialCards } from "./cards";
+// import { initialCards } from "./cards";
+const initialCards = [
+  {
+    name: 'Горы Тяньцзи',
+    link: 'https://vandruy.by/wp-content/uploads/2018/11/amazing-scenary-of-prince-tianzi-mountain-china-1024x683.jpeg'
+  },
+  {
+    name: 'Водопад Виктория',
+    link: 'https://vandruy.by/wp-content/uploads/2018/02/victoria-falls-and-zambezi-national-park-zimbabwe-5-min-1024x683.jpg'
+  },
+  {
+    name: 'Долина Йосемити',
+    link: 'https://vandruy.by/wp-content/uploads/2018/11/gory-kamni-potok-stremnina.jpeg'
+  },
+  {
+    name: 'Национальный парк',
+    link: 'https://i.pinimg.com/originals/a4/72/54/a472549e39762db4dfb2f3467eab7b62.jpg'
+  },
+  {
+    name: 'Пещеры',
+    link: 'https://35photo.ru/photos_main/240/1202736.jpg'
+  },
+  {
+    name: 'Памуккале, Турция',
+    link: 'http://www.orangesmile.com/extreme/img/main/pamukkale-travertine_1.jpg'
+  }
+];
 
 
 // Темплейты
@@ -120,13 +146,18 @@ function handleLike(evt) {
 }
 
 // // Удаление
+// function handDelete(evt) {
+//   evt.target.closest('.element').remove();
+// }
+
 function handDelete(evt) {
-  evt.target.closest('.element').remove();
+  evt.target.closest('.element').remove('card');
 }
 
 // // Функция открытия картинки
 function handlePreview(text) {
   // Контент модального окна
+  imageElement.alt = text.link;  
   imageElement.src = text.link;          // Картинка
   imageCaption.textContent = text.name;  // Подпись с картинке
 
@@ -158,10 +189,11 @@ initialCards.forEach(render); // forEach перебирает массив и в
 function createCard(text) { // name, link
   const cardElement = cardTemplate.cloneNode(true); // Клонирую <li></li>
   const cardImage = cardElement.querySelector('.element__photo'); // Ищу и добавляю картинку
+  cardImage.src = text.alt;
   cardImage.src = text.link; // Взяла img и добавила ссылку
   cardElement.querySelector('.element__name').textContent = text.name; // Взяла title и добавила текст
 
-  setEventListeners(cardElement, text);
+  setEventListeners(cardElement, text, cardImage);
 
   return cardElement; // Возвращаю карточку
 }
@@ -171,8 +203,6 @@ function createCard(text) { // name, link
  // Принимает объект (name, link)
  // Добавляет её в DOM
 function render(text) {
- console.log(text);
-
  const newCard = createCard(text); // Это будет новая карточка
 
  cards.prepend(newCard);
