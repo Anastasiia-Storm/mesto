@@ -24,4 +24,13 @@
     font-size: 14px;
  }
 }
-    
+
+.popup__save-button_disabled {
+  color: rgb(229, 229, 229);
+  cursor: default;
+  background: white;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(229, 229, 229);
+  border-image: initial;
+}
