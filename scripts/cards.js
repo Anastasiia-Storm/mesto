@@ -16,7 +16,7 @@ const initialCards = [
     link: 'https://i.pinimg.com/originals/a4/72/54/a472549e39762db4dfb2f3467eab7b62.jpg'
   },
   {
-    name: 'Пещеры',
+    name: 'Ледяная пещера',
     link: 'https://35photo.ru/photos_main/240/1202736.jpg'
   },
   {
