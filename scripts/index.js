@@ -216,14 +216,24 @@ cardLinkInputValue.addEventListener('keydown', function (evt) {
 });
 
 
+// Закрытие по клику на overlay
+const overlay = Array.from(document.querySelectorAll('.popup'));
+overlay.forEach((popup) => {closePopupOverlay(popup); 
+});
 
+const popupContainer = document.querySelector('.popup__container');
 
-
-
-
-
-
-
+function closePopupOverlay(popup) {
+  popup.addEventListener('click', (evt) => {
+    const popupContainer = evt.currentTarget
+    console.log(evt.target);
+    console.log(popupContainer);
+    console.log(evt.target !== popupContainer) // Условие, что объектом клика является не сама форма
+    if (evt.target === popupContainer) {
+      closeModal(popup)
+    }
+  })
+};
 
 
 
