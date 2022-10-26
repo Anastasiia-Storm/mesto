@@ -95,14 +95,12 @@
     <div class="popup popup_add-profile">
       <div class="popup__container">
       <form class="popup__form" name="add" novalidate>
-        <!-- <form class="popup__form popup__form_add-card"> -->
         <h2 class="popup__title">Новое место</h2>
-        <input class="popup__input popup__input_type_card-name" type="text" id="title-card" name="title" minlength="2" maxlength="30" required placeholder="Название">
+        <input class="popup__input popup__input_type_card_name" type="text" id="title-card" name="title" minlength="2" maxlength="30" required placeholder="Название">
         <span id="title-card-error" class="popup__input-error"></span>
         <input class="popup__input popup__input_type_url" type="url" id ="link" name="link" required placeholder="Ссылка на картинку">
         <span id="link-error" class="popup__input-error"></span>
-        <!-- <button disabled class="popup__save-button popup__invalid-button" type="submit" aria-label="Создать">Создать</button> -->
-        <button class="popup__save-button popup__save-button_disabled" type="submit" aria-label="Создать">Создать</button>
+        <button class="popup__save-button" type="submit" aria-label="Создать">Создать</button>
       </form>
         <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
       </div>
@@ -116,6 +114,7 @@
     </div>
 
     <script src="./scripts/cards.js"></script>
+    <!-- <script src="./scripts/validate.js"></script> -->
     <script src="./scripts/index.js" defer></script>
 
         <template id="card__template">
