@@ -191,68 +191,6 @@ function handleAddNewCard(evt) {
 cardFormModalWindow.addEventListener('submit', handleAddNewCard);
 
 
-// const formAddCard = document.forms.add;
-// const formUser = document.forms.user;
-
-
-// const errorMessage = {
-// empty: 'Вы пропустили это поле',
-// wrongLength: 'Должно быть от 2 до 40 символов',
-// wrongLengthAbout: 'Должно быть от 2 до 200 символов',
-// wrongURL: 'Ввведите адрес сайта',
-// }
-
-
-
-// function isValid(input) {
-//   if (input.validity.valueMissing) {
-
-//   }
-// }
-
-// function isValidField(input) { // Проверяет каждое наше поле
-//   const errorSpan = input.parentNode.querySelector(`#${input.id}-error`); // Нажимая на input ParentNode начинает искать id у соседей.
-
-//   isValid(input);
-//   errorSpan.textContent = input.validationMessage; // Передаю текст самой ошибки
-// }
-
-
-// function handleValidateInput(evt) { 
-//   const currentForm = evt.currentTarget; // currentForm здесь я буду находить форму в которой работаю сейчас
-//   const submitButton = currentForm.querySelector('.popup__save-button'); // Нахожу кнопку 
-
-//   isValidField(evt.target); // Вызываю и передаю input
-// }
-
-
-
-
-// function sendForm(evt) { // Функция отвечает за отправку формы
-//   evt.preventDefault();  // отменим стандартное поведение
-
-//   const currentForm = evt.target; // currentForm здесь я буду находить форму в которой работаю сейчас
-
-//   if (currentForm.checkValidity()) {// Проверяю форму на валидность
-//     console.log('Форма успешно отправлена');
-//     currentForm.reset(); // После отправки формы сбрасывает все поля формы
-//   } else {
-//     console.log('Что-то пошло не так');
-//   }
-// }
-
-
-// formAddCard.addEventListener('submit', sendForm);
-// formAddCard.addEventListener('input', handleValidateInput);
-
-
-// // formUser.addEventListener('submit', sendForm);
-// formUser.addEventListener('input', handleValidateInput);
-
-
-
-
-
 // Функция закрытия form по нажатию esc
 function closeByEsc(event) {
   if (event.key === 'Escape') {
@@ -298,9 +236,6 @@ function closePopupOverlay(popup) {
 };
 
 
-
-
-
 // const form = document.querySelector('.popup__form');
 // const formInput = form.querySelector('.popup__input');
 // const formError = form.querySelector(`.${formInput.id}-error`); // Нахожу элемент ошибки по уникальному классу поля ввода, к которому она относится.
@@ -323,7 +258,7 @@ const hideError = (formElement, inputElement, {errorClass, inputErrorClass}) => 
  
   errorElement.textContent = ""; // Это скроет ошибку под полем.
 };
-
+ 
 
 // Функция которая проверяет formInput на корректность введённых данных и вызывает hideError и showError.
 const checkInputValidity = (formElement, inputElement, settings) => {
@@ -334,8 +269,6 @@ const checkInputValidity = (formElement, inputElement, settings) => {
     hideError(formElement, inputElement, settings);
   }
 };
-
-
 
 
 // Обходит массив полей и отвечает на вопрос: «Есть ли здесь хотя бы одно поле, которое не прошло валидацию?»
@@ -366,7 +299,7 @@ const setEventListener = (formElement, {inputSelector, submitButtonSelector, ina
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', function () {
       checkInputValidity(formElement, inputElement, rest);
-      toggleButtonState(inputList, buttonElement, inactiveButtonClass, rest);
+      toggleButtonState(inputList, buttonElement, inactiveButtonClass);
       });
     });
   }; 
