@@ -311,8 +311,8 @@ const enableValidation = ({formSelector, ...rest}) => {
     formList.forEach((formElement) => { // Прохожу по массиву методом forEach
       formElement.addEventListener('submit', (evt) => {
         evt.preventDefault();
-        setEventListener(formElement, rest);
       });
+      setEventListener(formElement, rest);
   })
 };
 
