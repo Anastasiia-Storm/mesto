@@ -242,8 +242,9 @@ function closePopupOverlay(popup) {
 
 
 // // Функция, которая добавляет класс с ошибкой
-const showError = (formElement, inputElement, errorMessage, {errorClass, inputErrorClass}) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`); // Значение этой переменной — ошибка, которая найдена внутри formElement.
+const showError = (formElement, inputElement, inputSelector, errorMessage) => {
+  console.log(showError);
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);   // Значение этой переменной — ошибка, которая найдена внутри formEl.
   inputSelector.classList.add(inputErrorClass); // Добавляет красное подчеркивание
   errorElement.textContent = errorMessage; // Так текст ошибки попадёт в нужное место.
   errorElement.classList.add(errorClass);
@@ -251,9 +252,10 @@ const showError = (formElement, inputElement, errorMessage, {errorClass, inputEr
 
 
 // Функция, которая удаляет класс с ошибкой
-const hideError = (formElement, inputElement, {errorClass, inputErrorClass}) => {
+const hideError = (formElement, inputElement, inputSelector) => {
+  console.log(hideError);
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.remove(inputErrorClass);
+  inputSelector.classList.remove(inputErrorClass);
   errorElement.classList.remove(errorClass);
  
   errorElement.textContent = ""; // Это скроет ошибку под полем.
@@ -264,9 +266,9 @@ const hideError = (formElement, inputElement, {errorClass, inputErrorClass}) => 
 const checkInputValidity = (formElement, inputElement, settings) => {
   if (!inputElement.validity.valid) {
     // Передадим сообщение об ошибке вторым аргументом
-    showError(formElement, inputElement, inputElement.validationMessage, settings);
+    showError(formElement);
   } else {
-    hideError(formElement, inputElement, settings);
+    hideError(formElement, inputElement);
   }
 };
 
@@ -317,8 +319,8 @@ const enableValidation = ({formSelector, ...rest}) => {
 };
 
 
-// // Массив
-// // все настройки передаются при вызове
+// Массив
+// все настройки передаются при вызове
 enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
@@ -326,29 +328,4 @@ enableValidation({
   inactiveButtonClass: 'popup__save-button_disabled',
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_visible'
-}); 
-
-
-
- 
-
-
-
-
-// // Обходит массив полей и отвечает на вопрос: «Есть ли здесь хотя бы одно поле, которое не прошло валидацию?»
-// const hasInvalidInput = (inputList) => { // // Функция возвращает true, если в массиве inputList есть хотя бы один невалидный input. Если все поля валидны — false.
-//   // проходим по этому массиву методом some
-//   return inputList.some((inputElement) => { 
-//      return !inputElement.validity.valid;
-// }); 
-// };
-
-// const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => { // InputList и buttonElement. Первый — массив полей, второй — кнопка «Сохранить, создать».
-//   if (hasInvalidInput(inputList)) { // есть ли в массиве inputList невалидные поля.
-//     buttonElement.classList.add(inactiveButtonClass); 
-//     buttonElement.setAttribute('disabled', true)
-// } else {
-//     buttonElement.classList.remove(inactiveButtonClass); 
-//     buttonElement.setAttribute('disabled', false)
-// }
-// };
+});
