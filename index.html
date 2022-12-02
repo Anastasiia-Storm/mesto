@@ -81,12 +81,12 @@
 
     <div class="popup popup_edit-profile">
       <div class="popup__container">
-      <form class="popup__form" name="user">
+      <form class="popup__form" name="user" novalidate>
         <h2 class="popup__title">Редактировать профиль</h2>
         <input type="text" id="name-card" class="popup__input popup__input_type_name" name="name" minlength="2" maxlength="40" required placeholder="Жак-Ив Кусто">
-        <span id="title-card-error" class="popup__input-error"></span>
+        <span id="name-card-error" class="popup__input-error"></span>
         <input type="text" id="job-card" class="popup__input popup__input_type_job" name="job" minlength="2" maxlength="200" required placeholder="Исследователь океана">
-        <span id="title-card-error" class="popup__input-error"></span>
+        <span id="job-card-error" class="popup__input-error"></span>
         <button type="submit" class="popup__save-button" aria-label="Сохранить">Сохранить</button>
       </form>
         <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
@@ -94,7 +94,7 @@
     </div>
     <div class="popup popup_add-profile">
       <div class="popup__container">
-      <form class="popup__form" name="add">
+      <form class="popup__form" name="add" novalidate>
         <h2 class="popup__title">Новое место</h2>
         <input type="text" id="title-card" class="popup__input popup__input_type_card-name" name="title" minlength="2" maxlength="30" required placeholder="Название">
         <span id="title-card-error" class="popup__input-error"></span>
