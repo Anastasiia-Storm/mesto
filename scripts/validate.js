@@ -1,4 +1,4 @@
-// Функция, которая добавляет класс с ошибкой
+/** Функция, которая добавляет класс с ошибкой */
 const showError = (formElement, inputElement, errorMessage, {inputErrorClass, errorClass}) => { // 3 параметра: форма, поле, сообщение об ошибке.
 const errorElement = formElement.querySelector(`#${inputElement.id}-error`);   // Значение этой переменной — ошибка, которая найдена внутри formEl.
    
@@ -7,8 +7,8 @@ const errorElement = formElement.querySelector(`#${inputElement.id}-error`);   /
   errorElement.classList.add(errorClass);
 };
   
-  
-// Функция, которая удаляет класс с ошибкой
+
+/** Функция, которая удаляет класс с ошибкой */
 const hideError = (formElement, inputElement, {inputErrorClass, errorClass}) => { // 2 параметра: форма, поле.
   const errorElement = formElement.querySelector(`#${inputElement.id}-error`); // Значение этой переменной — ошибка, которая найдена внутри formEl.
   inputElement.classList.remove(inputErrorClass);
@@ -18,7 +18,7 @@ const hideError = (formElement, inputElement, {inputErrorClass, errorClass}) => 
 };
    
 
-// Функция которая проверяет formInput на корректность введённых данных и вызывает hideError и showError.
+/** Функция которая проверяет formInput на корректность введённых данных и вызывает hideError и showError */
 const checkInputValidity = (formElement, inputElement, enumeration) => { // formElement — html-элемент формы, в которой находится проверяемое поле ввода. Он нужен для поиска элемента ошибки в форме.
   // inputElement — проверяемое поле ввода.
   if (!inputElement.validity.valid) { // Если поле popup__input не проходит валидацию, покажем ошибку
@@ -30,7 +30,7 @@ const checkInputValidity = (formElement, inputElement, enumeration) => { // form
 };
   
   
-// Обходит массив полей и отвечает на вопрос: «Есть ли здесь хотя бы одно поле, которое не прошло валидацию?»
+/** Обходит массив полей и отвечает на вопрос: «Есть ли здесь хотя бы одно поле, которое не прошло валидацию?» */
 const hasInvalidInput = (inputList) => { // // Функция возвращает true, если в массиве inputList есть хотя бы один невалидный input. Если все поля валидны — false.
   // проходим по этому массиву методом some
   return inputList.some((inputElement) => { 
@@ -43,29 +43,28 @@ const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => { /
   if (hasInvalidInput(inputList)) { // есть ли в массиве inputList невалидные поля.
     buttonElement.classList.add(inactiveButtonClass); 
     buttonElement.disabled = true; // Сделакем кнопку неактивной
-} else {
+  } else {
     buttonElement.classList.remove(inactiveButtonClass); 
     buttonElement.disabled = false; // Иначе сделаем её активной
-}
+  }
 };
 
 
-// Добавляю слушатель события на все поля ввода сразу
-const setEventListeners = (formElement, {inputSelector, submitButtonSelector, inactiveButtonClass, ...other}) => { 
+/** Добавляю слушатель события на все поля ввода сразу */
+const inputListeners = (formElement, {inputSelector, submitButtonSelector, inactiveButtonClass, ...other}) => { 
   const inputList = Array.from(formElement.querySelectorAll(inputSelector)); // Преобразовываю коллекцию в массив методом Array.from.
   const buttonElement = formElement.querySelector(submitButtonSelector);
-
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener('input', () => {
       checkInputValidity(formElement, inputElement, other);
       toggleButtonState(inputList, buttonElement, inactiveButtonClass);
-      });
     });
-  }; 
+  });
+}; 
 
-  
-// Функция для формы
+
+/** Функция для формы */
 const enableValidation = ({formSelector, ...other}) => { 
   const formList = Array.from(document.querySelectorAll(formSelector)); // Создаю массив
   
@@ -73,7 +72,7 @@ const enableValidation = ({formSelector, ...other}) => {
     formElement.addEventListener('submit', (evt) => {
       evt.preventDefault();
     });
-    setEventListeners(formElement, other);
+    inputListeners(formElement, other);
   })
 }; // Функция isValid найдёт на странице и обработает все формы с классом form. Теперь валидация работает для всех форм.
   
