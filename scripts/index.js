@@ -74,13 +74,13 @@ function closeModal(modalWindow) {
 
 
 /** Лайк */
-function handleLikeButton(evt) {
+function handClickleLikeButton(evt) {
   evt.target.classList.toggle('element__like_active');
 }
 
 
 /** Удаление */
-function handDeleteButton(evt) {
+function handClickDeleteButton(evt) {
   evt.target.closest('.element').remove('card');
 }
 
@@ -99,10 +99,10 @@ function handlePreview(data) {
 //** Внутри этой функции я вешаю слушателей на карточку createCard */
 function setEventListeners(card, data, cardImage) {
   const buttonLike = card.querySelector('.element__like');
-  buttonLike.addEventListener('click', handleLikeButton);
+  buttonLike.addEventListener('click', handClickleLikeButton);
 
   const buttonDelete = card.querySelector('.element__delete');
-  buttonDelete.addEventListener('click', handDeleteButton);
+  buttonDelete.addEventListener('click', handClickDeleteButton);
 
   cardImage.addEventListener('click', () => {
     handlePreview(data);
@@ -153,14 +153,6 @@ function closeByEsc(event) {
 }
 
 
-/** Создает добавление карточки по нажатию enter на поле link */
-cardLinkInputValue.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Enter') {
-    createCard(cardNameInputValue.value, cardLinkInputValue.value);
-  }
-});
-  
-
 /** Закрытие по клику на overlay */
 const cardList = Array.from(document.querySelectorAll('.popup'));
 cardList.forEach((popup) => {bindOverlayClickHandler(popup); 
@@ -190,10 +182,10 @@ profileFormModalWindow.addEventListener('submit', handleProfileFormSubmit);
 //** Внутри этой функции я вешаю слушателей на карточку createCard */
 function setEventListeners(card, data, cardImage) {
   const buttonLike = card.querySelector('.element__like');
-  buttonLike.addEventListener('click', handleLikeButton);
+  buttonLike.addEventListener('click', handClickleLikeButton);
 
   const buttonDelete = card.querySelector('.element__delete');
-  buttonDelete.addEventListener('click', handDeleteButton);
+  buttonDelete.addEventListener('click', handClickDeleteButton);
 
   cardImage.addEventListener('click', () => {
     handlePreview(data);
