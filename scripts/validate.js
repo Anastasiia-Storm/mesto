@@ -1,3 +1,6 @@
+/*-----------------------Функции-----------------------*/
+
+
 /** Функция, которая добавляет класс с ошибкой */
 const showError = (formElement, inputElement, errorMessage, {inputErrorClass, errorClass}) => { // 3 параметра: форма, поле, сообщение об ошибке.
 const errorElement = formElement.querySelector(`#${inputElement.id}-error`);   // Значение этой переменной — ошибка, которая найдена внутри formEl.
@@ -16,33 +19,12 @@ const hideError = (formElement, inputElement, {inputErrorClass, errorClass}) => 
    
   errorElement.textContent = ""; // Это скроет ошибку под полем.
 };
-   
-
-/** Функция которая проверяет formInput на корректность введённых данных и вызывает hideError и showError */
-const checkInputValidity = (formElement, inputElement, enumeration) => { // formElement — html-элемент формы, в которой находится проверяемое поле ввода. Он нужен для поиска элемента ошибки в форме.
-  // inputElement — проверяемое поле ввода.
-  if (!inputElement.validity.valid) { // Если поле popup__input не проходит валидацию, покажем ошибку
-  // Передадим сообщение об ошибке вторым аргументом
-    showError(formElement, inputElement, inputElement.validationMessage, enumeration);
-  } else {; // Если поле проходит валидацию, скроем сообщение об ошибке
-    hideError(formElement, inputElement, enumeration);
-  }
-};
-  
-  
-/** Обходит массив полей и отвечает на вопрос: «Есть ли здесь хотя бы одно поле, которое не прошло валидацию?» */
-const hasInvalidInput = (inputList) => { // // Функция возвращает true, если в массиве inputList есть хотя бы один невалидный input. Если все поля валидны — false.
-  // проходим по этому массиву методом some
-  return inputList.some((inputElement) => { 
-    return !inputElement.validity.valid;
-  });
-};
 
 
 const toggleButtonState = (inputList, buttonElement, inactiveButtonClass) => { // InputList и buttonElement. Первый — массив полей, второй — кнопка «Сохранить, создать».
   if (hasInvalidInput(inputList)) { // есть ли в массиве inputList невалидные поля.
     buttonElement.classList.add(inactiveButtonClass); 
-    buttonElement.disabled = true; // Сделакем кнопку неактивной
+    buttonElement.disabled = true; // Сделаем кнопку неактивной
   } else {
     buttonElement.classList.remove(inactiveButtonClass); 
     buttonElement.disabled = false; // Иначе сделаем её активной
@@ -85,3 +67,29 @@ enableValidation({
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_visible'
 })
+
+
+/*-----------------------Валидация-----------------------*/
+
+
+/** Функция которая проверяет formInput на корректность введённых данных и вызывает hideError и showError */
+const checkInputValidity = (formElement, inputElement, enumeration) => { // formElement — html-элемент формы, в которой находится проверяемое поле ввода. Он нужен для поиска элемента ошибки в форме.
+  // inputElement — проверяемое поле ввода.
+  if (!inputElement.validity.valid) { // Если поле popup__input не проходит валидацию, покажем ошибку
+  // Передадим сообщение об ошибке вторым аргументом
+    showError(formElement, inputElement, inputElement.validationMessage, enumeration);
+  } else {; // Если поле проходит валидацию, скроем сообщение об ошибке
+    hideError(formElement, inputElement, enumeration);
+  }
+};
+  
+  
+/** Обходит массив полей и отвечает на вопрос: «Есть ли здесь хотя бы одно поле, которое не прошло валидацию?» */
+const hasInvalidInput = (inputList) => { // // Функция возвращает true, если в массиве inputList есть хотя бы один невалидный input. Если все поля валидны — false.
+  // проходим по этому массиву методом some
+  return inputList.some((inputElement) => { 
+    return !inputElement.validity.valid;
+  });
+};
+
+

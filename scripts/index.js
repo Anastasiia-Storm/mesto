@@ -33,6 +33,7 @@ const imageCaption = imageModalWindow.querySelector('.popup__caption');
 /** Элемент списка */
 const cardsContainer = document.querySelector('.elements'); 
 
+
 /** Находим поля формы в DOM */
 const nameInput = document.querySelector('.popup__input_type_name'); // Воспользуйтесь инструментом .querySelector()
 const jobInput = document.querySelector('.popup__input_type_job'); // Воспользуйтесь инструментом .querySelector()
@@ -44,6 +45,9 @@ const inputName = document.querySelector('.popup__input_type_name');
 const inputJob = document.querySelector('.popup__input_type_job');
 
 
+/*-----------------------Функции-----------------------*/
+
+
 /** Обработчик «отправки» формы, хотя пока
     она никуда отправляться не будет */
 function handleProfileFormSubmit (evt) {
@@ -52,18 +56,6 @@ function handleProfileFormSubmit (evt) {
     profileJob.textContent = jobInput.value;
     closeModal(profileFormModalWindow);
 }
-
-
-/** Прикрепляем обработчик к форме:
-    он будет следить за событием “submit” - "отправка" */
-profileFormModalWindow.addEventListener('submit', handleProfileFormSubmit); 
-
-
-buttonOpenEdit.addEventListener('click', function() {  // Добавить слушатель события 
-  inputName.value = title.textContent; // textContent позволяет получить или перезаписать текстовое содержимое элемента.
-  inputJob.value = about.textContent;
-  openModal(profileFormModalWindow);
-})
 
 
 /** Функция открытия popup */
@@ -79,28 +71,6 @@ function closeModal(modalWindow) {
   modalWindow.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEsc);
 }
-
-
-/** Запускаю функции открытия и закрытия popup */
-buttonOpenFormEdit.addEventListener('click', () => {
-  openModal(profileFormModalWindow); // Запускаю функцию openModal
-});
-
-buttonOpenFormAddCard.addEventListener('click', () => {
-  openModal(cardFormModalWindow); // Запускаю функцию openModal
-});
-
-buttonCloseFormEdit.addEventListener('click', () => {
-  closeModal(profileFormModalWindow); // Запускаю функцию closeModal
-});
-
-buttonCloseFormAddCard.addEventListener('click', () => {
-  closeModal(cardFormModalWindow); // Запускаю функцию closeModal
-});
-
-buttonCloseImageModal.addEventListener('click', () => {
-  closeModal(imageModalWindow); // Запускаю функцию closeModal
-});
 
 
 /** Лайк */
@@ -138,11 +108,6 @@ function setEventListeners(card, data, cardImage) {
     handlePreview(data);
   });
 }
-
-
-initialCards.forEach(render); // forEach перебирает массив и выполняет для каждого элемента свой код.
-// Метод forEach нужен, когда мы хотим просто пройтись по массиву и для каждого элемента что-то сделать.
-// В данном случае с помощью forEach начинаем применять функцию createCard
 
 
 /** Создает и возвращает карточку */
@@ -188,21 +153,13 @@ function closeByEsc(event) {
 }
 
 
-/** Создает добавление карточки по нажатию enter на поле title */
-cardNameInputValue.addEventListener('keydown', function (evt) {
-  if (evt.key === 'Enter') {
-  createCard(cardNameInputValue.value, cardLinkInputValue.value); // Передаю функции нужные аргументы
-  }
-});
-
-
 /** Создает добавление карточки по нажатию enter на поле link */
 cardLinkInputValue.addEventListener('keydown', function (evt) {
   if (evt.key === 'Enter') {
-  createCard(cardNameInputValue.value, cardLinkInputValue.value);
+    createCard(cardNameInputValue.value, cardLinkInputValue.value);
   }
 });
-
+  
 
 /** Закрытие по клику на overlay */
 const cardList = Array.from(document.querySelectorAll('.popup'));
@@ -220,3 +177,58 @@ function bindOverlayClickHandler (popup) {
     }
   })
 };
+
+
+/*-----------------------Обработчики события-----------------------*/
+
+
+/** Прикрепляем обработчик к форме:
+    он будет следить за событием “submit” - "отправка" */
+profileFormModalWindow.addEventListener('submit', handleProfileFormSubmit); 
+
+
+//** Внутри этой функции я вешаю слушателей на карточку createCard */
+function setEventListeners(card, data, cardImage) {
+  const buttonLike = card.querySelector('.element__like');
+  buttonLike.addEventListener('click', handleLikeButton);
+
+  const buttonDelete = card.querySelector('.element__delete');
+  buttonDelete.addEventListener('click', handDeleteButton);
+
+  cardImage.addEventListener('click', () => {
+    handlePreview(data);
+  });
+}
+
+initialCards.forEach(render); // forEach перебирает массив и выполняет для каждого элемента свой код.
+// Метод forEach нужен, когда мы хотим просто пройтись по массиву и для каждого элемента что-то сделать.
+// В данном случае с помощью forEach начинаем применять функцию createCard
+
+
+buttonOpenEdit.addEventListener('click', function() {  // Добавить слушатель события 
+  inputName.value = title.textContent; // textContent позволяет получить или перезаписать текстовое содержимое элемента.
+  inputJob.value = about.textContent;
+  openModal(profileFormModalWindow);
+})
+  
+
+/** Запускаю функции открытия и закрытия popup */
+buttonOpenFormEdit.addEventListener('click', () => {
+  openModal(profileFormModalWindow); // Запускаю функцию openModal
+});
+
+buttonOpenFormAddCard.addEventListener('click', () => {
+  openModal(cardFormModalWindow); // Запускаю функцию openModal
+});
+
+buttonCloseFormEdit.addEventListener('click', () => {
+  closeModal(profileFormModalWindow); // Запускаю функцию closeModal
+});
+
+buttonCloseFormAddCard.addEventListener('click', () => {
+  closeModal(cardFormModalWindow); // Запускаю функцию closeModal
+});
+
+buttonCloseImageModal.addEventListener('click', () => {
+  closeModal(imageModalWindow); // Запускаю функцию closeModal
+});
