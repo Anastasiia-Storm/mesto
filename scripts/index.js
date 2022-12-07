@@ -44,6 +44,19 @@ const about = document.querySelector('.profile__job');
 const inputName = document.querySelector('.popup__input_type_name');
 const inputJob = document.querySelector('.popup__input_type_job');
 
+const buttonAddProfileSave = cardFormModalWindow.querySelector('.popup__save-button');
+
+const validationConfig = {
+  formSelector: '.popup__form', // Это объекты с селекторами формы
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save-button',
+  inactiveButtonClass: 'popup__save-button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input-error_visible'
+};
+
+const buttonDisabled = validationConfig.inactiveButtonClass;
+
 
 /*-----------------------Функции-----------------------*/
 
@@ -141,6 +154,7 @@ function handleAddNewCard(evt) {
   closeModal(cardFormModalWindow);
 }
 
+
 cardFormModalWindow.addEventListener('submit', handleAddNewCard);
 
 
@@ -202,7 +216,7 @@ buttonOpenEdit.addEventListener('click', function() {  // Добавить сл�
   inputJob.value = about.textContent;
   openModal(profileFormModalWindow);
 })
-  
+
 
 /** Запускаю функции открытия и закрытия popup */
 buttonOpenFormEdit.addEventListener('click', () => {
@@ -211,6 +225,7 @@ buttonOpenFormEdit.addEventListener('click', () => {
 
 buttonOpenFormAddCard.addEventListener('click', () => {
   openModal(cardFormModalWindow); // Запускаю функцию openModal
+  disableSubmitButton(buttonAddProfileSave, buttonDisabled);
 });
 
 buttonCloseFormEdit.addEventListener('click', () => {
