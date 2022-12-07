@@ -206,6 +206,7 @@ function setEventListeners(card, data, cardImage) {
   });
 }
 
+
 initialCards.forEach(render); // forEach перебирает массив и выполняет для каждого элемента свой код.
 // Метод forEach нужен, когда мы хотим просто пройтись по массиву и для каждого элемента что-то сделать.
 // В данном случае с помощью forEach начинаем применять функцию createCard
