@@ -1,3 +1,33 @@
+import Cards from './Card.js';
+
+const initialCards = [
+  {
+    name: 'Горы Тяньцзи',
+    link: 'https://vandruy.by/wp-content/uploads/2018/11/amazing-scenary-of-prince-tianzi-mountain-china-1024x683.jpeg'
+  },
+  {
+    name: 'Водопад Виктория',
+    link: 'https://vandruy.by/wp-content/uploads/2018/02/victoria-falls-and-zambezi-national-park-zimbabwe-5-min-1024x683.jpg'
+  },
+  {
+    name: 'Долина Йосемити',
+    link: 'https://vandruy.by/wp-content/uploads/2018/11/gory-kamni-potok-stremnina.jpeg'
+  },
+  {
+    name: 'Национальный парк',
+    link: 'https://i.pinimg.com/originals/a4/72/54/a472549e39762db4dfb2f3467eab7b62.jpg'
+  },
+  {
+    name: 'Ледяная пещера',
+    link: 'https://35photo.ru/photos_main/240/1202736.jpg'
+  },
+  {
+    name: 'Памуккале, Турция',
+    link: 'http://www.orangesmile.com/extreme/img/main/pamukkale-travertine_1.jpg'
+  }
+];
+
+
 /** Темплейты */
 const cardTemplate = document.querySelector('#card__template')
 .content.querySelector('.element'); // Нахожу template элемент и беру контент карточки <li></li>
@@ -45,34 +75,6 @@ const inputName = document.querySelector('.popup__input_type_name');
 const inputJob = document.querySelector('.popup__input_type_job');
 
 const buttonAddProfileSave = cardFormModalWindow.querySelector('.popup__save-button');
-
-
-const initialCards = [
-  {
-    name: 'Горы Тяньцзи',
-    link: 'https://vandruy.by/wp-content/uploads/2018/11/amazing-scenary-of-prince-tianzi-mountain-china-1024x683.jpeg'
-  },
-  {
-    name: 'Водопад Виктория',
-    link: 'https://vandruy.by/wp-content/uploads/2018/02/victoria-falls-and-zambezi-national-park-zimbabwe-5-min-1024x683.jpg'
-  },
-  {
-    name: 'Долина Йосемити',
-    link: 'https://vandruy.by/wp-content/uploads/2018/11/gory-kamni-potok-stremnina.jpeg'
-  },
-  {
-    name: 'Национальный парк',
-    link: 'https://i.pinimg.com/originals/a4/72/54/a472549e39762db4dfb2f3467eab7b62.jpg'
-  },
-  {
-    name: 'Ледяная пещера',
-    link: 'https://35photo.ru/photos_main/240/1202736.jpg'
-  },
-  {
-    name: 'Памуккале, Турция',
-    link: 'http://www.orangesmile.com/extreme/img/main/pamukkale-travertine_1.jpg'
-  }
-];
 
 
 const validationConfig = {
@@ -138,32 +140,18 @@ function handlePreview(data) {
 }
 
 
-//** Внутри этой функции я вешаю слушателей на карточку createCard */
-function setEventListeners(card, data, cardImage) {
-  const buttonLike = card.querySelector('.element__like');
-  buttonLike.addEventListener('click', handClickleLikeButton);
-
-  const buttonDelete = card.querySelector('.element__delete');
-  buttonDelete.addEventListener('click', handClickDeleteButton);
-
-  cardImage.addEventListener('click', () => {
-    handlePreview(data);
-  });
-}
-
-
 /** Создает и возвращает карточку */
-function createCard(data) { // name, link
-  const cardElement = cardTemplate.cloneNode(true); // Клонирую <li></li>
-  const cardImage = cardElement.querySelector('.element__photo'); // Ищу и добавляю картинку
-  cardImage.alt = data.name;
-  cardImage.src = data.link; // Взяла img и добавила ссылку
-  cardElement.querySelector('.element__name').textContent = data.name; // Взяла title и добавила текст
+// function createCard(data) { // name, link
+//   const cardElement = cardTemplate.cloneNode(true); // Клонирую <li></li>
+//   const cardImage = cardElement.querySelector('.element__photo'); // Ищу и добавляю картинку
+//   cardImage.alt = data.name;
+//   cardImage.src = data.link; // Взяла img и добавила ссылку
+//   cardElement.querySelector('.element__name').textContent = data.name; // Взяла title и добавила текст
 
-  setEventListeners(cardElement, data, cardImage);
+//   setEventListeners(cardElement, data, cardImage);
 
-  return cardElement; // Возвращаю карточку
-}
+//   return cardElement; // Возвращаю карточку
+// }
 
 
 /** Отрисовывает карточку через вспомогательную функцию 
@@ -236,9 +224,9 @@ function setEventListeners(card, data, cardImage) {
 }
 
 
-initialCards.forEach(render); // forEach перебирает массив и выполняет для каждого элемента свой код.
-// Метод forEach нужен, когда мы хотим просто пройтись по массиву и для каждого элемента что-то сделать.
-// В данном случае с помощью forEach начинаем применять функцию createCard
+// initialCards.forEach(render); // forEach перебирает массив и выполняет для каждого элемента свой код.
+// // Метод forEach нужен, когда мы хотим просто пройтись по массиву и для каждого элемента что-то сделать.
+// // В данном случае с помощью forEach начинаем применять функцию createCard
 
 
 buttonOpenEdit.addEventListener('click', function() {  // Добавить слушатель события 
