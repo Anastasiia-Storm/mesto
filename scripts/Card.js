@@ -38,7 +38,7 @@ class Card {
   // Получаю нужную разметку
   _getTemplateCard() {
   const cardElement = document
-    .querySelector('.card__template')
+    .querySelector('#card__template')
     .content
     .querySelector('.element')
     .cloneNode(true); // Клонирую элемент
@@ -54,8 +54,9 @@ class Card {
     this._element = this._getTemplateCard();
 
     // Добавим данные
+    this._element.querySelector('.element__name').textContent = this._name;
     this._element.querySelector('.element__photo').src = this._link;
-    this._element.querySelector('.element__info').textContent = this._name;
+    this._element.querySelector('.element__photo').alt = this._name;
 
     // Вернём элемент наружу
     return this._element;
@@ -63,6 +64,7 @@ class Card {
 }
 
 
+  // Публикация карточек
   initialCards.forEach((item) => {
     // Создадим экземпляр карточки
     const card = new Card(item.name, item.link);
