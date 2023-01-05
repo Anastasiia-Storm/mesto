@@ -1,17 +1,5 @@
 const initialCards = [
   {
-    name: 'Горы Тяньцзи',
-    link: 'https://vandruy.by/wp-content/uploads/2018/11/amazing-scenary-of-prince-tianzi-mountain-china-1024x683.jpeg'
-  },
-  {
-    name: 'Водопад Виктория',
-    link: 'https://vandruy.by/wp-content/uploads/2018/02/victoria-falls-and-zambezi-national-park-zimbabwe-5-min-1024x683.jpg'
-  },
-  {
-    name: 'Долина Йосемити',
-    link: 'https://vandruy.by/wp-content/uploads/2018/11/gory-kamni-potok-stremnina.jpeg'
-  },
-  {
     name: 'Национальный парк',
     link: 'https://i.pinimg.com/originals/a4/72/54/a472549e39762db4dfb2f3467eab7b62.jpg'
   },
@@ -22,36 +10,75 @@ const initialCards = [
   {
     name: 'Памуккале, Турция',
     link: 'http://www.orangesmile.com/extreme/img/main/pamukkale-travertine_1.jpg'
+  },
+  {
+    name: 'Горы Тяньцзи',
+    link: 'https://vandruy.by/wp-content/uploads/2018/11/amazing-scenary-of-prince-tianzi-mountain-china-1024x683.jpeg'
+  },
+  {
+    name: 'Водопад Виктория',
+    link: 'https://vandruy.by/wp-content/uploads/2018/02/victoria-falls-and-zambezi-national-park-zimbabwe-5-min-1024x683.jpg'
+  },
+  {
+    name: 'Долина Йосемити',
+    link: 'https://vandruy.by/wp-content/uploads/2018/11/gory-kamni-potok-stremnina.jpeg'
   }
 ];
 
 
 class Card {
-  constructor(name, link) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
-  this._name = name;
-  this._link = link;
-  // title и image — приватные поля, 
-  // они нужны только внутри класса
+  constructor(data, templateSelector) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
+    this._name = data.name;
+    this._link = data.link;
+    // title и image — приватные поля, 
+    // они нужны только внутри класса
+    this._templateSelector = templateSelector; // Делаю конструктор универсальным
   }
 
 
   // Получаю нужную разметку
   _getTemplateCard() {
   const cardElement = document
-    .querySelector('#card__template')
+    .querySelector(this._templateSelector)
     .content
     .querySelector('.element')
     .cloneNode(true); // Клонирую элемент
 
   return cardElement // Возвращаю разметку карточки
   }
+
   
+  // Лайк
+  _handClickleLikeButton() {
+    this._element.classList.toggle('element__like_active');
+  }
+
+
+  // Удаление карточки
+  _handClickDeleteButton() {
+    this._element.remove();
+  
+  }
+
+ 
+  // Навешиваю слушатель события
+  _setEventListeners() {
+    const deleteCard = this._element.querySelector('.element__delete');
+    deleteCard.addEventListener('click', () => this._handClickDeleteButton())
+
+    const likeCard = this._element.querySelector('.element__like');
+    likeCard.addEventListener('click', () => this._handClickleLikeButton())
+
+
+  }
+
 
   // Подготовка карточки к публикации
   generateCard() {
     // Запишем разметку в приватное поле _element. 
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplateCard();
+    this._setEventListeners(); // вызываю _setEventListeners
 
     // Добавим данные
     this._element.querySelector('.element__name').textContent = this._name;
@@ -67,7 +94,7 @@ class Card {
   // Публикация карточек
   initialCards.forEach((item) => {
     // Создадим экземпляр карточки
-    const card = new Card(item.name, item.link);
+    const card = new Card(item, '#card__template');
     // Создаём карточку и возвращаем наружу
     const cardElement = card.generateCard();
   
