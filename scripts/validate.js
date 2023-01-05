@@ -1,24 +1,24 @@
 /*-----------------------Функции-----------------------*/
 
 
-/** Функция, которая добавляет класс с ошибкой */
-const showError = (formElement, inputElement, errorMessage, config) => { // 3 параметра: форма, поле, сообщение об ошибке.
-const errorElement = formElement.querySelector(`#${inputElement.id}-error`);   // Значение этой переменной — ошибка, которая найдена внутри formEl.
+// /** Функция, которая добавляет класс с ошибкой */
+// const showError = (formElement, inputElement, errorMessage, config) => { // 3 параметра: форма, поле, сообщение об ошибке.
+// const errorElement = formElement.querySelector(`#${inputElement.id}-error`);   // Значение этой переменной — ошибка, которая найдена внутри formEl.
    
-  inputElement.classList.add(config.inputErrorClass); // Добавляет красное подчеркивание
-  errorElement.textContent = errorMessage; // Так текст ошибки попадёт в нужное место.
-  errorElement.classList.add(config.errorClass);
-};
+//   inputElement.classList.add(config.inputErrorClass); // Добавляет красное подчеркивание
+//   errorElement.textContent = errorMessage; // Так текст ошибки попадёт в нужное место.
+//   errorElement.classList.add(config.errorClass);
+// };
 
 
-/** Функция, которая удаляет класс с ошибкой */
-const hideError = (formElement, inputElement, config) => { // 2 параметра: форма, поле.
-  const errorElement = formElement.querySelector(`#${inputElement.id}-error`); // Значение этой переменной — ошибка, которая найдена внутри formEl.
-  inputElement.classList.remove(config.inputErrorClass);
-  errorElement.classList.remove(config.errorClass);
+// /** Функция, которая удаляет класс с ошибкой */
+// const hideError = (formElement, inputElement, config) => { // 2 параметра: форма, поле.
+//   const errorElement = formElement.querySelector(`#${inputElement.id}-error`); // Значение этой переменной — ошибка, которая найдена внутри formEl.
+//   inputElement.classList.remove(config.inputErrorClass);
+//   errorElement.classList.remove(config.errorClass);
    
-  errorElement.textContent = ""; // Это скроет ошибку под полем.
-};
+//   errorElement.textContent = ""; // Это скроет ошибку под полем.
+// };
 
 
 /** Функция переключения кнопки */

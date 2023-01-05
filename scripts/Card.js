@@ -49,16 +49,25 @@ class Card {
 
   
   // Лайк
-  _handClickleLikeButton() {
-    this._element.classList.toggle('element__like_active');
+  _handClickleLikeButton(evt) {
+    evt.target.classList.toggle('element__like_active');
   }
 
 
   // Удаление карточки
   _handClickDeleteButton() {
     this._element.remove();
-  
   }
+
+
+  // // Открытие модального окна
+  // _handlePreview() {
+  //   // Контент модального окна
+  //     this._element.querySelector('.element__photo').alt = this._name;  
+  //     this._element.querySelector('.popup__photo').src = this._link;  // Картинка
+    
+  //     openModal(imageModalWindow); // Открыть модальное окно
+  // }
 
  
   // Навешиваю слушатель события
@@ -67,9 +76,10 @@ class Card {
     deleteCard.addEventListener('click', () => this._handClickDeleteButton())
 
     const likeCard = this._element.querySelector('.element__like');
-    likeCard.addEventListener('click', () => this._handClickleLikeButton())
+    likeCard.addEventListener('click', (evt) => this._handClickleLikeButton(evt))
 
-
+    // const cardImage = this._element.querySelector('.element__photo')
+    // cardImage.addEventListener('click', () => this._handlePreview());
   }
 
 
