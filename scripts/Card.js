@@ -1,3 +1,5 @@
+import {  openModal, imageModalWindow } from './index.js';
+
 const initialCards = [
   {
     name: 'Национальный парк',
@@ -26,10 +28,16 @@ const initialCards = [
 ];
 
 
+const imageElement = document.querySelector('.popup__photo');
+const imageCaption = document.querySelector('.popup__caption');
+
+
 class Card {
   constructor(data, templateSelector) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
     this._name = data.name;
     this._link = data.link;
+    this._description = data.description;
+    this._image = data.image;
     // title и image — приватные поля, 
     // они нужны только внутри класса
     this._templateSelector = templateSelector; // Делаю конструктор универсальным
@@ -60,14 +68,13 @@ class Card {
   }
 
 
-  // // Открытие модального окна
-  // _handlePreview() {
-  //   // Контент модального окна
-  //     this._element.querySelector('.element__photo').alt = this._name;  
-  //     this._element.querySelector('.popup__photo').src = this._link;  // Картинка
-    
-  //     openModal(imageModalWindow); // Открыть модальное окно
-  // }
+  _handleOpenPopup() {
+    imageElement.alt = this._name;
+    imageElement.src = this._link;
+    imageCaption.textContent = this._name;
+  
+    openModal(imageModalWindow);
+  }
 
  
   // Навешиваю слушатель события
@@ -78,12 +85,12 @@ class Card {
     const likeCard = this._element.querySelector('.element__like');
     likeCard.addEventListener('click', (evt) => this._handClickleLikeButton(evt))
 
-    // const cardImage = this._element.querySelector('.element__photo')
-    // cardImage.addEventListener('click', () => this._handlePreview());
+    this._element.addEventListener('click', () => this._handleOpenPopup());
   }
 
 
   // Подготовка карточки к публикации
+  // Метод наполняет карточки данными и функциональностью. 
   generateCard() {
     // Запишем разметку в приватное поле _element. 
     // Так у других элементов появится доступ к ней.
@@ -94,6 +101,7 @@ class Card {
     this._element.querySelector('.element__name').textContent = this._name;
     this._element.querySelector('.element__photo').src = this._link;
     this._element.querySelector('.element__photo').alt = this._name;
+
 
     // Вернём элемент наружу
     return this._element;
@@ -108,8 +116,8 @@ class Card {
     // Создаём карточку и возвращаем наружу
     const cardElement = card.generateCard();
   
-      // Добавляем в DOM
-      document.querySelector('.elements').append(cardElement);
+    // Добавляем в DOM
+    document.querySelector('.elements').append(cardElement);
   });
 
 

@@ -1,16 +1,11 @@
 import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
-
-
-// /** Темплейты */
-// const cardTemplate = document.querySelector('#card__template')
-// .content.querySelector('.element'); // Нахожу template элемент и беру контент карточки <li></li>
+// import FormValidator from "./FormValidator.js";
 
 
 /** Контейнеры */
 const profileFormModalWindow = document.querySelector('.popup_edit-profile');
 const cardFormModalWindow = document.querySelector('.popup_add-profile');
-const imageModalWindow = document.querySelector('.popup_type_image');
+export const imageModalWindow = document.querySelector('.popup_type_image');
 
 
 /** Кнопки и прочие DOM узлы */
@@ -30,8 +25,6 @@ const profileJob = document.querySelector('.profile__job');
 /** Данные форм и элементы форм */
 const cardNameInputValue = cardFormModalWindow.querySelector('.popup__input_type_card-name');
 const cardLinkInputValue = cardFormModalWindow.querySelector('.popup__input_type_url');
-// const imageElement = imageModalWindow.querySelector('.popup__photo');
-// const imageCaption = imageModalWindow.querySelector('.popup__caption');
 
 
 /** Элемент списка */
@@ -49,7 +42,7 @@ const inputName = document.querySelector('.popup__input_type_name');
 const inputJob = document.querySelector('.popup__input_type_job');
 
 const buttonAddProfileSave = cardFormModalWindow.querySelector('.popup__save-button');
-
+// const popupElement = document.querySelector('.popup');
 
 const validationConfig  = {
   formSelector: '.popup__form', // Это объекты с селекторами формы
@@ -61,6 +54,15 @@ const validationConfig  = {
 };
 
 const buttonDisabled = validationConfig.inactiveButtonClass;
+
+
+// const popupEditForm = document.querySelector('.popup_edit-profile');
+// const profileCardValidator = new FormValidator(validationConfig, popupEditForm);
+// profileCardValidator.enableValidation();
+
+// const popupAddForm = document.querySelector('.popup_add-profile');
+// const newCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
+// newCardProfileValidator.enableValidation();
 
 
 /*-----------------------Функции-----------------------*/
@@ -77,7 +79,7 @@ function handleProfileFormSubmit (evt) {
 
 
 /** Функция открытия popup */
-function openModal(modalWindow) { // Открывает модальное окно
+export function openModal(modalWindow) { // Открывает модальное окно
   modalWindow.classList.add('popup_opened');
   document.addEventListener('keydown', closeByEsc);
 }
@@ -88,18 +90,6 @@ function closeModal(modalWindow) {
   modalWindow.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEsc);
 }
-
-
-/** Лайк */
-// function handClickleLikeButton(evt) {
-//   evt.target.classList.toggle('element__like_active');
-// }
-
-
-// /** Удаление */
-// function handClickDeleteButton(evt) {
-//   evt.target.closest('.element').remove('card');
-// }
 
 
 /** Функция открытия картинки */
@@ -113,25 +103,11 @@ function closeModal(modalWindow) {
 //     openModal(imageModalWindow); // Открыть модальное окно
 // }
 
-/** Создает и возвращает карточку */
-// function createCard(data) { // name, link
-//   const cardElement = cardTemplate.cloneNode(true); // Клонирую <li></li>
-//   const cardImage = cardElement.querySelector('.element__photo'); // Ищу и добавляю картинку
-//   cardImage.alt = data.name;
-//   cardImage.src = data.link; // Взяла img и добавила ссылку
-//   cardElement.querySelector('.element__name').textContent = data.name; // Взяла title и добавила текст
-
-//   setEventListeners(cardElement, data, cardImage);
-
-//   return cardElement; // Возвращаю карточку
-// }
-
 
 /** Отрисовывает карточку через вспомогательную функцию 
     Принимает объект (name, link)
     Добавляет её в DOM */
 function render(data) {
-//  const cardNew = createCard(data); // Это будет новая карточка
   const card = new Card(data);
 
   cardsContainer.prepend(card.generateCard());
@@ -184,25 +160,6 @@ function bindOverlayClickHandler (popup) {
 profileFormModalWindow.addEventListener('submit', handleProfileFormSubmit); 
 
 
-//** Внутри этой функции я вешаю слушателей на карточку createCard */
-// function setEventListeners(card, data, cardImage) {
-//   const buttonLike = card.querySelector('.element__like');
-//   buttonLike.addEventListener('click', handClickleLikeButton);
-
-//   const buttonDelete = card.querySelector('.element__delete');
-//   buttonDelete.addEventListener('click', handClickDeleteButton);
-
-//   cardImage.addEventListener('click', () => {
-//     handlePreview(data);
-//   });
-// }
-
-
-// initialCards.forEach(render); // forEach перебирает массив и выполняет для каждого элемента свой код.
-// // Метод forEach нужен, когда мы хотим просто пройтись по массиву и для каждого элемента что-то сделать.
-// // В данном случае с помощью forEach начинаем применять функцию createCard
-
-
 buttonOpenEdit.addEventListener('click', function() {  // Добавить слушатель события 
   inputName.value = title.textContent; // textContent позволяет получить или перезаписать текстовое содержимое элемента.
   inputJob.value = about.textContent;
@@ -215,10 +172,12 @@ buttonOpenFormEdit.addEventListener('click', () => {
   openModal(profileFormModalWindow); // Запускаю функцию openModal
 });
 
+///
 buttonOpenFormAddCard.addEventListener('click', () => {
   openModal(cardFormModalWindow); // Запускаю функцию openModal
-  disableSubmitButton(buttonAddProfileSave, buttonDisabled);
+  // disableSubmitButton(buttonAddProfileSave, buttonDisabled);
 });
+///
 
 buttonCloseFormEdit.addEventListener('click', () => {
   closeModal(profileFormModalWindow); // Запускаю функцию closeModal
