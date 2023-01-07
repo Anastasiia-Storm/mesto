@@ -1,5 +1,6 @@
 import {  openModal, imageModalWindow } from './index.js';
 
+
 const initialCards = [
   {
     name: 'Национальный парк',
@@ -46,13 +47,13 @@ class Card {
 
   // Получаю нужную разметку
   _getTemplateCard() {
-  const cardElement = document
-    .querySelector(this._templateSelector)
-    .content
-    .querySelector('.element')
-    .cloneNode(true); // Клонирую элемент
+    const cardElement = document
+      .querySelector(this._templateSelector)
+      .content
+      .querySelector('.element')
+      .cloneNode(true); // Клонирую элемент
 
-  return cardElement // Возвращаю разметку карточки
+    return cardElement // Возвращаю разметку карточки
   }
 
   

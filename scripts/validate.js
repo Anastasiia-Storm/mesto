@@ -1,6 +1,46 @@
 /*-----------------------Функции-----------------------*/
+// // const formElement = document.querySelector('.popup__form');
+// const form = document.querySelector('.popup__form');
+// const inputElement = form.querySelector('.popup__input');
+// // const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
+// const showError = (formElement, inputElement, errorMassage) => {
+//     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
 
+//     inputElement.classList.add('popup__input_type_error');
+//     errorElement.textContent = errorMassage;
+//     errorElement.classList.add('popup__input-error_visible');
+//   };
+
+//   const hideError = (formElement, inputElement) => {
+//     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+//     inputElement.classList.remove('popup__input_type_error');
+//     errorElement.classList.remove('popup__input-error_visible');
+//   };
+
+//   const checkInputValidity = (formElement, inputElement) => {
+//     if (!inputElement.validity.valid) {
+//       showError(formElement, inputElement, inputElement.validationMessage); // Добавьте элемент form первым аргументом вызова каждой функции. Иначе параметр formElement не появится в их вызове.
+//     } else {
+//       hideError(formElement, inputElement);
+//     }
+//   };
+
+//   inputElement.addEventListener('input', function () {
+//     checkInputValidity(form, inputElement);
+//   });
+
+//   const setEventListeners = (formElement) => {
+//     const inputList = Array.from(formElement.querySelectorAll('.popup__input'));
+    
+//   inputList.forEach((inputElement) => {
+//     inputElement.addEventListener('input', function () {
+//       checkInputValidity(formElement, inputElement);
+//       });
+//     });
+//   }; 
+    
+//    setEventListeners(form);
 // /** Функция, которая добавляет класс с ошибкой */
 // const showError = (formElement, inputElement, errorMessage, config) => { // 3 параметра: форма, поле, сообщение об ошибке.
 // const errorElement = formElement.querySelector(`#${inputElement.id}-error`);   // Значение этой переменной — ошибка, которая найдена внутри formEl.
@@ -45,17 +85,17 @@
 
 
 /** Добавляю слушатель события на все поля ввода сразу */
-const inputListeners = (formElement, config) => { 
-  const inputList = Array.from(formElement.querySelectorAll(config.inputSelector)); // Преобразовываю коллекцию в массив методом Array.from.
-  const buttonElement = formElement.querySelector(config.submitButtonSelector);
+// const inputListeners = (formElement, config) => { 
+//   const inputList = Array.from(formElement.querySelectorAll(config.inputSelector)); // Преобразовываю коллекцию в массив методом Array.from.
+//   const buttonElement = formElement.querySelector(config.submitButtonSelector);
 
-  inputList.forEach((inputElement) => {
-    inputElement.addEventListener('input', () => {
-      checkInputValidity(formElement, inputElement, config);
-      toggleButtonState(inputList, buttonElement, config);
-    });
-  });
-}; 
+//   inputList.forEach((inputElement) => {
+//     inputElement.addEventListener('input', () => {
+//       checkInputValidity(formElement, inputElement, config);
+//       toggleButtonState(inputList, buttonElement, config);
+//     });
+//   });
+// }; 
 
 
 // /** Функция для формы */

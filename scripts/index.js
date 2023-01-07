@@ -1,5 +1,5 @@
 import Card from "./Card.js";
-// import FormValidator from "./FormValidator.js";
+import FormValidator from "./FormValidator.js";
 
 
 /** Контейнеры */
@@ -14,6 +14,7 @@ const buttonOpenFormAddCard = document.querySelector('.profile__add-button');
 const buttonCloseFormEdit = profileFormModalWindow.querySelector('.popup__close-button');
 const buttonCloseFormAddCard = cardFormModalWindow.querySelector('.popup__close-button');
 const buttonCloseImageModal = imageModalWindow.querySelector('.popup__close-button');
+const buttonAddProfileSave = cardFormModalWindow.querySelector('.popup__save-button');
 
 
 /** DOM узлы профиля
@@ -41,8 +42,7 @@ const about = document.querySelector('.profile__job');
 const inputName = document.querySelector('.popup__input_type_name');
 const inputJob = document.querySelector('.popup__input_type_job');
 
-const buttonAddProfileSave = cardFormModalWindow.querySelector('.popup__save-button');
-// const popupElement = document.querySelector('.popup');
+
 
 const validationConfig  = {
   formSelector: '.popup__form', // Это объекты с селекторами формы
@@ -53,16 +53,16 @@ const validationConfig  = {
   errorClass: 'popup__input-error_visible'
 };
 
-const buttonDisabled = validationConfig.inactiveButtonClass;
+// const buttonDisabled = validationConfig.inactiveButtonClass;
 
 
-// const popupEditForm = document.querySelector('.popup_edit-profile');
-// const profileCardValidator = new FormValidator(validationConfig, popupEditForm);
-// profileCardValidator.enableValidation();
+const popupEditForm = document.querySelector('.popup_edit-profile');
+const profileEditCardValidator = new FormValidator(validationConfig, popupEditForm);
+profileEditCardValidator.enableValidation();
 
-// const popupAddForm = document.querySelector('.popup_add-profile');
-// const newCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
-// newCardProfileValidator.enableValidation();
+const popupAddForm = document.querySelector('.popup_add-profile');
+const newAddCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
+newAddCardProfileValidator.enableValidation();
 
 
 /*-----------------------Функции-----------------------*/
@@ -90,18 +90,6 @@ function closeModal(modalWindow) {
   modalWindow.classList.remove('popup_opened');
   document.removeEventListener('keydown', closeByEsc);
 }
-
-
-/** Функция открытия картинки */
-// Открытие модального окна
-// function handlePreview() {
-//   // Контент модального окна
-//     imageElement.alt = data.name;  
-//     imageElement.src = data.link;          // Картинка
-//     imageCaption.textContent = data.name;  // Подпись с картинке
-  
-//     openModal(imageModalWindow); // Открыть модальное окно
-// }
 
 
 /** Отрисовывает карточку через вспомогательную функцию 
