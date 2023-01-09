@@ -1,6 +1,5 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import initialCards from "./Card.js";
 
 
 /** Контейнеры */
@@ -43,6 +42,9 @@ const about = document.querySelector('.profile__job');
 const inputName = document.querySelector('.popup__input_type_name');
 const inputJob = document.querySelector('.popup__input_type_job');
 
+export const imageElement = document.querySelector('.popup__photo');
+export const imageCaption = document.querySelector('.popup__caption');
+
 
 const validationConfig  = {
   formSelector: '.popup__form', // Это объекты с селекторами формы
@@ -54,9 +56,7 @@ const validationConfig  = {
 };
 
 
-export const imageElement = document.querySelector('.popup__photo');
-export const imageCaption = document.querySelector('.popup__caption');
-// const buttonDisabled = validationConfig.inactiveButtonClass;
+// const buttonDisabled = validationConfig.inactiveButtonClass; 
 
 
 const popupEditForm = document.querySelector('.popup_edit-profile');
