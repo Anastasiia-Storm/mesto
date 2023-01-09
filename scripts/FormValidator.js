@@ -7,16 +7,12 @@ class FormValidator {
     this._inactiveButtonClass = validationConfig.inactiveButtonClass;
     this._inputErrorClass = validationConfig.inputErrorClass;
     this._errorClass = validationConfig.errorClass;
-    // this._errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-    // this._inputList = Array.from(this._formElement.querySelectorAll('.popup__input'));
-    // this._buttonElement = this._formElement.querySelector('.popup__save-button');
   }
 
 
   /** Функция, которая добавляет класс с ошибкой */
   _showError = (formElement, inputElement, errorMessage) => { // 3 параметра: форма, поле, сообщение об ошибке.
-    // const errorElement = formElement.querySelector(`#${inputElement.id}-error`);   // Значение этой переменной — ошибка, которая найдена внутри formEl.
-    this._errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+    this._errorElement = formElement.querySelector(`#${inputElement.id}-error`); // Значение этой переменной — ошибка, которая найдена внутри formEl.
 
     inputElement.classList.add(this._inputErrorClass); // Добавляет красное подчеркивание
     this._errorElement.textContent = errorMessage; // Так текст ошибки попадёт в нужное место.
@@ -37,22 +33,22 @@ class FormValidator {
 
   /** Функция переключения кнопки */
   toggleButtonState = (inputList, buttonElement) => { // InputList и buttonElement. Первый — массив полей, второй — кнопка «Сохранить, создать».
-    if (hasInvalidInput(inputList)) { // есть ли в массиве inputList невалидные поля.
-      disableSubmitButton(buttonElement, this._inactiveButtonClass);
+    if (this._hasInvalidInput(inputList)) { // есть ли в массиве inputList невалидные поля.
+      this.disableSubmitButton(buttonElement, this._inactiveButtonClass);
     } else {
-      enableSubmitButton(buttonElement, this._inactiveButtonClass);
+      this.enableSubmitButton(buttonElement, this._inactiveButtonClass);
     }
   };
 
 
   /** Функция состояния кнопок */
-  _disableSubmitButton = (buttonElement) => {
+  disableSubmitButton = (buttonElement) => {
     buttonElement.classList.add(this._inactiveButtonClass);  
     buttonElement.disabled = true; // Сделаем кнопку неактивной 
   };
 
 
-  _enableSubmitButton = (buttonElement) => {
+  enableSubmitButton = (buttonElement) => {
     buttonElement.classList.remove(this._inactiveButtonClass);  
     buttonElement.disabled = false; // Сделаем её активной 
   };
@@ -66,7 +62,7 @@ class FormValidator {
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(formElement, inputElement);
-        this._toggleButtonState(inputList, buttonElement);
+        this.toggleButtonState(inputList, buttonElement);
       });
     });
   }; 
@@ -100,7 +96,7 @@ class FormValidator {
   };
 
   
-  /** Обходит массив полей и отвечает на вопрос: «Есть ли здесь хотя бы одно поле, которое не прошло валидацию?» */
+//   /** Обходит массив полей и отвечает на вопрос: «Есть ли здесь хотя бы одно поле, которое не прошло валидацию?» */
   _hasInvalidInput = (inputList) => { // // Функция возвращает true, если в массиве inputList есть хотя бы один невалидный input. Если все поля валидны — false.
     // проходим по этому массиву методом some
     return inputList.some((inputElement) => { 

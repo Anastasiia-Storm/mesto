@@ -1,5 +1,6 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
+import initialCards from "./Card.js";
 
 
 /** Контейнеры */
@@ -43,7 +44,6 @@ const inputName = document.querySelector('.popup__input_type_name');
 const inputJob = document.querySelector('.popup__input_type_job');
 
 
-
 const validationConfig  = {
   formSelector: '.popup__form', // Это объекты с селекторами формы
   inputSelector: '.popup__input',
@@ -53,6 +53,9 @@ const validationConfig  = {
   errorClass: 'popup__input-error_visible'
 };
 
+
+export const imageElement = document.querySelector('.popup__photo');
+export const imageCaption = document.querySelector('.popup__caption');
 // const buttonDisabled = validationConfig.inactiveButtonClass;
 
 
@@ -92,12 +95,12 @@ function closeModal(modalWindow) {
 }
 
 
-/** Отрисовывает карточку через вспомогательную функцию 
+/** Отрисовывает карточку через вспомогательную функцию
     Принимает объект (name, link)
     Добавляет её в DOM */
 function render(data) {
   const card = new Card(data);
-
+    
   cardsContainer.prepend(card.generateCard());
 }
 

@@ -1,18 +1,18 @@
-import {  openModal, imageModalWindow } from './index.js';
+import {  openModal, imageModalWindow, imageElement, imageCaption } from './index.js';
 
 
-const initialCards = [
+export const initialCards = [
   {
-    name: 'Национальный парк',
-    link: 'https://i.pinimg.com/originals/a4/72/54/a472549e39762db4dfb2f3467eab7b62.jpg'
+    name: 'Памуккале, Турция',
+    link: 'http://www.orangesmile.com/extreme/img/main/pamukkale-travertine_1.jpg'
   },
   {
     name: 'Ледяная пещера',
     link: 'https://35photo.ru/photos_main/240/1202736.jpg'
   },
   {
-    name: 'Памуккале, Турция',
-    link: 'http://www.orangesmile.com/extreme/img/main/pamukkale-travertine_1.jpg'
+    name: 'Национальный парк',
+    link: 'https://i.pinimg.com/originals/a4/72/54/a472549e39762db4dfb2f3467eab7b62.jpg'
   },
   {
     name: 'Горы Тяньцзи',
@@ -29,26 +29,19 @@ const initialCards = [
 ];
 
 
-const imageElement = document.querySelector('.popup__photo');
-const imageCaption = document.querySelector('.popup__caption');
-
-
 class Card {
-  constructor(data, templateSelector) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
+  constructor(data) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
     this._name = data.name;
     this._link = data.link;
     this._description = data.description;
     this._image = data.image;
-    // title и image — приватные поля, 
-    // они нужны только внутри класса
-    this._templateSelector = templateSelector; // Делаю конструктор универсальным
   }
 
 
-  // Получаю нужную разметку
+  /** Получить нужную разметку */
   _getTemplateCard() {
     const cardElement = document
-      .querySelector(this._templateSelector)
+      .querySelector('#card__template')
       .content
       .querySelector('.element')
       .cloneNode(true); // Клонирую элемент
@@ -56,29 +49,30 @@ class Card {
     return cardElement // Возвращаю разметку карточки
   }
 
-  
-  // Лайк
+
+  /** Лайк */
   _handClickleLikeButton(evt) {
     evt.target.classList.toggle('element__like_active');
   }
 
 
-  // Удаление карточки
+  /** Удаление карточки */
   _handClickDeleteButton() {
     this._element.remove();
   }
 
 
+  /** Открытие модального окна */
   _handleOpenPopup() {
     imageElement.alt = this._name;
     imageElement.src = this._link;
     imageCaption.textContent = this._name;
-  
+
     openModal(imageModalWindow);
   }
 
- 
-  // Навешиваю слушатель события
+
+  /** Навешиваю слушатель события */
   _setEventListeners() {
     const deleteCard = this._element.querySelector('.element__delete');
     deleteCard.addEventListener('click', () => this._handClickDeleteButton())
@@ -90,27 +84,27 @@ class Card {
   }
 
 
-  // Подготовка карточки к публикации
-  // Метод наполняет карточки данными и функциональностью. 
+  /** Подготовка карточки к публикации
+      Метод наполняет карточки данными и функциональностью. */
+   _setData() {
+    this._element.querySelector('.element__name').textContent = this._name;
+    this._element.querySelector('.element__photo').src = this._link;
+    this._element.querySelector('.element__photo').alt = this._name;
+  }
+
+
   generateCard() {
     // Запишем разметку в приватное поле _element. 
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplateCard();
-    this._setEventListeners(); // вызываю _setEventListeners
+    this._setData();
 
-    // Добавим данные
-    this._element.querySelector('.element__name').textContent = this._name;
-    this._element.querySelector('.element__photo').src = this._link;
-    this._element.querySelector('.element__photo').alt = this._name;
-
-
-    // Вернём элемент наружу
     return this._element;
   }
 }
 
 
-  // Публикация карточек
+  /** Публикация карточек */
   initialCards.forEach((item) => {
     // Создадим экземпляр карточки
     const card = new Card(item, '#card__template');
