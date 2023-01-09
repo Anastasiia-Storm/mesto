@@ -95,12 +95,17 @@ function closeModal(modalWindow) {
 }
 
 
-/** Отрисовывает карточку через вспомогательную функцию
-    Принимает объект (name, link)
-    Добавляет её в DOM */
-function render(data) {
+/** Создает экземпляр Card и возвращает разметку карточки */
+function createCard(data) {
   const card = new Card(data);
-    
+
+  return card;
+}
+
+
+/** Вставляет в разметку */
+function renderCard(data) {
+  const card = createCard(data);
   cardsContainer.prepend(card.generateCard());
 }
 
@@ -108,12 +113,11 @@ function render(data) {
 function handleAddNewCard(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
 
-  render({name: cardNameInputValue.value, link: cardLinkInputValue.value});
+  renderCard({name: cardNameInputValue.value, link: cardLinkInputValue.value});
   closeModal(cardFormModalWindow);
+  evt.target.reset();
 }
 
-
-cardFormModalWindow.addEventListener('submit', handleAddNewCard);
 
 
 /** Функция закрытия form по нажатию esc */
@@ -126,8 +130,8 @@ function closeByEsc(event) {
 
 
 /** Закрытие по клику на overlay */
-const cardList = Array.from(document.querySelectorAll('.popup'));
-cardList.forEach((popup) => {bindOverlayClickHandler(popup); 
+const popupList = Array.from(document.querySelectorAll('.popup'));
+popupList.forEach((popup) => {bindOverlayClickHandler(popup); 
 });
 
  
@@ -149,6 +153,7 @@ function bindOverlayClickHandler (popup) {
 /** Прикрепляем обработчик к форме:
     он будет следить за событием “submit” - "отправка" */
 profileFormModalWindow.addEventListener('submit', handleProfileFormSubmit); 
+cardFormModalWindow.addEventListener('submit', handleAddNewCard);
 
 
 buttonOpenEdit.addEventListener('click', function() {  // Добавить слушатель события 
