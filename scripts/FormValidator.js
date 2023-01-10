@@ -9,6 +9,7 @@ class FormValidator {
     this._formElement = formElement;
     this._popupEditForm = formElement.querySelector('.popup_edit-profile');
     this._popupAddForm = formElement.querySelector('.popup_add-profile');
+    this._popupEditForm = formElement.querySelector('.popup_edit-profile');
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector)); // Преобразовываю коллекцию в массив методом Array.from.
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
   }
@@ -69,17 +70,33 @@ class FormValidator {
   }; 
 
 
-  /** Функция для формы */
-  enableValidation = () => { 
-    const formList = Array.from(document.querySelectorAll(this._formSelector)); // Создаю массив
-  
-    formList.forEach(() => { // Прохожу по массиву методом forEach
+  _formEditCardValidator = () => {
+    const formEdit = Array.from(document.querySelectorAll(this._popupEditForm));
+
+    formEdit.forEach(() => {
       this._formElement.addEventListener('submit', (evt) => {
         evt.preventDefault();
       });
-      this._setEventListeners();
-    })
-  }; // Функция isValid найдёт на странице и обработает все формы с классом form. Теперь валидация работает для всех форм.
+    });
+  };
+
+
+  _formAddCardValidator = () => {
+    const formAdd = Array.from(document.querySelectorAll(this._popupAddForm));
+
+    formAdd.forEach(() => { // Прохожу по массиву методом forEach
+      this._formElement.addEventListener('submit', (evt) => {
+        evt.preventDefault();
+      });
+    });
+  };
+
+
+  enableValidation = () => { 
+    this._formEditCardValidator();
+    this._formAddCardValidator();
+    this._setEventListeners();
+  };
 
 
   /*-----------------------Валидация-----------------------*/
@@ -91,7 +108,7 @@ class FormValidator {
     if (!inputElement.validity.valid) { // Если поле popup__input не проходит валидацию, покажем ошибку
     // Передадим сообщение об ошибке вторым аргументом
       this._showInputError(inputElement, inputElement.validationMessage); 
-    } else {; // Если поле проходит валидацию, скроем сообщение об ошибке
+    } else { // Если поле проходит валидацию, скроем сообщение об ошибке
       this._hideInputError(inputElement);
     }
   };
