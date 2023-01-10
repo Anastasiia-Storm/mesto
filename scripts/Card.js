@@ -1,4 +1,4 @@
-import {  openModal, imageModalWindow, imageElement, imageCaption } from './index.js';
+import {  openModal, imageModalWindow, imageElement, imageCaption } from './utils.js';
 import { initialCards } from './constants.js';
 
 

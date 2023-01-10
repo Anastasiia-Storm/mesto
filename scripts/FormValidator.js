@@ -55,7 +55,7 @@ class FormValidator {
 
 
   /** Добавляю слушатель события на все поля ввода сразу */
-  _inputListeners = (formElement) => { 
+  _setEventListeners = (formElement) => { 
     const inputList = Array.from(formElement.querySelectorAll(this._inputSelector)); // Преобразовываю коллекцию в массив методом Array.from.
     const buttonElement = formElement.querySelector(this._submitButtonSelector);
 
@@ -76,7 +76,7 @@ class FormValidator {
       formElement.addEventListener('submit', (evt) => {
         evt.preventDefault();
       });
-      this._inputListeners(formElement);
+      this._setEventListeners(formElement);
     })
   }; // Функция isValid найдёт на странице и обработает все формы с классом form. Теперь валидация работает для всех форм.
 

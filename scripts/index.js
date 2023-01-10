@@ -1,11 +1,11 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
+import { openModal, closeByEsc } from "./utils.js";
 
 
 /** Контейнеры */
 const profileFormModalWindow = document.querySelector('.popup_edit-profile');
 const cardFormModalWindow = document.querySelector('.popup_add-profile');
-export const imageModalWindow = document.querySelector('.popup_type_image');
 
 
 /** Кнопки и прочие DOM узлы */
@@ -13,7 +13,7 @@ const buttonOpenFormEdit = document.querySelector('.profile__edit-button');
 const buttonOpenFormAddCard = document.querySelector('.profile__add-button');
 const buttonCloseFormEdit = profileFormModalWindow.querySelector('.popup__close-button');
 const buttonCloseFormAddCard = cardFormModalWindow.querySelector('.popup__close-button');
-const buttonCloseImageModal = imageModalWindow.querySelector('.popup__close-button');
+const buttonCloseImageModal = document.querySelector('.popup__close-button');
 const buttonAddProfileSave = cardFormModalWindow.querySelector('.popup__save-button');
 
 
@@ -41,9 +41,6 @@ const title = document.querySelector('.profile__name');
 const about = document.querySelector('.profile__job');
 const inputName = document.querySelector('.popup__input_type_name');
 const inputJob = document.querySelector('.popup__input_type_job');
-
-export const imageElement = document.querySelector('.popup__photo');
-export const imageCaption = document.querySelector('.popup__caption');
 
 
 const validationConfig  = {
@@ -81,12 +78,6 @@ function handleProfileFormSubmit (evt) {
 }
 
 
-/** Функция открытия popup */
-export function openModal(modalWindow) { // Открывает модальное окно
-  modalWindow.classList.add('popup_opened');
-  document.addEventListener('keydown', closeByEsc);
-}
-
 
 /** Функция закрытия popup */
 function closeModal(modalWindow) {
@@ -116,16 +107,6 @@ function handleAddNewCard(evt) {
   renderCard({name: cardNameInputValue.value, link: cardLinkInputValue.value});
   closeModal(cardFormModalWindow);
   evt.target.reset();
-}
-
-
-
-/** Функция закрытия form по нажатию esc */
-function closeByEsc(event) {
-  if (event.key === 'Escape') {
-    const popupToClose = document.querySelector('.popup_opened');
-    closeModal(popupToClose);
-  }
 }
 
 
