@@ -1,5 +1,6 @@
-import {  openModal, imageModalWindow, imageElement, imageCaption } from './utils.js';
+import { handlePreview } from './utils.js';
 import { initialCards } from './constants.js';
+import { imageModalWindow } from './utils.js';
 
 
 class Card {
@@ -20,39 +21,36 @@ class Card {
     return cardElement // Возвращаю разметку карточки
   }
 
-
+////////////Исправить////////////
   /** Лайк */
-  _handClickleLikeButton(evt) {
+  _handleLikeButton(evt) {
     evt.target.classList.toggle('element__like_active');
   }
-
+/////////////////////////////////
 
   /** Удаление карточки */
-  _handClickDeleteButton() {
+  _handleDeleteButton() {
     this._element.remove();
     this._element = null;
   }
 
 
   /** Открытие модального окна */
-  _handleImageClick() {
-    imageElement.alt = this._name;
-    imageElement.src = this._link;
-    imageCaption.textContent = this._name;
-
-    openModal(imageModalWindow);
-  }
+  // _openImagePopup() {
+  //   this._openImagePopup(imageModalWindow);
+  //   handlePreview();
+  // }
 
 
   /** Навешиваю слушатель события */
   _setEventListeners() {
     const deleteCard = this._element.querySelector('.element__delete');
-    deleteCard.addEventListener('click', () => this._handClickDeleteButton())
+    deleteCard.addEventListener('click', () => this._handleDeleteButton())
 
     const likeCard = this._element.querySelector('.element__like');
-    likeCard.addEventListener('click', (evt) => this._handClickleLikeButton(evt))
+    likeCard.addEventListener('click', (evt) => this._handleLikeButton(evt))
 
-    this._element.addEventListener('click', () => this._handleImageClick());
+    // this._element.addEventListener('click', () => this._openImagePopup());
   }
 
 

@@ -1,18 +1,20 @@
 class FormValidator {
-  constructor(validationConfig) {
-    this._validationConfig = validationConfig;
+  constructor(validationConfig, formElement) {
     this._formSelector = validationConfig.formSelector;
     this._inputSelector = validationConfig.inputSelector;
     this._submitButtonSelector = validationConfig.submitButtonSelector;
     this._inactiveButtonClass = validationConfig.inactiveButtonClass;
     this._inputErrorClass = validationConfig.inputErrorClass;
     this._errorClass = validationConfig.errorClass;
+    this._formElement = formElement;
+    this._popupEditForm = formElement.querySelector('.popup_edit-profile');
+    this._popupAddForm = formElement.querySelector('.popup_add-profile');
   }
 
 
   /** Функция, которая добавляет класс с ошибкой */
-  _showError = (formElement, inputElement, errorMessage) => { // 3 параметра: форма, поле, сообщение об ошибке.
-    this._errorElement = formElement.querySelector(`#${inputElement.id}-error`); // Значение этой переменной — ошибка, которая найдена внутри formEl.
+  _showError = (inputElement, errorMessage) => { // 3 параметра: форма, поле, сообщение об ошибке.
+    this._errorElement = this._formElement.querySelector(`#${inputElement.id}-error`); // Значение этой переменной — ошибка, которая найдена внутри formEl.
 
     inputElement.classList.add(this._inputErrorClass); // Добавляет красное подчеркивание
     this._errorElement.textContent = errorMessage; // Так текст ошибки попадёт в нужное место.
@@ -21,8 +23,8 @@ class FormValidator {
   
  
   /** Функция, которая удаляет класс с ошибкой */
-  _hideError = (formElement, inputElement) => { // 2 параметра: форма, поле.
-    this._errorElement = formElement.querySelector(`#${inputElement.id}-error`); // Значение этой переменной — ошибка, которая найдена внутри formEl.
+  _hideError = (inputElement) => { // 2 параметра: форма, поле.
+    this._errorElement = this._formElement.querySelector(`#${inputElement.id}-error`); // Значение этой переменной — ошибка, которая найдена внутри formEl.
    
     inputElement.classList.remove(this._inputErrorClass);
     this._errorElement.classList.remove(this._errorClass);
@@ -55,13 +57,13 @@ class FormValidator {
 
 
   /** Добавляю слушатель события на все поля ввода сразу */
-  _setEventListeners = (formElement) => { 
-    const inputList = Array.from(formElement.querySelectorAll(this._inputSelector)); // Преобразовываю коллекцию в массив методом Array.from.
-    const buttonElement = formElement.querySelector(this._submitButtonSelector);
+  _setEventListeners = () => { 
+    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector)); // Преобразовываю коллекцию в массив методом Array.from.
+    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
 
     inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
-        this._checkInputValidity(formElement, inputElement);
+        this._checkInputValidity(inputElement);
         this.toggleButtonState(inputList, buttonElement);
       });
     });
@@ -72,11 +74,11 @@ class FormValidator {
   enableValidation = () => { 
     const formList = Array.from(document.querySelectorAll(this._formSelector)); // Создаю массив
   
-    formList.forEach((formElement) => { // Прохожу по массиву методом forEach
-      formElement.addEventListener('submit', (evt) => {
+    formList.forEach(() => { // Прохожу по массиву методом forEach
+      this._formElement.addEventListener('submit', (evt) => {
         evt.preventDefault();
       });
-      this._setEventListeners(formElement);
+      this._setEventListeners();
     })
   }; // Функция isValid найдёт на странице и обработает все формы с классом form. Теперь валидация работает для всех форм.
 
@@ -85,13 +87,13 @@ class FormValidator {
 
   
   /** Функция которая проверяет formInput на корректность введённых данных и вызывает hideError и showError */
-  _checkInputValidity = (formElement, inputElement) => { // formElement — html-элемент формы, в которой находится проверяемое поле ввода. Он нужен для поиска элемента ошибки в форме.
+  _checkInputValidity = (inputElement) => { // formElement — html-элемент формы, в которой находится проверяемое поле ввода. Он нужен для поиска элемента ошибки в форме.
     // inputElement — проверяемое поле ввода.
     if (!inputElement.validity.valid) { // Если поле popup__input не проходит валидацию, покажем ошибку
     // Передадим сообщение об ошибке вторым аргументом
-      this._showError(formElement, inputElement, inputElement.validationMessage); 
+      this._showError(inputElement, inputElement.validationMessage); 
     } else {; // Если поле проходит валидацию, скроем сообщение об ошибке
-      this._hideError(formElement, inputElement);
+      this._hideError(inputElement);
     }
   };
 

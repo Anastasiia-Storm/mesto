@@ -1,6 +1,7 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import { openModal, closeByEsc } from "./utils.js";
+import { imageModalWindow } from "./utils.js";
+import { openModal, closeModal } from "./utils.js";
 
 
 /** Контейнеры */
@@ -75,14 +76,6 @@ function handleProfileFormSubmit (evt) {
     profileName.textContent = nameInput.value;
     profileJob.textContent = jobInput.value;
     closeModal(profileFormModalWindow);
-}
-
-
-
-/** Функция закрытия popup */
-function closeModal(modalWindow) {
-  modalWindow.classList.remove('popup_opened');
-  document.removeEventListener('keydown', closeByEsc);
 }
 
 
