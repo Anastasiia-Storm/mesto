@@ -147,6 +147,12 @@ function bindOverlayClickHandler (popup) {
 };
 
 
+function creatEditFormContent() {
+  inputName.value = title.textContent; // textContent позволяет получить или перезаписать текстовое содержимое элемента.
+  inputJob.value = about.textContent;
+  openModal(profileFormModalWindow);
+}
+
 /*-----------------------Обработчики события-----------------------*/
 
 
@@ -156,12 +162,9 @@ profileFormModalWindow.addEventListener('submit', handleProfileFormSubmit);
 cardFormModalWindow.addEventListener('submit', handleAddNewCard);
 
 
-buttonOpenEdit.addEventListener('click', function() {  // Добавить слушатель события 
-  inputName.value = title.textContent; // textContent позволяет получить или перезаписать текстовое содержимое элемента.
-  inputJob.value = about.textContent;
-  openModal(profileFormModalWindow);
+buttonOpenEdit.addEventListener('click', () => {  // Добавить слушатель события 
+  creatEditFormContent();
 })
-
 
 /** Запускаю функции открытия и закрытия popup */
 buttonOpenFormEdit.addEventListener('click', () => {
