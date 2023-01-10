@@ -87,16 +87,16 @@ function closeModal(modalWindow) {
 
 
 /** Создает экземпляр Card и возвращает разметку карточки */
-function createCard(data) {
-  const card = new Card(data);
+function createCard(data, templateSelector) {
+  const card = new Card(data, templateSelector);
 
   return card;
 }
 
 
 /** Вставляет в разметку */
-function renderCard(data) {
-  const card = createCard(data);
+function renderCard(data, templateSelector) {
+  const card = createCard(data, templateSelector);
   cardsContainer.prepend(card.generateCard());
 }
 

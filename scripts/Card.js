@@ -6,13 +6,13 @@ class Card {
   constructor(data) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
     this._name = data.name;
     this._link = data.link;
+    this._templateSelector = document.querySelector('#card__template');
   }
 
 
   /** Получить нужную разметку */
   _getTemplateCard() {
-    const cardElement = document
-      .querySelector('#card__template')
+    const cardElement = this._templateSelector
       .content
       .querySelector('.element')
       .cloneNode(true); // Клонирую элемент
