@@ -80,16 +80,16 @@ function handleProfileFormSubmit (evt) {
 
 
 /** Создает экземпляр Card и возвращает разметку карточки */
-function createCard(data, templateSelector) {
-  const card = new Card(data, templateSelector);
+function createCard(data, templateSelector, params) {
+  const card = new Card(data, templateSelector, params);
 
   return card;
 }
 
 
 /** Вставляет в разметку */
-function renderCard(data, templateSelector) {
-  const card = createCard(data, templateSelector);
+function renderCard(data, templateSelector, params) {
+  const card = createCard(data, templateSelector, params);
   cardsContainer.prepend(card.generateCard());
 }
 
