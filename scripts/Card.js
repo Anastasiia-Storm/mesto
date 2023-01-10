@@ -1,13 +1,14 @@
-import { handlePreview } from './utils.js';
+import { imageCaption, imageElement, openImagePopup } from './utils.js';
 import { initialCards } from './constants.js';
 import { imageModalWindow } from './utils.js';
 
 
 class Card {
-  constructor(data) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
+  constructor(data, openImagePopup) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
     this._name = data.name;
     this._link = data.link;
     this._templateSelector = document.querySelector('#card__template');
+    this._openImagePopup = openImagePopup;
   }
 
 
@@ -21,12 +22,15 @@ class Card {
     return cardElement // Возвращаю разметку карточки
   }
 
-////////////Исправить////////////
-  /** Лайк */
-  _handleLikeButton(evt) {
-    evt.target.classList.toggle('element__like_active');
-  }
-/////////////////////////////////
+
+  // _handleLikeButton() {
+  //   this._element.querySelector('.element__like').
+  //   classList.toggle('element__like_active');
+  // }
+
+  _handleLikeButton(evt) { 
+    evt.target.classList.toggle('element__like_active'); 
+  } 
 
   /** Удаление карточки */
   _handleDeleteButton() {
@@ -34,13 +38,8 @@ class Card {
     this._element = null;
   }
 
-
-  /** Открытие модального окна */
-  // _openImagePopup() {
-  //   this._openImagePopup(imageModalWindow);
-  //   handlePreview();
-  // }
-
+  
+  // this._openImagePopup(imageModalWindow)
 
   /** Навешиваю слушатель события */
   _setEventListeners() {
@@ -49,8 +48,8 @@ class Card {
 
     const likeCard = this._element.querySelector('.element__like');
     likeCard.addEventListener('click', (evt) => this._handleLikeButton(evt))
-
-    // this._element.addEventListener('click', () => this._openImagePopup());
+    
+    // this._element.addEventListener('click', (evt) => this._callOpenImagePopup(evt));
   }
 
 
@@ -78,15 +77,15 @@ class Card {
 
 
   /** Публикация карточек */
-  initialCards.forEach((item) => {
-    // Создадим экземпляр карточки
-    const card = new Card(item, '#card__template');
-    // Создаём карточку и возвращаем наружу
-    const cardElement = card.generateCard();
+  // initialCards.forEach((item) => {
+  //   // Создадим экземпляр карточки
+  //   const card = new Card(item, '#card__template', openImagePopup);
+  //   // Создаём карточку и возвращаем наружу
+  //   const cardElement = card.generateCard();
   
-    // Добавляем в DOM
-    document.querySelector('.elements').append(cardElement);
-  });
+  //   // Добавляем в DOM
+  //   document.querySelector('.elements').append(cardElement);
+  // });
 
 
 export default Card;

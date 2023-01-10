@@ -71,9 +71,9 @@ class FormValidator {
 
 
   _formEditCardValidator = () => {
-    const formEdit = Array.from(document.querySelectorAll(this._popupEditForm));
+    const formEditCard = Array.from(document.querySelectorAll(this._popupEditForm));
 
-    formEdit.forEach(() => {
+    formEditCard.forEach(() => {
       this._formElement.addEventListener('submit', (evt) => {
         evt.preventDefault();
       });
@@ -82,9 +82,9 @@ class FormValidator {
 
 
   _formAddCardValidator = () => {
-    const formAdd = Array.from(document.querySelectorAll(this._popupAddForm));
+    const formAddCard = Array.from(document.querySelectorAll(this._popupAddForm));
 
-    formAdd.forEach(() => { // Прохожу по массиву методом forEach
+    formAddCard.forEach(() => { // Прохожу по массиву методом forEach
       this._formElement.addEventListener('submit', (evt) => {
         evt.preventDefault();
       });

@@ -2,6 +2,7 @@ import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import { imageModalWindow } from "./utils.js";
 import { openModal, closeModal } from "./utils.js";
+import { initialCards } from "./constants.js";
 
 
 /** Контейнеры */
@@ -54,7 +55,7 @@ const validationConfig  = {
 };
 
 
-// const buttonDisabled = validationConfig.inactiveButtonClass; 
+const buttonDisabled = validationConfig.inactiveButtonClass; 
 
 
 const popupEditForm = document.querySelector('.popup_edit-profile');
@@ -80,18 +81,16 @@ function handleProfileFormSubmit (evt) {
 
 
 /** Создает экземпляр Card и возвращает разметку карточки */
-function createCard(data, templateSelector, params) {
-  const card = new Card(data, templateSelector, params);
+const createCard = (data) => {
+  const card = new Card(data, '#card__template');
+  cardsContainer.prepend(card.generateCard()); 
+};
 
-  return card;
-}
 
-
-/** Вставляет в разметку */
-function renderCard(data, templateSelector, params) {
-  const card = createCard(data, templateSelector, params);
-  cardsContainer.prepend(card.generateCard());
-}
+/** Вставляет карточку */
+initialCards.forEach((data) => {
+  createCard(data);
+});
 
 
 function handleAddNewCard(evt) {
@@ -148,7 +147,7 @@ buttonOpenFormEdit.addEventListener('click', () => {
 ///
 buttonOpenFormAddCard.addEventListener('click', () => {
   openModal(cardFormModalWindow); // Запускаю функцию openModal
-  // disableSubmitButton(buttonAddProfileSave, buttonDisabled);
+
 });
 ///
 
