@@ -4,22 +4,22 @@ import { imageModalWindow } from './utils.js';
 
 
 class Card {
-  constructor(data, openImagePopup) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
+  constructor(data) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
     this._name = data.name;
     this._link = data.link;
-    this._templateSelector = document.querySelector('#card__template');
-    this._openImagePopup = openImagePopup;
+    this._templateSelector = '#card__template';
   }
 
 
   /** Получить нужную разметку */
   _getTemplateCard() {
-    const cardElement = this._templateSelector
+    const cardElement = document
+      .querySelector(this._templateSelector)
       .content
       .querySelector('.element')
       .cloneNode(true); // Клонирую элемент
 
-    return cardElement // Возвращаю разметку карточки
+    return cardElement; // Возвращаю разметку карточки
   }
 
 
@@ -28,9 +28,18 @@ class Card {
   //   classList.toggle('element__like_active');
   // }
 
+  _likeButton() {
+    this._element = document.querySelector('.element__like');
+  }
+
+  
   _handleLikeButton(evt) { 
     evt.target.classList.toggle('element__like_active'); 
   } 
+
+  // _handleLikeButton(evt) { 
+  //   evt.target.classList.toggle('element__like_active'); 
+  // } 
 
   /** Удаление карточки */
   _handleDeleteButton() {
@@ -74,18 +83,5 @@ class Card {
     return this._element;
   }
 }
-
-
-  /** Публикация карточек */
-  // initialCards.forEach((item) => {
-  //   // Создадим экземпляр карточки
-  //   const card = new Card(item, '#card__template', openImagePopup);
-  //   // Создаём карточку и возвращаем наружу
-  //   const cardElement = card.generateCard();
-  
-  //   // Добавляем в DOM
-  //   document.querySelector('.elements').append(cardElement);
-  // });
-
 
 export default Card;

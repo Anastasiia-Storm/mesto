@@ -1,6 +1,6 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import { imageModalWindow } from "./utils.js";
+import { imageModalWindow, openImagePopup } from "./utils.js";
 import { openModal, closeModal } from "./utils.js";
 import { initialCards } from "./constants.js";
 
@@ -66,7 +66,9 @@ const popupAddForm = document.querySelector('.popup_add-profile');
 const newAddCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
 newAddCardProfileValidator.enableValidation();
 
-
+const todoCardTemplate = document
+  .querySelector("#card__template")
+  .content.querySelector(".element");
 /*-----------------------Функции-----------------------*/
 
 
@@ -80,26 +82,27 @@ function handleProfileFormSubmit (evt) {
 }
 
 
-/** Создает экземпляр Card и возвращает разметку карточки */
-const createCard = (data) => {
+function createCard(data) {
   const card = new Card(data, '#card__template');
+  return card;
+}
+
+const renderCard = (data) => {
+  const card = createCard(data);
   cardsContainer.prepend(card.generateCard()); 
-};
+}
 
 
-/** Вставляет карточку */
-initialCards.forEach((data) => {
-  createCard(data);
+initialCards.forEach((data) => { 
+  renderCard(data);
 });
 
 
-function handleAddNewCard(evt) {
-  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-
-  renderCard({name: cardNameInputValue.value, link: cardLinkInputValue.value});
+function handleAddNewCard(evt) { 
+  evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы. 
+  renderCard({name: cardNameInputValue.value, link: cardLinkInputValue.value}); 
   closeModal(cardFormModalWindow);
-  evt.target.reset();
-}
+} 
 
 
 /** Закрытие по клику на overlay */
@@ -125,6 +128,7 @@ function creatEditFormContent() {
   inputJob.value = about.textContent;
   openModal(profileFormModalWindow);
 }
+
 
 /*-----------------------Обработчики события-----------------------*/
 
