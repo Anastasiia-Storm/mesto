@@ -1,3 +1,5 @@
+// import { buttonOpenFormAddCard } from ".";
+
 class FormValidator {
   constructor(validationConfig, formElement) {
     this._formSelector = validationConfig.formSelector;
@@ -44,7 +46,7 @@ class FormValidator {
       this.enableSubmitButton(this._buttonElement, this._inactiveButtonClass);
     }
   };
-
+  
 
   /** Функция состояния кнопок */
   disableSubmitButton = () => {

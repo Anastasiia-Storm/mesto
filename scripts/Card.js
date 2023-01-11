@@ -1,13 +1,12 @@
-import { imageCaption, imageElement, openImagePopup } from './utils.js';
-import { initialCards } from './constants.js';
 import { imageModalWindow } from './utils.js';
 
 
 class Card {
-  constructor(data) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
+  constructor(data, templateSelector, openImagePopup) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
     this._name = data.name;
     this._link = data.link;
-    this._templateSelector = '#card__template';
+    this._openImagePopup = openImagePopup;
+    this._templateSelector = templateSelector,'#card__template';
   }
 
 
@@ -23,32 +22,32 @@ class Card {
   }
 
 
-  // _handleLikeButton() {
-  //   this._element.querySelector('.element__like').
-  //   classList.toggle('element__like_active');
+/// Не получается сделать, все окрашивается в черный цвет///
+  // _likeButton(like) {
+  //   this._element = document.querySelector(like, '.element__like');
   // }
 
-  _likeButton() {
-    this._element = document.querySelector('.element__like');
-  }
 
-  
+  // _handleLikeButton(like) {
+  //   like.this._element.classList.toggle('element__like_active');
+  //   }
+  ///
+
+
   _handleLikeButton(evt) { 
     evt.target.classList.toggle('element__like_active'); 
   } 
-
-  // _handleLikeButton(evt) { 
-  //   evt.target.classList.toggle('element__like_active'); 
-  // } 
 
   /** Удаление карточки */
   _handleDeleteButton() {
     this._element.remove();
     this._element = null;
   }
-
   
-  // this._openImagePopup(imageModalWindow)
+  // handleImageClick(params) {
+  //   this._openImagePopup(params);
+  // }
+  
 
   /** Навешиваю слушатель события */
   _setEventListeners() {
@@ -58,7 +57,8 @@ class Card {
     const likeCard = this._element.querySelector('.element__like');
     likeCard.addEventListener('click', (evt) => this._handleLikeButton(evt))
     
-    // this._element.addEventListener('click', (evt) => this._callOpenImagePopup(evt));
+    // const ImageClick = this._openImagePopup(imageModalWindow);
+    // ImageClick.addEventListener('click', (evt) => this.handleImageClick(evt));
   }
 
 

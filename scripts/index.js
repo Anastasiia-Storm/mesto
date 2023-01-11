@@ -12,7 +12,7 @@ const cardFormModalWindow = document.querySelector('.popup_add-profile');
 
 /** Кнопки и прочие DOM узлы */
 const buttonOpenFormEdit = document.querySelector('.profile__edit-button');
-const buttonOpenFormAddCard = document.querySelector('.profile__add-button');
+export const buttonOpenFormAddCard = document.querySelector('.profile__add-button');
 const buttonCloseFormEdit = profileFormModalWindow.querySelector('.popup__close-button');
 const buttonCloseFormAddCard = cardFormModalWindow.querySelector('.popup__close-button');
 const buttonCloseImageModal = document.querySelector('.popup__close-button');
@@ -54,7 +54,6 @@ const validationConfig  = {
   errorClass: 'popup__input-error_visible'
 };
 
-
 const buttonDisabled = validationConfig.inactiveButtonClass; 
 
 
@@ -66,9 +65,7 @@ const popupAddForm = document.querySelector('.popup_add-profile');
 const newAddCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
 newAddCardProfileValidator.enableValidation();
 
-const todoCardTemplate = document
-  .querySelector("#card__template")
-  .content.querySelector(".element");
+
 /*-----------------------Функции-----------------------*/
 
 
@@ -83,7 +80,7 @@ function handleProfileFormSubmit (evt) {
 
 
 function createCard(data) {
-  const card = new Card(data, '#card__template');
+  const card = new Card(data, '#card__template', openImagePopup);
   return card;
 }
 
@@ -102,12 +99,13 @@ function handleAddNewCard(evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы. 
   renderCard({name: cardNameInputValue.value, link: cardLinkInputValue.value}); 
   closeModal(cardFormModalWindow);
+  evt.target.reset();
 } 
 
 
 /** Закрытие по клику на overlay */
 const popupList = Array.from(document.querySelectorAll('.popup'));
-popupList.forEach((popup) => {bindOverlayClickHandler(popup); 
+  popupList.forEach((popup) => {bindOverlayClickHandler(popup); 
 });
 
  
@@ -148,10 +146,10 @@ buttonOpenFormEdit.addEventListener('click', () => {
   openModal(profileFormModalWindow); // Запускаю функцию openModal
 });
 
-///
+
 buttonOpenFormAddCard.addEventListener('click', () => {
   openModal(cardFormModalWindow); // Запускаю функцию openModal
-
+  newAddCardProfileValidator.disableSubmitButton(buttonAddProfileSave, buttonDisabled);
 });
 ///
 

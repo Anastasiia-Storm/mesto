@@ -1,4 +1,3 @@
-import { initialCards } from "../scripts/constants.js";
 export const imageModalWindow = document.querySelector('.popup_type_image');
 
 export const imageElement = document.querySelector('.popup__photo');
@@ -29,11 +28,11 @@ export function openModal(modalWindow) { // Открывает модально�
 
 
 /** Функция открытия картинки */ 
-export function openImagePopup(name, link) { 
+export function openImagePopup(params) { 
   // Контент модального окна 
-  imageElement.alt = name;   
-  imageElement.src = link;  // Картинка 
-  imageCaption.textContent = name;  // Подпись с картинке 
+  imageElement.alt = params.name;
+  imageElement.src = params.link;  // Картинка 
+  imageCaption.textContent = params.name;  // Подпись с картинке 
   
   openModal(imageModalWindow); // Открыть модальное окно 
 } 
