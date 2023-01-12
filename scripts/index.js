@@ -1,8 +1,15 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import { imageModalWindow, openImagePopup } from "./utils.js";
-import { openModal, closeModal } from "./utils.js";
+import { openModal, closeModal, buttonOpenFormAddCard } from "./utils.js";
 import { initialCards } from "./constants.js";
+
+
+/** Темплейты */
+const cardTemplate = document.querySelector('#card__template')
+.content.querySelector('.element'); // Нахожу template элемент и беру контент карточки <li></li>
+
+const cardElement = cardTemplate.cloneNode(true); // Клонирую <li></li>
+export const cardImage = cardElement.querySelector('.element__photo');
 
 
 /** Контейнеры */
@@ -12,10 +19,8 @@ const cardFormModalWindow = document.querySelector('.popup_add-profile');
 
 /** Кнопки и прочие DOM узлы */
 const buttonOpenFormEdit = document.querySelector('.profile__edit-button');
-export const buttonOpenFormAddCard = document.querySelector('.profile__add-button');
 const buttonCloseFormEdit = profileFormModalWindow.querySelector('.popup__close-button');
 const buttonCloseFormAddCard = cardFormModalWindow.querySelector('.popup__close-button');
-const buttonCloseImageModal = document.querySelector('.popup__close-button');
 const buttonAddProfileSave = cardFormModalWindow.querySelector('.popup__save-button');
 
 
@@ -80,7 +85,7 @@ function handleProfileFormSubmit (evt) {
 
 
 function createCard(data) {
-  const card = new Card(data, '#card__template', openImagePopup);
+  const card = new Card(data, '#card__template');
   return card;
 }
 
@@ -159,8 +164,4 @@ buttonCloseFormEdit.addEventListener('click', () => {
 
 buttonCloseFormAddCard.addEventListener('click', () => {
   closeModal(cardFormModalWindow); // Запускаю функцию closeModal
-});
-
-buttonCloseImageModal.addEventListener('click', () => {
-  closeModal(imageModalWindow); // Запускаю функцию closeModal
 });

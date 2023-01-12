@@ -1,12 +1,14 @@
-import { imageModalWindow } from './utils.js';
+import { imageModalWindow, openImagePopup, imageElement, 
+  imageCaption, openModal, closeImagePopup, closeModal, buttonCloseImageModal } from './utils.js';
 
 
 class Card {
-  constructor(data, templateSelector, openImagePopup) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
+  constructor(data, templateSelector) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
     this._name = data.name;
     this._link = data.link;
     this._openImagePopup = openImagePopup;
-    this._templateSelector = templateSelector,'#card__template';
+    this._closeImagePopup = closeImagePopup;
+    this._templateSelector = templateSelector,'#card__template';;
   }
 
 
@@ -22,33 +24,44 @@ class Card {
   }
 
 
-/// Не получается сделать, все окрашивается в черный цвет///
-  // _likeButton(like) {
-  //   this._element = document.querySelector(like, '.element__like');
+  /// Не получается сделать, все окрашивается в черный цвет///
+  // _likeButton() {
+  //   const likeButton = this._element.querySelector('.element__like');
   // }
 
 
-  // _handleLikeButton(like) {
-  //   like.this._element.classList.toggle('element__like_active');
-  //   }
-  ///
+  // _handleLikeButton() {
+  //   const cardLike = likeButton();
+  //   cardLike.classList.toggle('element__like_active');
+  // }
 
 
   _handleLikeButton(evt) { 
     evt.target.classList.toggle('element__like_active'); 
   } 
 
+
   /** Удаление карточки */
   _handleDeleteButton() {
     this._element.remove();
     this._element = null;
   }
-  
-  // handleImageClick(params) {
-  //   this._openImagePopup(params);
-  // }
-  
 
+
+  _handlePreviewImage() {
+    imageElement.alt = this._name; 
+    imageElement.src = this._link; 
+    imageCaption.textContent = this._name; 
+
+    openModal(imageModalWindow);
+  }
+
+  
+  _handleClosePreviewImage() {
+    closeModal(imageModalWindow);
+  }
+
+  
   /** Навешиваю слушатель события */
   _setEventListeners() {
     const deleteCard = this._element.querySelector('.element__delete');
@@ -56,9 +69,11 @@ class Card {
 
     const likeCard = this._element.querySelector('.element__like');
     likeCard.addEventListener('click', (evt) => this._handleLikeButton(evt))
-    
-    // const ImageClick = this._openImagePopup(imageModalWindow);
-    // ImageClick.addEventListener('click', (evt) => this.handleImageClick(evt));
+
+    const imageCard = this._element.querySelector('.element__photo');
+    imageCard.addEventListener('click', () => this._handlePreviewImage()); 
+   
+    buttonCloseImageModal.addEventListener('click', () => this._handleClosePreviewImage());
   }
 
 

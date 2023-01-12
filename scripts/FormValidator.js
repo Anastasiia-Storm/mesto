@@ -1,5 +1,3 @@
-// import { buttonOpenFormAddCard } from ".";
-
 class FormValidator {
   constructor(validationConfig, formElement) {
     this._formSelector = validationConfig.formSelector;
