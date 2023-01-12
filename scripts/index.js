@@ -4,14 +4,6 @@ import { openModal, closeModal, buttonOpenFormAddCard } from "./utils.js";
 import { initialCards } from "./constants.js";
 
 
-/** Темплейты */
-const cardTemplate = document.querySelector('#card__template')
-.content.querySelector('.element'); // Нахожу template элемент и беру контент карточки <li></li>
-
-const cardElement = cardTemplate.cloneNode(true); // Клонирую <li></li>
-export const cardImage = cardElement.querySelector('.element__photo');
-
-
 /** Контейнеры */
 const profileFormModalWindow = document.querySelector('.popup_edit-profile');
 const cardFormModalWindow = document.querySelector('.popup_add-profile');
