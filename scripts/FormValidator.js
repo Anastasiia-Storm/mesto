@@ -7,9 +7,6 @@ class FormValidator {
     this._inputErrorClass = validationConfig.inputErrorClass;
     this._errorClass = validationConfig.errorClass;
     this._formElement = formElement;
-    this._popupEditForm = formElement.querySelector('.popup_edit-profile');
-    this._popupAddForm = formElement.querySelector('.popup_add-profile');
-    this._popupEditForm = formElement.querySelector('.popup_edit-profile');
     this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector)); // Преобразовываю коллекцию в массив методом Array.from.
     this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
   }
@@ -39,9 +36,9 @@ class FormValidator {
   /** Функция переключения кнопки */
   toggleButtonState = () => { // InputList и buttonElement. Первый — массив полей, второй — кнопка «Сохранить, создать».
     if (this._hasInvalidInput()) { // есть ли в массиве inputList невалидные поля.
-      this.disableSubmitButton(this._buttonElement, this._inactiveButtonClass);
+      this.disableSubmitButton();
     } else {
-      this.enableSubmitButton(this._buttonElement, this._inactiveButtonClass);
+      this.enableSubmitButton();
     }
   };
   
@@ -67,34 +64,12 @@ class FormValidator {
         this.toggleButtonState();
       });
     });
+    this._formElement.addEventListener('submit', (evt) => {
+    });
   }; 
 
 
-  _formEditCardValidator = () => {
-    const formEditCard = Array.from(document.querySelectorAll(this._popupEditForm));
-
-    formEditCard.forEach(() => {
-      this._formElement.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-      });
-    });
-  };
-
-
-  _formAddCardValidator = () => {
-    const formAddCard = Array.from(document.querySelectorAll(this._popupAddForm));
-
-    formAddCard.forEach(() => { // Прохожу по массиву методом forEach
-      this._formElement.addEventListener('submit', (evt) => {
-        evt.preventDefault();
-      });
-    });
-  };
-
-
   enableValidation = () => { 
-    this._formEditCardValidator();
-    this._formAddCardValidator();
     this._setEventListeners();
   };
 

@@ -146,7 +146,7 @@ buttonOpenFormEdit.addEventListener('click', () => {
 
 buttonOpenFormAddCard.addEventListener('click', () => {
   openModal(cardFormModalWindow); // Запускаю функцию openModal
-  newAddCardProfileValidator.disableSubmitButton(buttonAddProfileSave, buttonDisabledSelector);
+  newAddCardProfileValidator.disableSubmitButton(buttonDisabledSelector);
 });
 ///
 
