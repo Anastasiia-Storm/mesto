@@ -51,7 +51,7 @@ const validationConfig  = {
   errorClass: 'popup__input-error_visible'
 };
 
-const buttonDisabled = validationConfig.inactiveButtonClass; 
+const buttonDisabledSelector = validationConfig.inactiveButtonClass; 
 
 
 const popupEditForm = document.querySelector('.popup_edit-profile');
@@ -118,7 +118,7 @@ function bindOverlayClickHandler (popup) {
 };
 
 
-function creatEditFormContent() {
+function openProfilePopup() {
   inputName.value = title.textContent; // textContent позволяет получить или перезаписать текстовое содержимое элемента.
   inputJob.value = about.textContent;
   openModal(profileFormModalWindow);
@@ -135,7 +135,7 @@ cardFormModalWindow.addEventListener('submit', handleAddNewCard);
 
 
 buttonOpenEdit.addEventListener('click', () => {  // Добавить слушатель события 
-  creatEditFormContent();
+  openProfilePopup();
 })
 
 /** Запускаю функции открытия и закрытия popup */
@@ -146,7 +146,7 @@ buttonOpenFormEdit.addEventListener('click', () => {
 
 buttonOpenFormAddCard.addEventListener('click', () => {
   openModal(cardFormModalWindow); // Запускаю функцию openModal
-  newAddCardProfileValidator.disableSubmitButton(buttonAddProfileSave, buttonDisabled);
+  newAddCardProfileValidator.disableSubmitButton(buttonAddProfileSave, buttonDisabledSelector);
 });
 ///
 
