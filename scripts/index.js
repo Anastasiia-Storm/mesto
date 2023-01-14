@@ -1,6 +1,6 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
-import { openModal, closeModal, buttonOpenFormAddCard } from "./utils.js";
+import { openModal, closeModal, buttonOpenFormAddCard, openImagePopup } from "./utils.js";
 import { initialCards } from "./constants.js";
 
 
@@ -13,7 +13,7 @@ const cardFormModalWindow = document.querySelector('.popup_add-profile');
 const buttonOpenFormEdit = document.querySelector('.profile__edit-button');
 const buttonCloseFormEdit = profileFormModalWindow.querySelector('.popup__close-button');
 const buttonCloseFormAddCard = cardFormModalWindow.querySelector('.popup__close-button');
-const buttonAddProfileSave = cardFormModalWindow.querySelector('.popup__save-button');
+// const buttonAddProfileSave = cardFormModalWindow.querySelector('.popup__save-button');
 
 
 /** DOM узлы профиля
@@ -51,6 +51,7 @@ const validationConfig  = {
   errorClass: 'popup__input-error_visible'
 };
 
+
 const buttonDisabledSelector = validationConfig.inactiveButtonClass; 
 
 
@@ -77,9 +78,10 @@ function handleProfileFormSubmit (evt) {
 
 
 function createCard(data) {
-  const card = new Card(data, '#card__template');
+  const card = new Card(data, '#card__template', openImagePopup);
   return card;
 }
+
 
 const renderCard = (data) => {
   const card = createCard(data);
@@ -138,17 +140,16 @@ buttonOpenEdit.addEventListener('click', () => {  // Добавить слуша
   openProfilePopup();
 })
 
+
 /** Запускаю функции открытия и закрытия popup */
 buttonOpenFormEdit.addEventListener('click', () => {
   openModal(profileFormModalWindow); // Запускаю функцию openModal
 });
 
-
 buttonOpenFormAddCard.addEventListener('click', () => {
   openModal(cardFormModalWindow); // Запускаю функцию openModal
   newAddCardProfileValidator.disableSubmitButton(buttonDisabledSelector);
 });
-///
 
 buttonCloseFormEdit.addEventListener('click', () => {
   closeModal(profileFormModalWindow); // Запускаю функцию closeModal

@@ -1,6 +1,6 @@
 export const imageModalWindow = document.querySelector('.popup_type_image');
-export const imageElement = document.querySelector('.popup__photo');
-export const imageCaption = document.querySelector('.popup__caption');
+export const imageElement = imageModalWindow.querySelector('.popup__photo');
+export const imageCaption = imageModalWindow.querySelector('.popup__caption');
 export const buttonOpenFormAddCard = document.querySelector('.profile__add-button');
 export const buttonCloseImageModal = imageModalWindow.querySelector('.popup__close-button');
 
@@ -20,7 +20,7 @@ export function closeModal(modalWindow) {
 
 
 /** Функция закрытия form по нажатию esc */
-export function closeByEsc(event) {
+function closeByEsc(event) {
   if (event.key === 'Escape') {
     const popupToClose = document.querySelector('.popup_opened');
     closeModal(popupToClose);
@@ -29,16 +29,18 @@ export function closeByEsc(event) {
 
 
 /** Функция открытия картинки */ 
-export function openImagePopup(data) { 
+export function openImagePopup(item) { 
   // Контент модального окна 
-  imageElement.alt = data.name;
-  imageElement.src = data.link;  // Картинка 
-  imageCaption.textContent = data.name;  // Подпись с картинке 
+  imageElement.alt = item.name;
+  imageElement.src = item.link;  // Картинка 
+  imageCaption.textContent = item.name;  // Подпись с картинке 
   
   openModal(imageModalWindow); // Открыть модальное окно 
 } 
 
 
 export function closeImagePopup() {
-  closeModal(imageModalWindow); // Запускаю функцию closeModal
+  buttonCloseImageModal.addEventListener('click', () => { 
+      closeModal(imageModalWindow); // Запускаю функцию closeModal 
+    }); 
 };

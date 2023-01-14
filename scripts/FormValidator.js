@@ -64,7 +64,7 @@ class FormValidator {
         this.toggleButtonState();
       });
     });
-    this._formElement.addEventListener('submit', (evt) => {
+    this._formElement.addEventListener('submit', () => {
     });
   }; 
 

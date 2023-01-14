@@ -1,9 +1,8 @@
-import { imageModalWindow, openImagePopup, imageElement, 
-  imageCaption, openModal, closeImagePopup, closeModal, buttonCloseImageModal } from './utils.js';
+import { imageModalWindow, closeImagePopup } from './utils.js';
 
 
 class Card {
-  constructor(data, templateSelector) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
+  constructor(data, templateSelector, openImagePopup) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
     this._name = data.name;
     this._link = data.link;
     this._openImagePopup = openImagePopup;
@@ -24,18 +23,6 @@ class Card {
   }
 
 
-  /// Не получается сделать, все окрашивается в черный цвет///
-  // _likeButton() {
-  //   const likeButton = this._element.querySelector('.element__like');
-  // }
-
-
-  // _handleLikeButton() {
-  //   const cardLike = likeButton();
-  //   cardLike.classList.toggle('element__like_active');
-  // }
-
-
   _handleLikeButton(evt) { 
     evt.target.classList.toggle('element__like_active'); 
   } 
@@ -49,16 +36,8 @@ class Card {
 
 
   _handlePreviewImage() {
-    imageElement.alt = this._name; 
-    imageElement.src = this._link; 
-    imageCaption.textContent = this._name; 
-
-    openModal(imageModalWindow);
-  }
-
-  
-  _handleClosePreviewImage() {
-    closeModal(imageModalWindow);
+    this._openImagePopup({ name: this._name, link: this._link });
+    this._closeImagePopup(imageModalWindow);
   }
 
   
@@ -72,14 +51,12 @@ class Card {
 
     const imageCard = this._element.querySelector('.element__photo');
     imageCard.addEventListener('click', () => this._handlePreviewImage()); 
-   
-    buttonCloseImageModal.addEventListener('click', () => this._handleClosePreviewImage());
   }
 
 
   /** Подготовка карточки к публикации
       Метод наполняет карточки данными и функциональностью. */
-   _setData() {
+  _setData() {
     const nameCard = this._element.querySelector('.element__name')
     nameCard.textContent = this._name;
     const imageCard = this._element.querySelector('.element__photo')
