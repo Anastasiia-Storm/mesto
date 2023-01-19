@@ -1,12 +1,8 @@
-import { imageModalWindow, closeImagePopup } from './utils.js';
-
-
 class Card {
   constructor(data, templateSelector, openImagePopup) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
     this._name = data.name;
     this._link = data.link;
     this._openImagePopup = openImagePopup;
-    this._closeImagePopup = closeImagePopup;
     this._templateSelector = templateSelector,'#card__template';;
   }
 
@@ -28,7 +24,6 @@ class Card {
   } 
 
 
-  /** Удаление карточки */
   _handleDeleteButton() {
     this._element.remove();
     this._element = null;
@@ -37,17 +32,16 @@ class Card {
 
   _handlePreviewImage() {
     this._openImagePopup({ name: this._name, link: this._link });
-    this._closeImagePopup(imageModalWindow);
   }
 
   
   /** Навешиваю слушатель события */
   _setEventListeners() {
-    const deleteCard = this._element.querySelector('.element__delete');
-    deleteCard.addEventListener('click', () => this._handleDeleteButton())
-
     const likeCard = this._element.querySelector('.element__like');
     likeCard.addEventListener('click', (evt) => this._handleLikeButton(evt))
+
+    const deleteCard = this._element.querySelector('.element__delete');
+    deleteCard.addEventListener('click', () => this._handleDeleteButton())
 
     const imageCard = this._element.querySelector('.element__photo');
     imageCard.addEventListener('click', () => this._handlePreviewImage()); 

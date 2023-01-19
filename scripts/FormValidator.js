@@ -64,8 +64,6 @@ class FormValidator {
         this.toggleButtonState();
       });
     });
-    this._formElement.addEventListener('submit', () => {
-    });
   }; 
 
 

@@ -36,11 +36,4 @@ export function openImagePopup(item) {
   imageCaption.textContent = item.name;  // Подпись с картинке 
   
   openModal(imageModalWindow); // Открыть модальное окно 
-} 
-
-
-export function closeImagePopup() {
-  buttonCloseImageModal.addEventListener('click', () => { 
-      closeModal(imageModalWindow); // Запускаю функцию closeModal 
-    }); 
-};
+}
