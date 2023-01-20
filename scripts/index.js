@@ -1,63 +1,66 @@
 import Card from "./Card.js";
-import FormValidator from "./FormValidator.js";
-import { openModal, closeModal, buttonOpenFormAddCard, openImagePopup, imageModalWindow, buttonCloseImageModal } from "./utils.js";
-import { initialCards } from "./constants.js";
+import { initialCards, cardsContainer, newAddCardProfileValidator,
+   profileFormModalWindow, cardFormModalWindow, buttonOpenFormAddCard, buttonOpenEdit, buttonOpenFormEdit, imageModalWindow,
+   buttonCloseImageModal, buttonCloseFormEdit, buttonCloseFormAddCard, cardNameInputValue, cardLinkInputValue, inputName, 
+   inputJob, title, about, profileName, profileJob, nameInput, jobInput } from "./constants.js";
+import { openModal, closeModal, openImagePopup } from "./utils.js";
+// import { initialCards } from "./constants.js";
 
 
-/** Контейнеры */
-const profileFormModalWindow = document.querySelector('.popup_edit-profile');
-const cardFormModalWindow = document.querySelector('.popup_add-profile');
+// /** Контейнеры */
+// const profileFormModalWindow = document.querySelector('.popup_edit-profile');
+// const cardFormModalWindow = document.querySelector('.popup_add-profile');
 
 
-/** Кнопки и прочие DOM узлы */
-const buttonOpenFormEdit = document.querySelector('.profile__edit-button');
-const buttonCloseFormEdit = profileFormModalWindow.querySelector('.popup__close-button');
-const buttonCloseFormAddCard = cardFormModalWindow.querySelector('.popup__close-button');
+// /** Кнопки и прочие DOM узлы */
+// const buttonOpenFormEdit = document.querySelector('.profile__edit-button');
+// const buttonCloseFormEdit = profileFormModalWindow.querySelector('.popup__close-button');
+// const buttonCloseFormAddCard = cardFormModalWindow.querySelector('.popup__close-button');
 
 
-/** DOM узлы профиля
-    Получаю значение полей jobInput и nameInput из свойства value */
-const profileName = document.querySelector('.profile__name');
-const profileJob = document.querySelector('.profile__job');
+// /** DOM узлы профиля
+//     Получаю значение полей jobInput и nameInput из свойства value */
+// const profileName = document.querySelector('.profile__name');
+// const profileJob = document.querySelector('.profile__job');
 
 
-/** Данные форм и элементы форм */
-const cardNameInputValue = cardFormModalWindow.querySelector('.popup__input_type_card-name');
-const cardLinkInputValue = cardFormModalWindow.querySelector('.popup__input_type_url');
+// /** Данные форм и элементы форм */
+// const cardNameInputValue = cardFormModalWindow.querySelector('.popup__input_type_card-name');
+// const cardLinkInputValue = cardFormModalWindow.querySelector('.popup__input_type_url');
 
 
-/** Элемент списка */
-const cardsContainer = document.querySelector('.elements'); 
+// /** Элемент списка */
+// const cardsContainer = document.querySelector('.elements'); 
 
 
-/** Находим поля формы в DOM */
-const nameInput = document.querySelector('.popup__input_type_name'); // Воспользуйтесь инструментом .querySelector()
-const jobInput = document.querySelector('.popup__input_type_job'); // Воспользуйтесь инструментом .querySelector()
-const buttonOpenEdit = document.querySelector('.profile__edit-button');
+// /** Находим поля формы в DOM */
+// const nameInput = document.querySelector('.popup__input_type_name'); // Воспользуйтесь инструментом .querySelector()
+// const jobInput = document.querySelector('.popup__input_type_job'); // Воспользуйтесь инструментом .querySelector()
+// const buttonOpenEdit = document.querySelector('.profile__edit-button');
 
-const title = document.querySelector('.profile__name');
-const about = document.querySelector('.profile__job');
-const inputName = document.querySelector('.popup__input_type_name');
-const inputJob = document.querySelector('.popup__input_type_job');
-
-
-const validationConfig  = {
-  formSelector: '.popup__form', // Это объекты с селекторами формы
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input-error_visible'
-};
+// const title = document.querySelector('.profile__name');
+// const about = document.querySelector('.profile__job');
+// const inputName = document.querySelector('.popup__input_type_name');
+// const inputJob = document.querySelector('.popup__input_type_job');
 
 
-const popupEditForm = document.querySelector('.popup_edit-profile');
-const profileEditCardValidator = new FormValidator(validationConfig, popupEditForm);
-profileEditCardValidator.enableValidation();
+// const validationConfig  = {
+//   formSelector: '.popup__form', // Это объекты с селекторами формы
+//   inputSelector: '.popup__input',
+//   submitButtonSelector: '.popup__save-button',
+//   inactiveButtonClass: 'popup__save-button_disabled',
+//   inputErrorClass: 'popup__input_type_error',
+//   errorClass: 'popup__input-error_visible'
+// };
 
-const popupAddForm = document.querySelector('.popup_add-profile');
-const newAddCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
-newAddCardProfileValidator.enableValidation();
+
+// const popupEditForm = document.querySelector('.popup_edit-profile');
+// const profileEditCardValidator = new FormValidator(validationConfig, popupEditForm);
+// profileEditCardValidator.enableValidation();
+
+// const popupAddForm = document.querySelector('.popup_add-profile');
+// const newAddCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
+// newAddCardProfileValidator.enableValidation();
 
 
 /*-----------------------Функции-----------------------*/
