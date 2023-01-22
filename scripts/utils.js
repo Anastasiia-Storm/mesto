@@ -1,9 +1,5 @@
-// export const imageModalWindow = document.querySelector('.popup_type_image');
-// export const imageElement = imageModalWindow.querySelector('.popup__photo');
-// export const imageCaption = imageModalWindow.querySelector('.popup__caption');
-// export const buttonOpenFormAddCard = document.querySelector('.profile__add-button');
-// export const buttonCloseImageModal = imageModalWindow.querySelector('.popup__close-button');
-import { imageModalWindow, imageElement, imageCaption } from "./constants.js";
+import { imageElement, imageCaption, imageModalWindow } from "./constants.js";
+
 
 /** Функция открытия popup */
 export function openModal(modalWindow) { // Открывает модальное окно
