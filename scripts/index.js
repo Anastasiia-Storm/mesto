@@ -1,11 +1,11 @@
 import Card from "./Card.js";
 import Section from "./Section.js";
-// import { initialCards, cardsContainer, newAddCardProfileValidator,
-//    profileFormModalWindow, cardFormModalWindow, buttonOpenFormAddCard, buttonOpenEdit, buttonOpenFormEdit, imageModalWindow,
-//    buttonCloseImageModal, buttonCloseFormEdit, buttonCloseFormAddCard, cardNameInputValue, cardLinkInputValue, inputName, 
-//    inputJob, title, about, profileName, profileJob, nameInput, jobInput } from "./constants.js";
-import {  openImagePopup } from "./utils.js";
-import { initialCards, cardsContainer } from "./constants.js";
+// import Popup from "./Popup.js";
+import { popup } from "./constants.js";
+// import {  openImagePopup } from "./utils.js";
+// import { buttonOpenEdit } from "./constants.js";
+import { initialCards, cardsContainer, buttonOpenFormEdit, buttonOpenFormAddCard, newAddCardProfileValidator, 
+  buttonCloseFormEdit, buttonCloseFormAddCard, buttonCloseImageModal } from "./constants.js";
 
 
 /** Обработчик «отправки» формы, хотя пока
@@ -17,29 +17,12 @@ import { initialCards, cardsContainer } from "./constants.js";
 //     closeModal(profileFormModalWindow);
 // }
 
-//////////////
-// function createCard(data) {
-//   const card = new Card(data, '#card__template', openImagePopup);
-//   return card;
-// }
-
-
-// const renderCard = (data) => {
-//   const card = createCard(data);
-//   cardsContainer.prepend(card.generateCard()); 
-// }
-
-
-// initialCards.forEach((data) => { 
-//   renderCard(data);
-// });
-////////////
 
 
 const cardList = new Section({ 
     items: initialCards, 
     renderer: (item) => { // renderer Отвечает за создание и отрисовку данных на странице
-      const card = new Card(item, '#card__template', openImagePopup);
+      const card = new Card(item, '#card__template');
       const cardElement = card.generateCard();
       cardList.addItem(cardElement)
     }
@@ -48,10 +31,6 @@ const cardList = new Section({
 );
 cardList.renderItems();
 
-
-// defaultCardButton.addEventListener('click', () => {
-//   cardList.renderer(true);
-// });
 
 // function handleAddNewCard(evt) { 
 //   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы. 
@@ -89,6 +68,9 @@ cardList.renderItems();
 /*-----------------------Обработчики события-----------------------*/
 
 
+// const popup = new Popup(popupContainer);
+// console.log(popup);
+
 /** Прикрепляем обработчик к форме:
 //     он будет следить за событием “submit” - "отправка" */
 // profileFormModalWindow.addEventListener('submit', handleProfileFormSubmit); 
@@ -97,27 +79,26 @@ cardList.renderItems();
 
 // buttonOpenEdit.addEventListener('click', () => {  // Добавить слушатель события 
 //   openProfilePopup();
-// })
+// // })
 
+/** Запускаю функции открытия и закрытия popup */
+buttonOpenFormEdit.addEventListener('click', () => {
+   popup.open();
+});
 
-// /** Запускаю функции открытия и закрытия popup */
-// buttonOpenFormEdit.addEventListener('click', () => {
-//   openModal(profileFormModalWindow); // Запускаю функцию openModal
-// });
+buttonOpenFormAddCard.addEventListener('click', () => {
+  popup.open(); 
+  newAddCardProfileValidator.disableSubmitButton();
+});
 
-// buttonOpenFormAddCard.addEventListener('click', () => {
-//   openModal(cardFormModalWindow); // Запускаю функцию openModal
-//   newAddCardProfileValidator.disableSubmitButton();
-// });
+buttonCloseFormEdit.addEventListener('click', () => {
+  popup.close(); 
+});
 
-// buttonCloseFormEdit.addEventListener('click', () => {
-//   closeModal(profileFormModalWindow); // Запускаю функцию closeModal
-// });
+buttonCloseFormAddCard.addEventListener('click', () => {
+  popup.close(); 
+});
 
-// buttonCloseFormAddCard.addEventListener('click', () => {
-//   closeModal(cardFormModalWindow); // Запускаю функцию closeModal
-// });
-
-// buttonCloseImageModal.addEventListener('click', () => { 
-//   closeModal(imageModalWindow); // Запускаю функцию closeModal 
-// }); 
+buttonCloseImageModal.addEventListener('click', () => { 
+  popup.close(); 
+}); 

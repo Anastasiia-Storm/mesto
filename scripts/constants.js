@@ -1,5 +1,5 @@
 import FormValidator from "./FormValidator.js";
-
+import Popup from "./Popup.js";
 
 export const initialCards = [
   {
@@ -32,6 +32,7 @@ export const initialCards = [
 /** Контейнеры */
 export const profileFormModalWindow = document.querySelector('.popup_edit-profile');
 export const cardFormModalWindow = document.querySelector('.popup_add-profile');
+export const popupContainer = document.querySelector('.popup');
 
 
 /** Кнопки и прочие DOM узлы */
@@ -89,3 +90,6 @@ profileEditCardValidator.enableValidation();
 export const popupAddForm = document.querySelector('.popup_add-profile');
 export const newAddCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
 newAddCardProfileValidator.enableValidation();
+
+export const popup = new Popup(popupContainer);
+console.log(popup);

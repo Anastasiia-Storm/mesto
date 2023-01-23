@@ -30,9 +30,9 @@ class Card {
   }
 
 
-  _handlePreviewImage() {
-    this._openImagePopup({ name: this._name, link: this._link });
-  }
+  // _handlePreviewImage() {
+  //   this._openImagePopup({ name: this._name, link: this._link });
+  // }
 
   
   /** Навешиваю слушатель события */
@@ -43,8 +43,8 @@ class Card {
     const deleteCard = this._element.querySelector('.element__delete');
     deleteCard.addEventListener('click', () => this._handleDeleteButton())
 
-    const imageCard = this._element.querySelector('.element__photo');
-    imageCard.addEventListener('click', () => this._handlePreviewImage()); 
+    // const imageCard = this._element.querySelector('.element__photo');
+    // imageCard.addEventListener('click', () => this._handlePreviewImage()); 
   }
 
 

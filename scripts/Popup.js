@@ -1,29 +1,68 @@
-// class Popup {
-//     constructor(popupSelector) {
+export default class Popup {
+    constructor(popupSelector) {
+        this._popupSelector = popupSelector;
+    }
 
+
+    open() {
+        this._popupSelector.classList.add('popup_opened');
+    }
+
+
+    close() {  
+        this._popupSelector.classList.remove('popup_opened');
+    }
+
+
+    _handleEscClose() {
+        document.addEventListener('keydown', (evt) => {
+            if (evt.key === 'Escape') {
+                this.close();
+            }
+        })
+    }
+
+
+    _handleClosePopupByOverlay() {
+        this._popupSelector.addEventListener('click', (evt) => {
+            // console.log(this._popupSelector);
+            const popupContainer = evt.currentTarget
+            // console.log(evt.target !== popupContainer) // Условие, что объектом клика является не сама форма
+            if (evt.target === popupContainer) {
+              this.close();
+            }
+        })
+    };
+    
+
+
+    /** Добавляет слушатель клика иконке закрытия попапа */
+    setEventListeners() {
+        const popupCloseButton = this._popupSelector.querySelector('.popup__close-button');
+        // console.log(popupCloseButton);
+        console.log(this._popupSelector);
+        popupCloseButton.addEventListener('click', () => this.close());
+        console.log(popupCloseButton);
+    }
+}
+
+/** Закрытие по клику на overlay */
+// const popupList = Array.from(document.querySelectorAll('.popup'));
+//   popupList.forEach((popup) => {bindOverlayClickHandler(popup); 
+// });
+
+ 
+// /** Вешает обработчики событий на оверлеи */
+// function bindOverlayClickHandler (popup) {
+//   popup.addEventListener('click', (evt) => {
+//     const popupContainer = evt.currentTarget
+//     // console.log(evt.target !== popupContainer) // Условие, что объектом клика является не сама форма
+//     if (evt.target === popupContainer) {
+//       closeModal(popup)
 //     }
+//   })
+// };
 
-
-//     open() {
-
-//     }
-
-
-//     close() {
-
-//     }
-
-
-//     _handleEscClose() {
-
-//     }
-
-
-//     /** Добавляет слушатель клика иконке закрытия попапа */
-//     setEventListeners() {
-
-//     }
-// }
 
 // /** Функция открытия popup */
 // export function openModal(modalWindow) { // Открывает модальное окно
