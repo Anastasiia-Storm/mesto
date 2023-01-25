@@ -1,5 +1,5 @@
-import FormValidator from "./FormValidator.js";
-import Popup from "./Popup.js";
+import FormValidator from "./../components/FormValidator.js";
+import Popup from "./../components/Popup.js";
 
 export const initialCards = [
   {
@@ -55,7 +55,6 @@ export const cardLinkInputValue = cardFormModalWindow.querySelector('.popup__inp
 /** Элемент списка */
 export const cardsContainer = document.querySelector('.elements'); 
 
-
 /** Находим поля формы в DOM */
 export const nameInput = document.querySelector('.popup__input_type_name'); // Воспользуйтесь инструментом .querySelector()
 export const jobInput = document.querySelector('.popup__input_type_job'); // Воспользуйтесь инструментом .querySelector()
@@ -66,6 +65,7 @@ export const about = document.querySelector('.profile__job');
 export const inputName = document.querySelector('.popup__input_type_name');
 export const inputJob = document.querySelector('.popup__input_type_job');
 
+// export const imageModal = document.querySelector('.popup__form');
 export const imageModalWindow = document.querySelector('.popup_type_image');
 export const imageElement = imageModalWindow.querySelector('.popup__photo');
 export const imageCaption = imageModalWindow.querySelector('.popup__caption');
@@ -91,5 +91,5 @@ export const popupAddForm = document.querySelector('.popup_add-profile');
 export const newAddCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
 newAddCardProfileValidator.enableValidation();
 
-export const popup = new Popup(popupContainer);
-console.log(popup);
+// export const popup = new Popup(popupContainer);
+// console.log(popup);

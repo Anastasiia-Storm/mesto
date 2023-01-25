@@ -1,9 +1,11 @@
+// import PopupWithImage from "./PopupWithImage";
 class Card {
-  constructor(data, templateSelector, openImagePopup) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
+  constructor(data, templateSelector, handleCardClick) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
     this._name = data.name;
     this._link = data.link;
-    this._openImagePopup = openImagePopup;
-    this._templateSelector = templateSelector,'#card__template';;
+    // this._openImagePopup = openImagePopup;
+    this._handleCardClick = handleCardClick;
+    this._templateSelector = templateSelector,'#card__template';
   }
 
 
@@ -31,7 +33,7 @@ class Card {
 
 
   // _handlePreviewImage() {
-  //   this._openImagePopup({ name: this._name, link: this._link });
+  //   this._handleCardClick({ name: this._name, link: this._link });
   // }
 
   

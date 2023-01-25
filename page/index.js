@@ -1,24 +1,18 @@
-import Card from "./Card.js";
-import Section from "./Section.js";
-// import Popup from "./Popup.js";
-import { popup } from "./constants.js";
+import Card from "./../components/Card.js";
+import Section from "./../components/Section.js";
+import Popup from "./../components/Popup.js";
+import UserInfo from "./../components/UserInfo.js";
+import PopupWithForm from "./../components/PopupWithForm.js";
+import PopupWithImage from "./../components/PopupWithImage.js";
 // import {  openImagePopup } from "./utils.js";
 // import { buttonOpenEdit } from "./constants.js";
 import { initialCards, cardsContainer, buttonOpenFormEdit, buttonOpenFormAddCard, newAddCardProfileValidator, 
-  buttonCloseFormEdit, buttonCloseFormAddCard, buttonCloseImageModal } from "./constants.js";
+  buttonCloseFormEdit, buttonCloseFormAddCard, buttonCloseImageModal, profileName, profileJob } from "../utils/constants.js";
+// import PopupWithForm from "./PopupWithForm.js";
+// (imageModalWindow, profileFormModalWindow, profileName, profileJob )
 
 
-/** Обработчик «отправки» формы, хотя пока
-    она никуда отправляться не будет */
-// function handleProfileFormSubmit (evt) {
-//     evt.preventDefault();  // Эта строчка отменяет стандартную отправку формы.
-//     profileName.textContent = nameInput.value;
-//     profileJob.textContent = jobInput.value;
-//     closeModal(profileFormModalWindow);
-// }
-
-
-
+    
 const cardList = new Section({ 
     items: initialCards, 
     renderer: (item) => { // renderer Отвечает за создание и отрисовку данных на странице
@@ -30,7 +24,50 @@ const cardList = new Section({
   cardsContainer // В качестве параметра containerSelector
 );
 cardList.renderItems();
+console.log(cardList);
 
+
+const popup = new Popup('.popup');
+console.log(popup);
+
+
+const userInfo = new UserInfo({ 
+  name: profileName, 
+  description: profileJob 
+});
+console.log(userInfo);
+
+
+// const imageModal = new PopupWithImage({
+//    name: name,
+//    link: link
+// })
+// console.log(imageModal);
+
+const popupEditForm = new PopupWithForm('.popup_edit-profile', {
+  submitForm: ({ name, description }) => {
+    userInfo.setUserInfo(name, description);
+  },
+});
+popupEditForm.setEventListeners();
+console.log(popupEditForm);
+
+
+/* Открывает попап с картинкой при клике на карточку **/
+// handleCardClick() {
+
+// };
+const popupAddForm = new PopupWithForm('.popup_add-profile', {
+  submitForm: ({ profileName, profileJob }) => {
+    cardList.addItem(profileName, profileJob);
+  }
+});
+console.log(popupAddForm);
+
+// popupEditForm.setEventListeners();
+// const formEdit = new PopupWithForm({
+//   this._submitForm: (formData)
+// })
 
 // function handleAddNewCard(evt) { 
 //   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы. 
@@ -68,8 +105,6 @@ cardList.renderItems();
 /*-----------------------Обработчики события-----------------------*/
 
 
-// const popup = new Popup(popupContainer);
-// console.log(popup);
 
 /** Прикрепляем обработчик к форме:
 //     он будет следить за событием “submit” - "отправка" */
@@ -81,9 +116,19 @@ cardList.renderItems();
 //   openProfilePopup();
 // // })
 
+
+/** Закрытие по клику на overlay */ 
+
+// const popupList = Array.from(document.querySelectorAll('.popup')); 
+//   popupList.forEach((popup) => {bindOverlayClickHandler(popup);  
+// }); 
+
+
+
+
 /** Запускаю функции открытия и закрытия popup */
 buttonOpenFormEdit.addEventListener('click', () => {
-   popup.open();
+  popup.open();
 });
 
 buttonOpenFormAddCard.addEventListener('click', () => {
@@ -102,3 +147,21 @@ buttonCloseFormAddCard.addEventListener('click', () => {
 buttonCloseImageModal.addEventListener('click', () => { 
   popup.close(); 
 }); 
+
+
+// function insertTweet(initialCards, containerSelector) {
+//   const tweetContainer = document.querySelector(containerSelector);
+//   // tweetContainer.textContent = initialCards;
+
+//   // Проверим, что с контейнером твитов всё в порядке
+//   if (!tweetContainer) {
+//       console.log('Контейнер для твитов не найден');
+
+//   /* прекратим выполнение функции,
+//   чтобы дальнейший код не вызвал ошибку */
+//   return;
+//   }
+
+//   tweetContainer.textContent = initialCards;
+// }
+// insertTweet(cardsContainer);

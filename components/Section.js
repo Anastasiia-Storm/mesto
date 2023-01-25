@@ -3,7 +3,7 @@ export default class Section {
   constructor({ items, renderer }, containerSelector) { // items — это массив данных, которые нужно добавить на страницу при инициализации класса. Свойство renderer — это функция, которая отвечает за создание и отрисовку данных на странице. containerSelector - строка
     this._items = items;
     this._renderer = renderer;
-    this._containerSelector = containerSelector;
+    this._containerSelector = containerSelector; // CSS-селектор контейнера.
   }
 
 
