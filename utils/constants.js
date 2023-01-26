@@ -53,7 +53,8 @@ export const cardLinkInputValue = cardFormModalWindow.querySelector('.popup__inp
 
 
 /** Элемент списка */
-export const cardsContainer = document.querySelector('.elements'); 
+export const cardListSelector = document.querySelector('.elements'); // Меcто куда добавляю карточки
+export const popupContainerSelector = document.querySelector('.popup');
 
 /** Находим поля формы в DOM */
 export const nameInput = document.querySelector('.popup__input_type_name'); // Воспользуйтесь инструментом .querySelector()
@@ -71,6 +72,7 @@ export const imageElement = imageModalWindow.querySelector('.popup__photo');
 export const imageCaption = imageModalWindow.querySelector('.popup__caption');
 export const buttonOpenFormAddCard = document.querySelector('.profile__add-button');
 export const buttonCloseImageModal = imageModalWindow.querySelector('.popup__close-button');
+export const buttonSubmitSelector = document.querySelector('.popup__save-button')
 
 
 export const validationConfig  = {

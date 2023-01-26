@@ -6,36 +6,58 @@ import PopupWithForm from "./../components/PopupWithForm.js";
 import PopupWithImage from "./../components/PopupWithImage.js";
 // import {  openImagePopup } from "./utils.js";
 // import { buttonOpenEdit } from "./constants.js";
-import { initialCards, cardsContainer, buttonOpenFormEdit, buttonOpenFormAddCard, newAddCardProfileValidator, 
-  buttonCloseFormEdit, buttonCloseFormAddCard, buttonCloseImageModal, profileName, profileJob } from "../utils/constants.js";
+import { initialCards, cardListSelector, buttonSubmitSelector, buttonOpenFormEdit, buttonOpenFormAddCard, newAddCardProfileValidator, 
+  buttonCloseFormEdit, buttonCloseFormAddCard, buttonCloseImageModal, profileName, profileJob, inputName, inputJob } from "../utils/constants.js";
 // import PopupWithForm from "./PopupWithForm.js";
 // (imageModalWindow, profileFormModalWindow, profileName, profileJob )
 
 
-    
 const cardList = new Section({ 
     items: initialCards, 
-    renderer: (item) => { // renderer Отвечает за создание и отрисовку данных на странице
+    renderer: (item) => { // renderer Отвечает за создание и отрисовку данных на странице. На место параметра Item попадает аргумент item, который мы передаем при вызове renderer
       const card = new Card(item, '#card__template');
       const cardElement = card.generateCard();
-      cardList.addItem(cardElement)
+      cardList.addItem(cardElement) // Вставим разметку на страницу,
     }
   }, 
-  cardsContainer // В качестве параметра containerSelector
+  cardListSelector // В качестве параметра containerSelector
 );
 cardList.renderItems();
 console.log(cardList);
 
 
-const popup = new Popup('.popup');
+const popup = new Popup('.popup__input');
 console.log(popup);
 
 
 const userInfo = new UserInfo({ 
   name: profileName, 
-  description: profileJob 
+  description: profileJob
 });
 console.log(userInfo);
+
+
+const popupEditForm = new PopupWithForm('.popup_edit-profile',
+  { submitForm: ({ name, description }) => {
+    userInfo.setUserInfo(name, description)
+  },
+});
+console.log(popupEditForm)
+popupEditForm.setEventListeners();
+// console.log(popupEditForm.name);
+
+
+/* Открывает попап с картинкой при клике на карточку **/
+// handleCardClick() {
+
+// // };
+const popupAddForm = new PopupWithForm('.popup_add-profile', {
+  submitForm: ({ profileName, profileJob }) => {
+    cardList.addItem(profileName, profileJob);
+  }
+});
+  console.log(popupAddForm);
+
 
 
 // const imageModal = new PopupWithImage({
@@ -44,30 +66,37 @@ console.log(userInfo);
 // })
 // console.log(imageModal);
 
-const popupEditForm = new PopupWithForm('.popup_edit-profile', {
-  submitForm: ({ name, description }) => {
-    userInfo.setUserInfo(name, description);
-  },
+
+/* Позволяет получить или перезаписать текстовое содержимое элемента **/
+buttonOpenFormEdit.addEventListener('click', () => {
+  popupEditForm.open();
+  const inputValue = userInfo.getUserInfo();
+  inputName.value = inputValue.name; 
+  inputJob.value = inputValue.description;
 });
-popupEditForm.setEventListeners();
-console.log(popupEditForm);
 
-
-/* Открывает попап с картинкой при клике на карточку **/
-// handleCardClick() {
-
-// };
-const popupAddForm = new PopupWithForm('.popup_add-profile', {
-  submitForm: ({ profileName, profileJob }) => {
-    cardList.addItem(profileName, profileJob);
-  }
+buttonOpenFormAddCard.addEventListener('click', () => {
+  popupAddForm.open(); 
+  newAddCardProfileValidator.disableSubmitButton();
 });
-console.log(popupAddForm);
 
-// popupEditForm.setEventListeners();
-// const formEdit = new PopupWithForm({
-//   this._submitForm: (formData)
-// })
+buttonCloseFormEdit.addEventListener('click', () => {
+  popupEditForm.close(); 
+});
+
+buttonCloseFormAddCard.addEventListener('click', () => {
+  popupAddForm.close(); 
+});
+
+buttonCloseImageModal.addEventListener('click', () => { 
+  popup.close(); 
+}); 
+
+
+
+
+
+
 
 // function handleAddNewCard(evt) { 
 //   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы. 
@@ -95,11 +124,6 @@ console.log(popupAddForm);
 // };
 
 
-// function openProfilePopup() {
-//   inputName.value = title.textContent; // textContent позволяет получить или перезаписать текстовое содержимое элемента.
-//   inputJob.value = about.textContent;
-//   openModal(profileFormModalWindow);
-// }
 
 
 /*-----------------------Обработчики события-----------------------*/
@@ -125,28 +149,6 @@ console.log(popupAddForm);
 
 
 
-
-/** Запускаю функции открытия и закрытия popup */
-buttonOpenFormEdit.addEventListener('click', () => {
-  popup.open();
-});
-
-buttonOpenFormAddCard.addEventListener('click', () => {
-  popup.open(); 
-  newAddCardProfileValidator.disableSubmitButton();
-});
-
-buttonCloseFormEdit.addEventListener('click', () => {
-  popup.close(); 
-});
-
-buttonCloseFormAddCard.addEventListener('click', () => {
-  popup.close(); 
-});
-
-buttonCloseImageModal.addEventListener('click', () => { 
-  popup.close(); 
-}); 
 
 
 // function insertTweet(initialCards, containerSelector) {

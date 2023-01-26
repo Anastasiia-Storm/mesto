@@ -32,10 +32,10 @@
       <p class="footer__copyright" lang="en">&copy; 2022 Mesto Russia</p> 
     </footer> 
 
-
-    <div class="popup popup_edit-profile">
+ 
+    <div class="popup popup_edit-profile"">
       <div class="popup__container">
-      <form class="popup__form" name="user" novalidate>
+      <form class="popup__form popup__form_edit-profile" name="user" novalidate>
         <h2 class="popup__title">Редактировать профиль</h2>
         <input type="text" id="name-card" class="popup__input popup__input_type_name" name="name" minlength="2" maxlength="40" required placeholder="Жак-Ив Кусто">
         <span id="name-card-error" class="popup__input-error"></span>
@@ -46,9 +46,12 @@
         <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
       </div>
     </div>
+  
+    
+  
     <div class="popup popup_add-profile">
       <div class="popup__container">
-      <form class="popup__form" name="add" novalidate>
+      <form class="popup__form popup__form_add-profile" name="add" novalidate>
         <h2 class="popup__title">Новое место</h2>
         <input type="text" id="title-card" class="popup__input popup__input_type_card-name" name="title" minlength="2" maxlength="30" required placeholder="Название">
         <span id="title-card-error" class="popup__input-error"></span>
@@ -59,6 +62,9 @@
         <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
       </div>
     </div>
+
+  
+  
     <div class="popup popup_type_image">
       <div class="popup__container popup__container_content_image">
         <button type="button" class="popup__close-button"></button>

@@ -13,9 +13,11 @@ export default class PopupWithForm extends Popup { // PopupWithForm обраба
         // создаём пустой объект
         this._formValues = {};
         // добавляем в этот объект значения всех полей
-        this._inputList.forEach(item => {
-        this._formValues[item.name] = item.value;
+        this._inputList.forEach(input => {
+        this._formValues[input.name] = input.value;
     });
+        console.log(this._formValues);
+        console.log(this._inputList)
     // возвращаем объект значений
     return this._formValues;
     } 
@@ -35,7 +37,7 @@ export default class PopupWithForm extends Popup { // PopupWithForm обраба
 
     close() {
       super.close();
-    //   this._popupForm.reset();
+      this._popupForm.reset();
     }
 }
 // function handleProfileFormSubmit (evt) {
