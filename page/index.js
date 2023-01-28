@@ -11,6 +11,19 @@ import { initialCards, cardListSelector, buttonSubmitSelector, buttonOpenFormEdi
 // import PopupWithForm from "./PopupWithForm.js";
 // (imageModalWindow, profileFormModalWindow, profileName, profileJob )
 
+// let user = {
+//   firstName: "Вася",
+//   sayHi() {
+//     alert(`Привет, ${this.firstName}!`);
+//   }
+// };
+
+// let sayHi = user.sayHi.bind(user); // (*)
+
+// sayHi(); // Привет, Вася!
+
+// setTimeout(sayHi, 1000); // Привет, Вася! 
+
 
 const cardList = new Section({ 
     items: initialCards, 
@@ -28,6 +41,7 @@ console.log(cardList);
 
 const popup = new Popup('.popup');
 console.log(popup);
+popup.setEventListeners();
 
 
 const userInfo = new UserInfo({ 
@@ -43,7 +57,7 @@ const popupEditForm = new PopupWithForm('.popup_edit-profile',
   },
 });
 console.log(popupEditForm)
-// popupEditForm.setEventListeners();
+popupEditForm.setEventListeners();
 
 
 function createNewMap(name, link, templateSelector) {
@@ -58,6 +72,7 @@ const popupAddForm = new PopupWithForm('.popup_add-profile', {
   }
 });
   console.log(popupAddForm);
+  popupAddForm.setEventListeners();
 // function handleAddNewCard(evt) {  
 //   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.  
 //   renderCard({name: cardNameInputValue.value, link: cardLinkInputValue.value});  
@@ -67,6 +82,8 @@ const popupAddForm = new PopupWithForm('.popup_add-profile', {
 
 // const popupModalWindow = new PopupWithImage({})
 // console.log(popupModalWindow);
+
+
 
 
 /* Позволяет получить или перезаписать текстовое содержимое элемента **/

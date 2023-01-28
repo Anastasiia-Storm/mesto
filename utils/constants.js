@@ -71,6 +71,8 @@ export const buttonCloseImageModal = imageModalWindow.querySelector('.popup__clo
 export const buttonSubmitSelector = document.querySelector('.popup__save-button')
 
 
+export const escape = 27;
+
 export const validationConfig  = {
   formSelector: '.popup__form', // Это объекты с селекторами формы
   inputSelector: '.popup__input',
