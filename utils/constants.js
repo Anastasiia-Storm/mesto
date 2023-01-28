@@ -43,8 +43,8 @@ export const buttonCloseFormAddCard = cardFormModalWindow.querySelector('.popup_
 
 /** DOM узлы профиля
     Получаю значение полей jobInput и nameInput из свойства value */
-export const profileName = document.querySelector('.profile__name');
-export const profileJob = document.querySelector('.profile__job');
+export const profileName = document.querySelector('.profile__name'); // место куда передается 1.inputName
+export const profileJob = document.querySelector('.profile__job'); // место куда передается 1.inputJob
 
 
 /** Данные форм и элементы форм */
@@ -54,15 +54,11 @@ export const cardLinkInputValue = cardFormModalWindow.querySelector('.popup__inp
 
 /** Элемент списка */
 export const cardListSelector = document.querySelector('.elements'); // Меcто куда добавляю карточки
-export const popupContainerSelector = document.querySelector('.popup');
+export const popupContainerSelector = document.querySelector('.popup__input');
 
 /** Находим поля формы в DOM */
-export const nameInput = document.querySelector('.popup__input_type_name'); // Воспользуйтесь инструментом .querySelector()
-export const jobInput = document.querySelector('.popup__input_type_job'); // Воспользуйтесь инструментом .querySelector()
 export const buttonOpenEdit = document.querySelector('.profile__edit-button');
 
-export const title = document.querySelector('.profile__name');
-export const about = document.querySelector('.profile__job');
 export const inputName = document.querySelector('.popup__input_type_name');
 export const inputJob = document.querySelector('.popup__input_type_job');
 
@@ -92,6 +88,3 @@ profileEditCardValidator.enableValidation();
 export const popupAddForm = document.querySelector('.popup_add-profile');
 export const newAddCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
 newAddCardProfileValidator.enableValidation();
-
-// export const popup = new Popup(popupContainer);
-// console.log(popup);

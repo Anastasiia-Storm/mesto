@@ -26,12 +26,12 @@ cardList.renderItems();
 console.log(cardList);
 
 
-const popup = new Popup('.popup__input');
+const popup = new Popup('.popup');
 console.log(popup);
 
 
 const userInfo = new UserInfo({ 
-  name: profileName, 
+  name: profileName,
   description: profileJob
 });
 console.log(userInfo);
@@ -43,28 +43,30 @@ const popupEditForm = new PopupWithForm('.popup_edit-profile',
   },
 });
 console.log(popupEditForm)
-popupEditForm.setEventListeners();
-// console.log(popupEditForm.name);
+// popupEditForm.setEventListeners();
 
 
-/* Открывает попап с картинкой при клике на карточку **/
-// handleCardClick() {
+function createNewMap(name, link, templateSelector) {
+  return cardList({ name, link }, templateSelector);
+}
+console.log(cardList)
 
-// // };
+
 const popupAddForm = new PopupWithForm('.popup_add-profile', {
-  submitForm: ({ profileName, profileJob }) => {
-    cardList.addItem(profileName, profileJob);
+  submitForm: ({ name, link }) => {
+    cardList.addItem(createNewMap(name, link, '#card__template'));
   }
 });
   console.log(popupAddForm);
+// function handleAddNewCard(evt) {  
+//   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.  
+//   renderCard({name: cardNameInputValue.value, link: cardLinkInputValue.value});  
+//   closeModal(cardFormModalWindow); 
+//   evt.target.reset(); 
+// }  
 
-
-
-// const imageModal = new PopupWithImage({
-//    name: name,
-//    link: link
-// })
-// console.log(imageModal);
+// const popupModalWindow = new PopupWithImage({})
+// console.log(popupModalWindow);
 
 
 /* Позволяет получить или перезаписать текстовое содержимое элемента **/
@@ -89,7 +91,7 @@ buttonCloseFormAddCard.addEventListener('click', () => {
 });
 
 buttonCloseImageModal.addEventListener('click', () => { 
-  popup.close(); 
+  popupModalWindow.close(); 
 }); 
 
 

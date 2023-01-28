@@ -15,9 +15,7 @@ export default class PopupWithForm extends Popup { // PopupWithForm обраба
         // добавляем в этот объект значения всех полей
         this._inputList.forEach(input => {
         this._formValues[input.name] = input.value;
-    });
-        console.log(this._formValues);
-        console.log(this._inputList)
+        });
     // возвращаем объект значений
     return this._formValues;
     } 
@@ -27,6 +25,7 @@ export default class PopupWithForm extends Popup { // PopupWithForm обраба
         this._popupForm.addEventListener('submit', (evt) => {
           evt.preventDefault();
 
+          this._getInputValues();
           // добавим вызов функции _handleFormSubmit
           // передадим ей объект — результат работы _getInputValues
           this._submitForm(this._getInputValues());
@@ -40,12 +39,7 @@ export default class PopupWithForm extends Popup { // PopupWithForm обраба
       this._popupForm.reset();
     }
 }
-// function handleProfileFormSubmit (evt) {
-//     evt.preventDefault();  // Эта строчка отменяет стандартную отправку формы.
-//     profileName.textContent = nameInput.value;
-//     profileJob.textContent = jobInput.value;
-//     closeModal(profileFormModalWindow);
-// }
+
 
 
 /** Обработчик «отправки» формы, хотя пока

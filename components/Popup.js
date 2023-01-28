@@ -1,12 +1,13 @@
 export default class Popup {
     constructor(popupSelector) {
         this._popupSelector = document.querySelector(popupSelector); // Селектор контейнера, куда нужно вставить этот текст:
+        // this._handleEscUp = this._handleEscUp.bind(this);
     }
 
 
     open() {
         this._popupSelector.classList.add('popup_opened');
-        this._handleEscClose();
+        // this._handleEscClose();
     }
 
 
@@ -15,48 +16,39 @@ export default class Popup {
     }
 
 
+    // _handleEscClose() {
+    //     document.addEventListener('keydown', (evt) => {
+    //         if (evt.key === 'Escape') {
+    //             this.close();
+    //         }
+    //     })
+    // }
+
     _handleEscClose() {
-        document.addEventListener('keydown', (evt) => {
-            if (evt.key === 'Escape') {
-                this.close();
-            }
-        })
+        this._handleEscUp
     }
 
 
-    _handleClosePopupByOverlay() {
-            // console.log(this._popupSelector);
-            // console.log(evt.target !== popupContainer) // Условие, что объектом клика является не сама форма
-            if (evt.target === evt.currentTarget) {
-              this.close();
-            }
-    };
+    _handleClosePopupOverlay(evt) {
+          if (evt.target === evt.currentTarget) { // Условие, что объектом клика является не сама форма
+          this.close();
+        };
+    }
     
-
-
-    /** Добавляет слушатель клика иконке закрытия попапа */
+    
     setEventListeners() {
-        const popupCloseButton = this._popupSelector.querySelector('.popup__close-button');
-        popupCloseButton.addEventListener('click', () => this.close());
+        // const popupCloseButton = this._popupSelector.querySelector('.popup__close-button');
+        // popupCloseButton.addEventListener('click', () => this.close());
+        document.addEventListener('click', () => this.close());
 
-        // const popupOverlay = this._popupSelector.querySelectorAll('.popup');
-        // popupOverlay.addEventListener('click', (evt) => 
-        // this._handleClosePopupByOverlay(evt));
-    }
-}
-/** Закрытие по клику на overlay */
-// const popupList = Array.from(document.querySelectorAll('.popup'));
-//   popupList.forEach((popup) => {bindOverlayClickHandler(popup); 
-// });
+        this._popupSelector.addEventListener('click', (evt) =>
+          this._handleClosePopupOverlay(evt))
 
- 
-// /** Вешает обработчики событий на оверлеи */
-// function bindOverlayClickHandler (popup) {
-//   popup.addEventListener('click', (evt) => {
-//     const popupContainer = evt.currentTarget
-//     // console.log(evt.target !== popupContainer) // Условие, что объектом клика является не сама форма
-//     if (evt.target === popupContainer) {
-//       closeModal(popup)
-//     }
-//   })
-// };
+           
+        // this._popupSelector.addEventListener('click', (evt) => {
+        //   if (evt.target === evt.currentTarget) { 
+        //     this.close();
+        //   }
+        // });
+    };
+};
