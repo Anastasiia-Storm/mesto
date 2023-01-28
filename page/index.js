@@ -11,18 +11,6 @@ import { initialCards, cardListSelector, buttonSubmitSelector, buttonOpenFormEdi
 // import PopupWithForm from "./PopupWithForm.js";
 // (imageModalWindow, profileFormModalWindow, profileName, profileJob )
 
-// let user = {
-//   firstName: "Вася",
-//   sayHi() {
-//     alert(`Привет, ${this.firstName}!`);
-//   }
-// };
-
-// let sayHi = user.sayHi.bind(user); // (*)
-
-// sayHi(); // Привет, Вася!
-
-// setTimeout(sayHi, 1000); // Привет, Вася! 
 
 
 const cardList = new Section({ 
@@ -36,24 +24,25 @@ const cardList = new Section({
   cardListSelector // В качестве параметра containerSelector
 );
 cardList.renderItems();
-console.log(cardList);
+// console.log(cardList);
 
 
-const popup = new Popup('.popup');
-console.log(popup);
-popup.setEventListeners();
+// const popup = new Popup('.popup');
+// console.log(popup);
+// popup.setEventListeners();
 
 
 const userInfo = new UserInfo({ 
   name: profileName,
-  description: profileJob
+  job: profileJob,
 });
 console.log(userInfo);
 
 
+
 const popupEditForm = new PopupWithForm('.popup_edit-profile',
-  { submitForm: ({ name, description }) => {
-    userInfo.setUserInfo(name, description)
+  { submitForm: ({ name, job }) => {
+    userInfo.setUserInfo({ name, job })
   },
 });
 console.log(popupEditForm)
@@ -63,7 +52,7 @@ popupEditForm.setEventListeners();
 function createNewMap(name, link, templateSelector) {
   return cardList({ name, link }, templateSelector);
 }
-console.log(cardList)
+// console.log(cardList)
 
 
 const popupAddForm = new PopupWithForm('.popup_add-profile', {
@@ -71,19 +60,8 @@ const popupAddForm = new PopupWithForm('.popup_add-profile', {
     cardList.addItem(createNewMap(name, link, '#card__template'));
   }
 });
-  console.log(popupAddForm);
+  // console.log(popupAddForm);
   popupAddForm.setEventListeners();
-// function handleAddNewCard(evt) {  
-//   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.  
-//   renderCard({name: cardNameInputValue.value, link: cardLinkInputValue.value});  
-//   closeModal(cardFormModalWindow); 
-//   evt.target.reset(); 
-// }  
-
-// const popupModalWindow = new PopupWithImage({})
-// console.log(popupModalWindow);
-
-
 
 
 /* Позволяет получить или перезаписать текстовое содержимое элемента **/
@@ -91,7 +69,7 @@ buttonOpenFormEdit.addEventListener('click', () => {
   popupEditForm.open();
   const inputValue = userInfo.getUserInfo();
   inputName.value = inputValue.name; 
-  inputJob.value = inputValue.description;
+  inputJob.value = inputValue.job;
 });
 
 buttonOpenFormAddCard.addEventListener('click', () => {
@@ -109,38 +87,8 @@ buttonCloseFormAddCard.addEventListener('click', () => {
 
 buttonCloseImageModal.addEventListener('click', () => { 
   popupModalWindow.close(); 
-}); 
+});
 
-
-
-
-
-
-
-// function handleAddNewCard(evt) { 
-//   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы. 
-//   renderCard({name: cardNameInputValue.value, link: cardLinkInputValue.value}); 
-//   closeModal(cardFormModalWindow);
-//   evt.target.reset();
-// } 
-
-
-/** Закрытие по клику на overlay */
-// const popupList = Array.from(document.querySelectorAll('.popup'));
-//   popupList.forEach((popup) => {bindOverlayClickHandler(popup); 
-// });
-
- 
-// /** Вешает обработчики событий на оверлеи */
-// function bindOverlayClickHandler (popup) {
-//   popup.addEventListener('click', (evt) => {
-//     const popupContainer = evt.currentTarget
-//     // console.log(evt.target !== popupContainer) // Условие, что объектом клика является не сама форма
-//     if (evt.target === popupContainer) {
-//       closeModal(popup)
-//     }
-//   })
-// };
 
 
 
@@ -158,14 +106,6 @@ buttonCloseImageModal.addEventListener('click', () => {
 // buttonOpenEdit.addEventListener('click', () => {  // Добавить слушатель события 
 //   openProfilePopup();
 // // })
-
-
-/** Закрытие по клику на overlay */ 
-
-// const popupList = Array.from(document.querySelectorAll('.popup')); 
-//   popupList.forEach((popup) => {bindOverlayClickHandler(popup);  
-// }); 
-
 
 
 

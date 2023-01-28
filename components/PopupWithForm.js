@@ -1,3 +1,4 @@
+import { inputJob } from "../utils/constants.js";
 import Popup from "./Popup.js";
 export default class PopupWithForm extends Popup { // PopupWithForm обрабатывает формы и инпуты
     constructor(popupSelector, { submitForm }) {
@@ -35,8 +36,8 @@ export default class PopupWithForm extends Popup { // PopupWithForm обраба
 
 
     close() {
-      super.close();
-      this._popupForm.reset();
+        super.close();
+        this._popupForm.reset();
     }
 }
 

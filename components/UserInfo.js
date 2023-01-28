@@ -1,23 +1,23 @@
 export default class UserInfo { // UserInfo получает и изменяет данные пользователя
-    constructor({ name, description }) {
+    constructor({ name, job }) {
       this._name = name;
-      this._description = description;
+      this._job = job;
     }
 
 
     /** Возвращает объект с данными пользователя */
     getUserInfo() {
       const name = this._name.textContent;
-      const description = this._description.textContent;
+      const job = this._job.textContent;
 
-      return { name, description };
+      return { name, job };
     }
     
 
     /** Принимает новые данные пользователя и добавляет их на страницу */
-    setUserInfo({ name, description }) {
+    setUserInfo({ name, job }) {
         this._name.textContent = name;
-        this._description.textContent = description;
+        this._job.textContent = job;
     }
 }
 // Тут вроде все верно

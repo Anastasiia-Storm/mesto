@@ -20,14 +20,14 @@ export default class Popup {
 
 
     _handleEscUp(evt) {
-        if (evt.key === 'Escape') {
+        if (evt.keyCode === escape) {
             this.close();
         }
     }
 
 
     _handleClosePopupOverlay(evt) {
-          if (evt.target === evt.currentTarget) { // Условие, что объектом клика является не сама форма
+          if (evt.target === evt.currentTarget) { 
           this.close();
         };
     }
