@@ -6,27 +6,52 @@ import PopupWithForm from "./../components/PopupWithForm.js";
 import PopupWithImage from "./../components/PopupWithImage.js";
 // import {  openImagePopup } from "./utils.js";
 // import { buttonOpenEdit } from "./constants.js";
-import { initialCards, cardListSelector, buttonSubmitSelector, buttonOpenFormEdit, buttonOpenFormAddCard, newAddCardProfileValidator, 
-  buttonCloseFormEdit, buttonCloseFormAddCard, buttonCloseImageModal, profileName, profileJob, inputName, inputJob } from "../utils/constants.js";
-// import PopupWithForm from "./PopupWithForm.js";
-// (imageModalWindow, profileFormModalWindow, profileName, profileJob )
+import { initialCards, cardListSelector, buttonOpenFormEdit, buttonOpenFormAddCard, newAddCardProfileValidator, 
+  buttonCloseFormEdit, buttonCloseFormAddCard, buttonCloseImageModal, profileName, profileJob, 
+  inputName, inputJob, cardImage, cardTitle, imageModalWindow, imageElement, imageCaption } from "../utils/constants.js";
 
 
+// const cardList = new Section({ 
+//     items: initialCards, 
+//     renderer: (item) => { // renderer Отвечает за создание и отрисовку данных на странице. На место параметра Item попадает аргумент item, который мы передаем при вызове renderer
+//       const card = new Card(item, '#card__template', imageModalWindow,
+//       {
+//         handleCardClick: (item) => {
+//           const popupImageModal = new PopupWithImage(imageModalWindow) ;
+//           popupImageModal.openCardImage(item);
+//         },
+//       }
+//       );
+//       const cardElement = card.generateCard();
+//       cardList.addItem(cardElement) // Вставим разметку на страницу,
+//     }
+//   }, 
+//   cardListSelector // В качестве параметра containerSelector
+// );
+// cardList.renderItems();
 
-const cardList = new Section({ 
-    items: initialCards, 
-    renderer: (item) => { // renderer Отвечает за создание и отрисовку данных на странице. На место параметра Item попадает аргумент item, который мы передаем при вызове renderer
-      const card = new Card(item, '#card__template');
-      const cardElement = card.generateCard();
-      cardList.addItem(cardElement) // Вставим разметку на страницу,
-    }
-  }, 
-  cardListSelector // В качестве параметра containerSelector
+const cardList = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    cardList.addItem(creatCard(item, '#card__template'))
+  },
+},
+cardListSelector // В качестве параметра containerSelector
 );
 cardList.renderItems();
-// console.log(cardList);
 
 
+function creatCard(item, templateSelector) {
+  const card = new Card(item, templateSelector);
+  const addCard = card.generateCard();
+    
+  return addCard;
+}
+
+
+function creatModalWindow(name, link, templateSelector) {
+  return creatCard({ name, link }, templateSelector)
+}
 // const popup = new Popup('.popup');
 // console.log(popup);
 // popup.setEventListeners();
@@ -39,7 +64,6 @@ const userInfo = new UserInfo({
 console.log(userInfo);
 
 
-
 const popupEditForm = new PopupWithForm('.popup_edit-profile',
   { submitForm: ({ name, job }) => {
     userInfo.setUserInfo({ name, job })
@@ -49,19 +73,14 @@ console.log(popupEditForm)
 popupEditForm.setEventListeners();
 
 
-function createNewMap(name, link, templateSelector) {
-  return cardList({ name, link }, templateSelector);
-}
-// console.log(cardList)
-
-
 const popupAddForm = new PopupWithForm('.popup_add-profile', {
   submitForm: ({ name, link }) => {
-    cardList.addItem(createNewMap(name, link, '#card__template'));
+    cardList.addItem(creatModalWindow(name, link, '#card__template'));
   }
 });
-  // console.log(popupAddForm);
-  popupAddForm.setEventListeners();
+  console.log(popupAddForm);
+popupAddForm.setEventListeners();
+
 
 
 /* Позволяет получить или перезаписать текстовое содержимое элемента **/
@@ -88,41 +107,3 @@ buttonCloseFormAddCard.addEventListener('click', () => {
 buttonCloseImageModal.addEventListener('click', () => { 
   popupModalWindow.close(); 
 });
-
-
-
-
-
-/*-----------------------Обработчики события-----------------------*/
-
-
-
-/** Прикрепляем обработчик к форме:
-//     он будет следить за событием “submit” - "отправка" */
-// profileFormModalWindow.addEventListener('submit', handleProfileFormSubmit); 
-// cardFormModalWindow.addEventListener('submit', handleAddNewCard);
-
-
-// buttonOpenEdit.addEventListener('click', () => {  // Добавить слушатель события 
-//   openProfilePopup();
-// // })
-
-
-
-
-// function insertTweet(initialCards, containerSelector) {
-//   const tweetContainer = document.querySelector(containerSelector);
-//   // tweetContainer.textContent = initialCards;
-
-//   // Проверим, что с контейнером твитов всё в порядке
-//   if (!tweetContainer) {
-//       console.log('Контейнер для твитов не найден');
-
-//   /* прекратим выполнение функции,
-//   чтобы дальнейший код не вызвал ошибку */
-//   return;
-//   }
-
-//   tweetContainer.textContent = initialCards;
-// }
-// insertTweet(cardsContainer);

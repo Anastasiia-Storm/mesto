@@ -8,20 +8,10 @@ export default class PopupWithImage extends Popup {
     }
 
 
-    handleCardClick({ name, link }) {
-      this._image.src = link;
-      this._image.alt = name;
-      this._title.textContent = name;
+    openCardImage(item) {
+      this._image.src = item.link;
+      this._image.alt = item.name;
+      this._title.textContent = item.name;
       super.open();
     }
 }
-
-// /** Функция открытия картинки */ 
-// export function openImagePopup(item) { 
-//     // Контент модального окна 
-//     imageElement.alt = item.name;
-//     imageElement.src = item.link;  // Картинка 
-//     imageCaption.textContent = item.name;  // Подпись с картинке 
-    
-//     openModal(imageModalWindow); // Открыть модальное окно 
-//   }

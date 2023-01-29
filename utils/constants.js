@@ -68,7 +68,11 @@ export const imageElement = imageModalWindow.querySelector('.popup__photo');
 export const imageCaption = imageModalWindow.querySelector('.popup__caption');
 export const buttonOpenFormAddCard = document.querySelector('.profile__add-button');
 export const buttonCloseImageModal = imageModalWindow.querySelector('.popup__close-button');
-export const buttonSubmitSelector = document.querySelector('.popup__save-button')
+export const buttonSubmitSelector = document.querySelector('.popup__save-button');
+
+// template 
+export const cardImage = document.querySelector('.element__photo');
+export const cardTitle = document.querySelector('.element__name');
 
 
 export const escape = 27;
