@@ -1,4 +1,4 @@
-/** Отрисовка элементов на странице */
+/** Вставляет элементы в разметку */
 export default class Section {
   constructor({ items, renderer }, containerSelector) { // items — это массив данных, которые нужно добавить на страницу при инициализации класса. Свойство renderer — это функция, которая отвечает за создание и отрисовку данных на странице. containerSelector - контейнер
     this._items = items;
@@ -10,7 +10,7 @@ export default class Section {
   /** Отрисовка всех элементов */
   renderItems() {
     this._items.forEach((item) => { // Перебирает массив данных 
-      this._renderer(item); // вызываем renderer, передав item
+      this._renderer(item); // вызываем renderer, передав item . Создание экземпляров карточек и их вставку в разметку будем передавать в конструктор как функцию-колбэк. Назовём этот параметр renderer: 
     });
   }
 

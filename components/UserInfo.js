@@ -20,4 +20,3 @@ export default class UserInfo { // UserInfo получает и изменяет
         this._job.textContent = job;
     }
 }
-// Тут вроде все верно
