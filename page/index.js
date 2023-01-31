@@ -23,8 +23,8 @@ cardList.renderItems();
 function creatCard(item, templateSelector) {
   const card = new Card(item, templateSelector,
   {
-    handleCardClick: (name, link) => {
-      popupImageModal.open(name, link);
+    handleCardClick: () => {
+      popupImageModal.open(item);
     },
   });
   const addCard = card.generateCard();

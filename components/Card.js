@@ -1,7 +1,7 @@
 export default class Card {
-  constructor(item, templateSelector, {handleCardClick}) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
-    this._name = item.name;
-    this._link = item.link;
+  constructor(data, templateSelector, {handleCardClick}) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
+    this._name = data.name;
+    this._link = data.link;
     this._handleCardClick = handleCardClick;
     this._templateSelector = templateSelector,'#card__template';
   }
@@ -66,7 +66,7 @@ export default class Card {
     // Так у других элементов появится доступ к ней.
     this._element = this._getTemplateCard();
     this._setData();
-    this._setEventListeners();  
+    this._setEventListeners();   
 
     return this._element;
   }
