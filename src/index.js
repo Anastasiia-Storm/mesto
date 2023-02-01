@@ -1,12 +1,13 @@
-import Card from "./../components/Card.js";
-import Section from "./../components/Section.js";
-import UserInfo from "./../components/UserInfo.js";
-import PopupWithForm from "./../components/PopupWithForm.js";
-import PopupWithImage from "./../components/PopupWithImage.js";
+import Card from "../components/Card.js";
+import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 import { initialCards, cardListSelector, buttonOpenFormEdit, buttonOpenFormAddCard, newAddCardProfileValidator, 
   buttonCloseFormEdit, buttonCloseFormAddCard, buttonCloseImageModal, profileName, profileJob, 
   inputName, inputJob } from "../utils/constants.js";
 
+import '../pages/index.css';
 
 const cardList = new Section({
   items: initialCards,
