@@ -40,25 +40,3 @@ export default class PopupWithForm extends Popup { // PopupWithForm обраба
         this._popupForm.reset();
     }
 }
-
-
-
-/** Обработчик «отправки» формы, хотя пока
-    она никуда отправляться не будет */
-// function handleProfileFormSubmit (evt) {
-//     evt.preventDefault();  // Эта строчка отменяет стандартную отправку формы.
-//     profileName.textContent = nameInput.value;
-//     profileJob.textContent = jobInput.value;
-//     closeModal(profileFormModalWindow);
-// }
-
-
-
-
-// function handleAddNewCard(evt) { 
-//     evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы. 
-//     renderCard({name: cardNameInputValue.value, link: cardLinkInputValue.value}); 
-//     closeModal(cardFormModalWindow);
-//     evt.target.reset();
-//   } 
-  

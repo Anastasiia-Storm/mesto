@@ -1,5 +1,3 @@
-import { escape } from "../utils/constants.js";
-
 export default class Popup {
     constructor(popupSelector) {
         this._popupSelector = document.querySelector(popupSelector); // Селектор контейнера, куда нужно вставить этот текст:
@@ -20,7 +18,7 @@ export default class Popup {
 
 
     _handleEscUp(evt) {
-        if (evt.keyCode === escape) {
+        if (`KeyboardEvent: key='${evt.key}' | code='${evt.code}'`) {
             this.close();
         }
     }

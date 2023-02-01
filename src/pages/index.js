@@ -1,13 +1,22 @@
-import Card from "../components/Card.js";
-import Section from "../components/Section.js";
-import UserInfo from "../components/UserInfo.js";
-import PopupWithForm from "../components/PopupWithForm.js";
-import PopupWithImage from "../components/PopupWithImage.js";
-import { initialCards, cardListSelector, buttonOpenFormEdit, buttonOpenFormAddCard, newAddCardProfileValidator, 
+import Card from "../Card.js";
+import Section from "../Section.js";
+import UserInfo from "../UserInfo.js";
+import PopupWithForm from "../PopupWithForm.js";
+import PopupWithImage from "../PopupWithImage.js";
+import FormValidator from "../FormValidator.js";
+import { initialCards, cardListSelector, buttonOpenFormEdit, buttonOpenFormAddCard, 
   buttonCloseFormEdit, buttonCloseFormAddCard, buttonCloseImageModal, profileName, profileJob, 
-  inputName, inputJob } from "../utils/constants.js";
+  inputName, inputJob, validationConfig } from "../constants.js";
 
-import '../pages/index.css';
+import './index.css';
+
+// const popupEditForm = document.querySelector('.popup_edit-profile');
+// const profileEditCardValidator = new FormValidator(validationConfig, popupEditForm);
+// profileEditCardValidator.enableValidation();
+
+// const popupAddForm = document.querySelector('.popup_add-profile');
+// const newAddCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
+// newAddCardProfileValidator.enableValidation();
 
 const cardList = new Section({
   items: initialCards,
@@ -46,24 +55,29 @@ const popupEditForm = new PopupWithForm('.popup_edit-profile',
   },
 });
 popupEditForm.setEventListeners();
+// const profileEditCardValidator = new FormValidator(validationConfig, popupEditForm);
+// profileEditCardValidator.enableValidation();
 
 
 const popupAddForm = new PopupWithForm('.popup_add-profile', {
   submitForm: ({title, link}) => {
-    cardList.addItem(creatNewCard(title, link, '#card__template'));
-  }
+    // cardList.addItem(creatNewCard(title, link, '#card__template'));
+    cardList.addItem(creatCard({name: title, link}), '#card__template')
+  },
 });
 popupAddForm.setEventListeners();
+// const newAddCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
+// newAddCardProfileValidator.enableValidation();
 
 
 const popupImageModal = new PopupWithImage('.popup_type_image');
 popupImageModal.setEventListeners();
 
 
-/* Отрисовывает новую карточку для формы PopupAdd **/
-function creatNewCard(title, link, templateSelector) {
-  return creatCard({ name: title, link: link }, templateSelector)
-};
+// /* Отрисовывает новую карточку для формы PopupAdd **/
+// function creatNewCard(title, link, templateSelector) {
+//   return creatCard({ name: title, link: link }, templateSelector)
+// };
 
 
 /* Позволяет получить или перезаписать текстовое содержимое элемента **/
@@ -76,7 +90,7 @@ buttonOpenFormEdit.addEventListener('click', () => {
 
 buttonOpenFormAddCard.addEventListener('click', () => {
   popupAddForm.open(); 
-  newAddCardProfileValidator.disableSubmitButton();
+  // newAddCardProfileValidator.disableSubmitButton();
 });
 
 buttonCloseFormEdit.addEventListener('click', () => {

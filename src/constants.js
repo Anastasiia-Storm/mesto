@@ -1,5 +1,5 @@
-import FormValidator from "./../components/FormValidator.js";
-import Popup from "./../components/Popup.js";
+// import FormValidator from "./../components/FormValidator.js";
+// import Popup from "./../components/Popup.js";
 
 export const initialCards = [
   {
@@ -85,12 +85,3 @@ export const validationConfig  = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_visible'
 };
-
-
-export const popupEditForm = document.querySelector('.popup_edit-profile');
-export const profileEditCardValidator = new FormValidator(validationConfig, popupEditForm);
-profileEditCardValidator.enableValidation();
-
-export const popupAddForm = document.querySelector('.popup_add-profile');
-export const newAddCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
-newAddCardProfileValidator.enableValidation();
