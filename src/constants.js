@@ -1,6 +1,3 @@
-import FormValidator from "../src/FormValidator.js";
-// import Popup from "./../components/Popup.js";
-
 export const initialCards = [
   {
     name: 'Горы Тяньцзи',
@@ -62,7 +59,7 @@ export const buttonOpenEdit = document.querySelector('.profile__edit-button');
 export const inputName = document.querySelector('.popup__input_type_name');
 export const inputJob = document.querySelector('.popup__input_type_job');
 
-// export const imageModal = document.querySelector('.popup__form');
+
 export const imageModalWindow = document.querySelector('.popup_type_image');
 export const imageElement = imageModalWindow.querySelector('.popup__photo');
 export const imageCaption = imageModalWindow.querySelector('.popup__caption');
@@ -75,8 +72,6 @@ export const cardImage = document.querySelector('.element__photo');
 export const cardTitle = document.querySelector('.element__name');
 
 
-export const escape = 27;
-
 export const validationConfig  = {
   formSelector: '.popup__form', // Это объекты с селекторами формы
   inputSelector: '.popup__input',
@@ -85,7 +80,3 @@ export const validationConfig  = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_visible'
 };
-
-const popupAddForm = document.querySelector('.popup_add-profile');
-const newAddCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
-newAddCardProfileValidator.enableValidation();

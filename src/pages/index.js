@@ -4,19 +4,21 @@ import UserInfo from "../UserInfo.js";
 import PopupWithForm from "../PopupWithForm.js";
 import PopupWithImage from "../PopupWithImage.js";
 import FormValidator from "../FormValidator.js";
-import { initialCards, cardListSelector, buttonOpenFormEdit, buttonOpenFormAddCard, 
-  buttonCloseFormEdit, buttonCloseFormAddCard, buttonCloseImageModal, profileName, profileJob, 
+import { initialCards, buttonOpenFormEdit, buttonOpenFormAddCard, buttonCloseFormEdit, buttonCloseFormAddCard, buttonCloseImageModal, 
   inputName, inputJob, validationConfig } from "../constants.js";
 
 import './index.css';
 
-// const popupEditForm = document.querySelector('.popup_edit-profile');
-// const profileEditCardValidator = new FormValidator(validationConfig, popupEditForm);
-// profileEditCardValidator.enableValidation();
 
-// const popupAddForm = document.querySelector('.popup_add-profile');
-// const newAddCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
-// newAddCardProfileValidator.enableValidation();
+const popupEditFormValidation = document.querySelector('.popup_edit-profile'); 
+const profileEditCardValidator = new FormValidator(validationConfig, popupEditFormValidation); 
+profileEditCardValidator.enableValidation(); 
+
+ 
+const popupAddFormValidation = document.querySelector('.popup_add-profile'); 
+const newAddCardProfileValidator = new FormValidator(validationConfig, popupAddFormValidation); 
+newAddCardProfileValidator.enableValidation();
+
 
 const cardList = new Section({
   items: initialCards,
@@ -33,8 +35,8 @@ cardList.renderItems();
 function creatCard(item) {
   const card = new Card(item, '#card__template',
   {
-    handleCardClick: () => {
-      popupImageModal.open(item);
+    handleCardClick: (name, link) => {
+      popupImageModal.open(name, link);
     },
   });
   const addCard = card.generateCard();
@@ -50,34 +52,27 @@ const userInfo = new UserInfo({
 
 
 const popupEditForm = new PopupWithForm('.popup_edit-profile',
-  { submitForm: (inputsData) => {
-    userInfo.setUserInfo(inputsData)
+  { 
+    submitForm: (inputsData) => {
+      userInfo.setUserInfo(inputsData)
+    },
   },
-});
+);
 popupEditForm.setEventListeners();
-// const profileEditCardValidator = new FormValidator(validationConfig);
-// profileEditCardValidator.enableValidation();
 
 
-const popupAddForm = new PopupWithForm('.popup_add-profile', {
-  submitForm: ({title, link}) => {
-    // cardList.addItem(creatNewCard(title, link, '#card__template'));
-    cardList.addItem(creatCard({name: title, link}), '#card__template')
-  },
-});
+const popupAddForm = new PopupWithForm('.popup_add-profile', 
+  {
+    submitForm: ({title, link}) => {
+      cardList.addItem(creatCard({name: title, link}), '#card__template')
+    },
+  }
+);
 popupAddForm.setEventListeners();
-// const newAddCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
-// newAddCardProfileValidator.enableValidation();
 
 
 const popupImageModal = new PopupWithImage('.popup_type_image');
 popupImageModal.setEventListeners();
-
-
-// /* Отрисовывает новую карточку для формы PopupAdd **/
-// function creatNewCard(title, link, templateSelector) {
-//   return creatCard({ name: title, link: link }, templateSelector)
-// };
 
 
 /* Позволяет получить или перезаписать текстовое содержимое элемента **/
