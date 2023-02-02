@@ -11,13 +11,13 @@ export default class PopupWithForm extends Popup { // PopupWithForm обраба
     /** Собирает данные всех полей формы. */
     _getInputValues() {
         // создаём пустой объект
-        this._formValues = {};
+        const formValues = {};
         // добавляем в этот объект значения всех полей
         this._inputList.forEach(input => {
-        this._formValues[input.name] = input.value;
+            formValues[input.name] = input.value;
         });
-    // возвращаем объект значений
-    return this._formValues;
+
+        return formValues; // возвращаем объект значений
     } 
 
     
@@ -26,7 +26,6 @@ export default class PopupWithForm extends Popup { // PopupWithForm обраба
         this._popupForm.addEventListener('submit', (evt) => {
           evt.preventDefault();
 
-          this._getInputValues();
           // добавим вызов функции _handleFormSubmit
           // передадим ей объект — результат работы _getInputValues
           this._submitForm(this._getInputValues());
