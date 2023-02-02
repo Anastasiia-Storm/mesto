@@ -34,7 +34,7 @@ class FormValidator {
 
 
   /** Функция переключения кнопки */
-  toggleButtonState = () => { // InputList и buttonElement. Первый — массив полей, второй — кнопка «Сохранить, создать».
+  _toggleButtonState = () => { // InputList и buttonElement. Первый — массив полей, второй — кнопка «Сохранить, создать».
     if (this._hasInvalidInput()) { // есть ли в массиве inputList невалидные поля.
       this.disableSubmitButton();
     } else {
@@ -61,7 +61,7 @@ class FormValidator {
     this._inputList.forEach((inputElement) => {
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement);
-        this.toggleButtonState();
+        this._toggleButtonState();
       });
     });
   }; 

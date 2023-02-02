@@ -21,7 +21,7 @@ import './index.css';
 const cardList = new Section({
   items: initialCards,
   renderer: (item) => {
-    cardList.addItem(creatCard(item, '#card__template'));
+    cardList.addItem(creatCard(item));
   },
 },
 cardListSelector // В качестве параметра containerSelector
@@ -30,8 +30,8 @@ cardList.renderItems();
 
 
 /* Создание карточек **/
-function creatCard(item, templateSelector) {
-  const card = new Card(item, templateSelector,
+function creatCard(item) {
+  const card = new Card(item, '#card__template',
   {
     handleCardClick: () => {
       popupImageModal.open(item);
@@ -43,19 +43,19 @@ function creatCard(item, templateSelector) {
 };
 
 
-const userInfo = new UserInfo({ 
-  name: profileName,
-  job: profileJob,
+const userInfo = new UserInfo({
+  name: '.profile__name',
+  job: '.profile__job',
 });
 
 
 const popupEditForm = new PopupWithForm('.popup_edit-profile',
-  { submitForm: ({ name, job }) => {
-    userInfo.setUserInfo({ name, job })
+  { submitForm: (inputsData) => {
+    userInfo.setUserInfo(inputsData)
   },
 });
 popupEditForm.setEventListeners();
-// const profileEditCardValidator = new FormValidator(validationConfig, popupEditForm);
+// const profileEditCardValidator = new FormValidator(validationConfig);
 // profileEditCardValidator.enableValidation();
 
 

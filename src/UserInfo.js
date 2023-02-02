@@ -1,7 +1,7 @@
 export default class UserInfo { // UserInfo получает и изменяет данные пользователя
     constructor({ name, job }) {
-      this._name = name;
-      this._job = job;
+      this._name = document.querySelector(name);
+      this._job = document.querySelector(job);
     }
 
 

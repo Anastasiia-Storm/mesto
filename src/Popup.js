@@ -18,7 +18,7 @@ export default class Popup {
 
 
     _handleEscUp(evt) {
-        if (`KeyboardEvent: key='${evt.key}' | code='${evt.code}'`) {
+        if (evt.key === "Escape") {
             this.close();
         }
     }
@@ -26,7 +26,7 @@ export default class Popup {
 
     _handleClosePopupOverlay(evt) {
           if (evt.target === evt.currentTarget) { 
-          this.close();
+            this.close();
         };
     }
     

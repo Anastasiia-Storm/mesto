@@ -47,17 +47,19 @@ export default class Card {
   /** Подготовка карточки к публикации
       Метод наполняет карточки данными и функциональностью. */
   _setData() {
-    this._element.querySelector(".element__name").textContent = this._name;
-    this._element.querySelector(".element__photo").src = this._link;
-    this._element.querySelector(".element__photo").alt = this._name;
+    const nameCard = this._element.querySelector('.element__name') 
+    nameCard.textContent = this._name; 
+    const imageCard = this._element.querySelector('.element__photo') 
+    imageCard.src = this._link; 
+    imageCard.alt = this._name; 
 
-    const imageModalWindow = document.querySelector('.popup_type_image'); 
-    const imageElement = imageModalWindow.querySelector('.popup__photo'); 
-    const imageCaption = imageModalWindow.querySelector('.popup__caption');
+    // const imageModalWindow = document.querySelector('.popup_type_image'); 
+    // const imageElement = imageModalWindow.querySelector('.popup__photo'); 
+    // const imageCaption = imageModalWindow.querySelector('.popup__caption');
 
-    imageElement.alt = this._name; 
-    imageElement.src = this._link;  // Картинка  
-    imageCaption.textContent = this._name;  // Подпись с картинке  
+    // imageElement.alt = this._name; 
+    // imageElement.src = this._link;  // Картинка  
+    // imageCaption.textContent = this._name;  // Подпись с картинке  
   }
 
 

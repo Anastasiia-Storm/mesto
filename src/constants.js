@@ -1,4 +1,4 @@
-// import FormValidator from "./../components/FormValidator.js";
+import FormValidator from "../src/FormValidator.js";
 // import Popup from "./../components/Popup.js";
 
 export const initialCards = [
@@ -85,3 +85,7 @@ export const validationConfig  = {
   inputErrorClass: 'popup__input_type_error',
   errorClass: 'popup__input-error_visible'
 };
+
+const popupAddForm = document.querySelector('.popup_add-profile');
+const newAddCardProfileValidator = new FormValidator(validationConfig, popupAddForm);
+newAddCardProfileValidator.enableValidation();
