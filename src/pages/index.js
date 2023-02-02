@@ -85,7 +85,7 @@ buttonOpenFormEdit.addEventListener('click', () => {
 
 buttonOpenFormAddCard.addEventListener('click', () => {
   popupAddForm.open(); 
-  // newAddCardProfileValidator.disableSubmitButton();
+  newAddCardProfileValidator.disableSubmitButton();
 });
 
 buttonCloseFormEdit.addEventListener('click', () => {
