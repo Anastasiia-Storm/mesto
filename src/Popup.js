@@ -1,18 +1,18 @@
 export default class Popup {
     constructor(popupSelector) {
-        this._popupSelector = document.querySelector(popupSelector); // Селектор контейнера, куда нужно вставить этот текст:
+        this._popup = document.querySelector(popupSelector); // Cохраняю уже не селектор, а найденный элемент попапа 
         this._handleEscUp = this._handleEscUp.bind(this);
     }
 
 
     open() {
-        this._popupSelector.classList.add('popup_opened');
+        this._popup.classList.add('popup_opened');
         document.addEventListener('keydown', this._handleEscUp);
     }
 
 
     close() {  
-        this._popupSelector.classList.remove('popup_opened');
+        this._popup.classList.remove('popup_opened');
         document.removeEventListener('keydown', this._handleEscUp);
     }
 
@@ -32,11 +32,11 @@ export default class Popup {
     
     
     setEventListeners() {
-        const popupCloseButton = this._popupSelector.querySelector('.popup__close-button');
+        const popupCloseButton = this._popup.querySelector('.popup__close-button');
         popupCloseButton.addEventListener('click', () => this.close());
         
 
-        this._popupSelector.addEventListener('click', (evt) =>
+        this._popup.addEventListener('click', (evt) =>
           this._handleClosePopupOverlay(evt));
     };
 };
