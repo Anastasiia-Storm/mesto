@@ -24,7 +24,7 @@ const cardList = new Section({
     cardList.addItem(creatCard(item));
   },
 },
-cardListSelector // В качестве параметра containerSelector
+  '.elements',
 );
 cardList.renderItems();
 
