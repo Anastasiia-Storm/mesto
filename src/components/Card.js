@@ -3,7 +3,10 @@ export default class Card {
     this._name = data.name;
     this._link = data.link;
     this._handleCardClick = handleCardClick;
-    this._templateSelector = templateSelector,'#card__template';
+    this._templateSelector = templateSelector;
+    // this._cardTemplate = document.querySelector(this._templateSelector).content.querySelector('.card__template')
+    // this._imageCard = this._element.querySelector('.element__photo');
+    // this._nameCard = this._element.querySelector('.element__name');
   }
  
 
@@ -30,28 +33,29 @@ export default class Card {
   }
 
 
-   /** Навешиваю слушатель события */
-   _setEventListeners() {
+  _setEventListeners() {
     const likeCard = this._element.querySelector('.element__like');
-    likeCard.addEventListener('click', (evt) => this._handleLikeButton(evt))
+    likeCard.addEventListener('click', (evt) => this._handleLikeButton(evt));
 
     const deleteCard = this._element.querySelector('.element__delete');
-    deleteCard.addEventListener('click', () => this._handleDeleteButton())
+    deleteCard.addEventListener('click', () => this._handleDeleteButton());
 
-    const imageCard = this._element.querySelector('.element__photo');
-    imageCard.addEventListener('click', () => this._handleCardClick
-    ({ name: this._name, link: this._link }));
+    // const imageCard = this._element.querySelector('.element__photo');
+    // imageCard.addEventListener('click', () => this._handleCardClick
+    // ({ name: this._name, link: this._link }));
+
+    this._imageCard.addEventListener('click', this._handleCardClick);
   }
 
 
   /** Подготовка карточки к публикации
       Метод наполняет карточки данными и функциональностью. */
   _setData() {
-    const nameCard = this._element.querySelector('.element__name') 
+    const nameCard = this._element.querySelector('.element__name')  
     nameCard.textContent = this._name; 
-    const imageCard = this._element.querySelector('.element__photo') 
-    imageCard.src = this._link; 
-    imageCard.alt = this._name;  
+    this._imageCard = this._element.querySelector('.element__photo');
+    this._imageCard.src = this._link; 
+    this._imageCard.alt = this._name;
   }
 
 

@@ -1,12 +1,12 @@
 export default class UserInfo { // UserInfo получает и изменяет данные пользователя
-    constructor({ name, job }) {
-      this._name = document.querySelector(name);
-      this._job = document.querySelector(job);
+    constructor({ nameSelector, jobSelector }) {
+      this._name = document.querySelector(nameSelector);
+      this._job = document.querySelector(jobSelector);
     }
 
 
     /** Возвращает объект с данными пользователя */
-    getUserInfo() {
+    getUserInfo() { // Этот метод пригодится когда данные пользователя нужно будет подставить в форму при открытии.
       const name = this._name.textContent;
       const job = this._job.textContent;
 

@@ -1,11 +1,11 @@
-import Card from "../Card.js";
-import Section from "../Section.js";
-import UserInfo from "../UserInfo.js";
-import PopupWithForm from "../PopupWithForm.js";
-import PopupWithImage from "../PopupWithImage.js";
-import FormValidator from "../FormValidator.js";
+import Card from "../components/Card.js";
+import Section from "../components/Section.js";
+import UserInfo from "../components/UserInfo.js";
+import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithImage from "../components/PopupWithImage.js";
+import FormValidator from "../components/FormValidator.js";
 import { initialCards, buttonOpenFormEdit, buttonOpenFormAddCard, buttonCloseFormEdit, buttonCloseFormAddCard, buttonCloseImageModal, 
-  inputName, inputJob, validationConfig } from "../constants.js";
+  inputName, inputJob, validationConfig } from "../utils/constants.js";
 
 import './index.css';
 
@@ -46,8 +46,8 @@ function creatCard(item) {
 
 
 const userInfo = new UserInfo({
-  name: '.profile__name',
-  job: '.profile__job',
+  nameSelector: '.profile__name',
+  jobSelector: '.profile__job',
 });
 
 
@@ -71,8 +71,12 @@ const popupAddForm = new PopupWithForm('.popup_add-profile',
 popupAddForm.setEventListeners();
 
 
-const popupImageModal = new PopupWithImage('.popup_type_image');
-popupImageModal.setEventListeners();
+// const popupImageModal = new PopupWithImage('.popup_type_image',
+//   {handleCardClick: (name, link) => {
+//       popupImageModal.open({ name: cardNameInputValue.value, link: cardLinkInputValue.value });
+//   }}
+// );
+// popupImageModal.setEventListeners();
 
 
 /* Позволяет получить или перезаписать текстовое содержимое элемента **/
