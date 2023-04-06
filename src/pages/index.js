@@ -2,7 +2,7 @@ import Card from "../components/Card.js";
 import Section from "../components/Section.js";
 import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-// import PopupWithImage from "../components/PopupWithImage.js";
+import PopupWithImage from "../components/PopupWithImage.js";
 import FormValidator from "../components/FormValidator.js";
 import { initialCards, buttonOpenFormEdit, buttonOpenFormAddCard, buttonCloseFormEdit, buttonCloseFormAddCard,
   inputName, inputJob, validationConfig } from "../utils/constants.js";
@@ -33,10 +33,9 @@ cardList.renderItems();
 
 /* Создание карточек **/ 
 function creatCard(item) { 
-  const card = new Card(item, '#card__template', 
+  const card = new Card(item, '#card__template',
   { 
-    handleCardClick: (name, link) => { 
-      popupImageModal.open(name, link); 
+    handleCardClick: () => { 
     }, 
   }
   ); 
@@ -44,6 +43,10 @@ function creatCard(item) {
 
   return addCard; 
 }; 
+
+
+const popupImageModal = new PopupWithImage('.popup_type_image');
+popupImageModal.setEventListeners();
 
 
 const userInfo = new UserInfo({
@@ -55,7 +58,7 @@ const userInfo = new UserInfo({
 const popupEditForm = new PopupWithForm('.popup_edit-profile',
   { 
     submitForm: (inputsData) => {
-      userInfo.setUserInfo(inputsData)
+      userInfo.setUserInfo(inputsData);
     },
   },
 );
