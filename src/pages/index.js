@@ -4,7 +4,7 @@ import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import FormValidator from "../components/FormValidator.js";
-import { initialCards, buttonOpenFormEdit, buttonOpenFormAddCard, buttonCloseFormEdit, buttonCloseFormAddCard,
+import { initialCards, buttonOpenFormEdit, buttonOpenFormAddCard, buttonCloseFormEdit, buttonCloseFormAddCard, buttonCloseImageModal,imageModalWindow,
   inputName, inputJob, validationConfig } from "../utils/constants.js";
 
 import './index.css';
@@ -33,22 +33,20 @@ cardList.renderItems();
 
 /* Создание карточек **/ 
 function creatCard(item) { 
-  const card = new Card(item, '#card__template',
-  { 
-    handleCardClick: (title, link) => { 
-      const popupImageModal = new PopupWithImage('.popup_type_image');
-      popupImageModal.openCardImage(title, link);
-      popupImageModal.setEventListeners();
-    }, 
-  }); 
+  const card = new Card(item, '#card__template', 
+  {
+    handleCardClick: (title, link) => {
+      popupImageModal.open(title, link)
+    }
+  });
   const addCard = card.generateCard(); 
 
-  return addCard; 
+  cardList.addItem(addCard);
 }; 
 
 
-// const popupImageModal = new PopupWithImage('.popup_type_image');
-// popupImageModal.setEventListeners();
+const popupImageModal = new PopupWithImage('.popup_type_image');
+popupImageModal.setEventListeners();
 
 
 const userInfo = new UserInfo({
@@ -98,6 +96,6 @@ buttonCloseFormAddCard.addEventListener('click', () => {
   popupAddForm.close(); 
 });
 
-// buttonCloseImageModal.addEventListener('click', () => { 
-//   imageModalWindow.close(); 
-// });
+buttonCloseImageModal.addEventListener('click', () => { 
+  imageModalWindow.close(); 
+});
