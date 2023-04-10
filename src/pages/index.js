@@ -35,18 +35,20 @@ cardList.renderItems();
 function creatCard(item) { 
   const card = new Card(item, '#card__template',
   { 
-    handleCardClick: () => { 
+    handleCardClick: (title, link) => { 
+      const popupImageModal = new PopupWithImage('.popup_type_image');
+      popupImageModal.openCardImage(title, link);
+      popupImageModal.setEventListeners();
     }, 
-  }
-  ); 
+  }); 
   const addCard = card.generateCard(); 
 
   return addCard; 
 }; 
 
 
-const popupImageModal = new PopupWithImage('.popup_type_image');
-popupImageModal.setEventListeners();
+// const popupImageModal = new PopupWithImage('.popup_type_image');
+// popupImageModal.setEventListeners();
 
 
 const userInfo = new UserInfo({
