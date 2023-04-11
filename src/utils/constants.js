@@ -25,7 +25,7 @@ export const initialCards = [
   }
 ];
 
-console.table(initialCards);
+
 /** Контейнеры */
 export const profileFormModalWindow = document.querySelector('.popup_edit-profile');
 export const cardFormModalWindow = document.querySelector('.popup_add-profile');
