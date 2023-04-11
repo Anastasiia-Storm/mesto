@@ -35,13 +35,13 @@ cardList.renderItems();
 function creatCard(item) { 
   const card = new Card(item, '#card__template', 
   {
-    handleCardClick: (title, link) => {
-      popupImageModal.open(title, link)
-    }
+    handleCardClick: (cardData) => {
+      popupImageModal.openCardImage(cardData)
+   }
   });
   const addCard = card.generateCard(); 
 
-  cardList.addItem(addCard);
+  return addCard;
 }; 
 
 
