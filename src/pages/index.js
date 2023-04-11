@@ -9,7 +9,6 @@ import { initialCards, buttonOpenFormEdit, buttonOpenFormAddCard, buttonCloseFor
 
 import './index.css';
 
-
 const popupEditFormValidation = document.querySelector('.popup_edit-profile'); 
 const profileEditCardValidator = new FormValidator(validationConfig, popupEditFormValidation); 
 profileEditCardValidator.enableValidation(); 
