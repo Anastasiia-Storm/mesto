@@ -61,8 +61,6 @@ export const inputJob = document.querySelector('.popup__input_type_job');
 
 
 export const imageModalWindow = document.querySelector('.popup_type_image');
-// export const imageElement = imageModalWindow.querySelector('.popup__photo');
-// export const imageCaption = imageModalWindow.querySelector('.popup__caption');
 export const buttonOpenFormAddCard = document.querySelector('.profile__add-button');
 export const buttonCloseImageModal = imageModalWindow.querySelector('.popup__close-button');
 export const buttonSubmitSelector = document.querySelector('.popup__save-button');

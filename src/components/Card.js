@@ -5,8 +5,6 @@ export default class Card {
     this._handleCardClick = handleCardClick;
     this._templateSelector = templateSelector;
     this._cardTemplate = document.querySelector(this._templateSelector).content.querySelector('.card__template');
-    // this._imageCard = this._element.querySelector('.popup__photo');
-    // this._nameCard = this._element.querySelector('.popup__name');
   }
  
 
