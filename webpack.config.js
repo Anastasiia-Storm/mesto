@@ -12,18 +12,21 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'main.js',
     publicPath: '',
+    clean: true,
   },
   devtool: 'eval-source-map',
   devServer: {
     static: path.resolve(__dirname, './dist'),
     open: true,
     compress: true,
+    hot:  true,
     port: 8080,
   },
   module: {
     rules: [
       {
         test: /\.css$/,
+        exclude: '/node_modules',
         use: [
           MiniCssExtractPlugin.loader, {
             loader: 'css-loader',
@@ -45,7 +48,7 @@ module.exports = {
       {
         test: /\.js$/,
         use: 'babel-loader',
-        exclude: '/node_modules/',
+        exclude: '/node_modules',
       },
     ]
   },

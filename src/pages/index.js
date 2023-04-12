@@ -8,6 +8,7 @@ import { initialCards, buttonOpenFormEdit, buttonOpenFormAddCard, buttonCloseFor
   inputName, inputJob, validationConfig } from "../utils/constants.js";
 
 import './index.css';
+import 'core-js/actual/promise';
 
 const popupEditFormValidation = document.querySelector('.popup_edit-profile'); 
 const profileEditCardValidator = new FormValidator(validationConfig, popupEditFormValidation); 

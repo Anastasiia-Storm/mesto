@@ -4,7 +4,7 @@ export default class Card {
     this._link = data.link;
     this._handleCardClick = handleCardClick;
     this._templateSelector = templateSelector;
-    this._cardTemplate = document.querySelector(this._templateSelector).content.querySelector('.card__template');
+    // this._cardTemplate = document.querySelector(this._templateSelector).content.querySelector('.card__template');
   }
  
 
@@ -21,7 +21,7 @@ export default class Card {
 
 
   _handleLikeButton(evt) { 
-    evt.target.classList.toggle('element__like_active'); 
+    evt.target.classList.toggle('element__like_active');
   } 
 
 
