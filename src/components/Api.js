@@ -1,5 +1,5 @@
 export default class Api {
-    constructor() {
+    constructor(options) {
 //         // this._url = config.url;
 //         // this._headers = config._headers;
 
@@ -20,33 +20,39 @@ export default class Api {
                 authorization: 'd654bd4b-bb05-4698-98ab-52d1f65a5443'
             }
         })
-        .then((res) => {
+        .then(res => {
             if (res.ok) {
-                return res.json();
+              return res.json();
             }
-            /* отклоняем промис, чтобы перейти
-            в блок catch, если сервер вернул ошибку */
-            return Promise.reject(`Что-то пошло не так: ${res.status}`);
+      
+            // если ошибка, отклоняем промис
+            return Promise.reject(`Ошибка: ${res.status}`);
         })
-    }
+        .catch((err) => {
+            console.log(err); // выведем ошибку в консоль
+        });
+    } 
 
     // Загрузка карточек с сервера
-    getCards() {
+    getInitialCards() {
         return fetch('https://mesto.nomoreparties.co/v1/cohort-63/cards', {
             method: 'GET',
             headers: {
                 authorization: 'd654bd4b-bb05-4698-98ab-52d1f65a5443'
             }
         })
-        .then((res) => {
+        .then(res => {
             if (res.ok) {
-                return res.json();
+              return res.json();
             }
-            /* отклоняем промис, чтобы перейти
-            в блок catch, если сервер вернул ошибку */
-            return Promise.reject(`Что-то пошло не так: ${res.status}`);
+      
+            // если ошибка, отклоняем промис
+            return Promise.reject(`Ошибка: ${res.status}`);
         })
-    }
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+        });
+    } 
 
     // Редактировать профиль
     editProfile() {
@@ -61,6 +67,32 @@ export default class Api {
                 about: 'Physicist and Chemist'
             })
         })
+        .then(res => {
+            if (res.ok) {
+              return res.json();
+            }
+      
+            // если ошибка, отклоняем промис
+            return Promise.reject(`Ошибка: ${res.status}`);
+          })
+        .catch((err) => {
+          console.log(err); // выведем ошибку в консоль
+        }); 
+    } 
+  
+
+    addNewCard() {
+        return fetch('https://mesto.nomoreparties.co/v1/cohort-63/cards', {
+            method: 'POST',
+            headers: {
+                authorization: 'd654bd4b-bb05-4698-98ab-52d1f65a5443',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: 'Горы Тяньцзи',
+                link: 'https://vandruy.by/wp-content/uploads/2018/11/amazing-scenary-of-prince-tianzi-mountain-china-1024x683.jpeg'
+            })
+        })
         .then((res) => {
             if (res.ok) {
                 return res.json();
@@ -69,17 +101,69 @@ export default class Api {
             в блок catch, если сервер вернул ошибку */
             return Promise.reject(`Что-то пошло не так: ${res.status}`);
         })
+        .catch((err) => {
+            console.log(err); // выведем ошибку в консоль
+        }); 
     }
-  
 
-// }
-// //index.js
-// // const api = new Api({
-// //   link: 'https://mesto.nomoreparties.co/v1/cohort-63/cards',
-// //   headers: {
-// // //     'content-type': 'application/json',
-// // //     authorization: '23f5b49e-3722-4d4b-b616-4f4f71d989aa'
-// // //   }
-// // })
+
+    // deleteСard() {
+    //     return fetch('https://mesto.nomoreparties.co/v1/cohort-63/cards/643961ee09ef944a9430e7fc', {
+    //         method: 'DELETE',
+    //         headers: {
+    //             authorization: 'd654bd4b-bb05-4698-98ab-52d1f65a5443',
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             name: 'Горы Тяньцзи',
+    //             link: 'https://vandruy.by/wp-content/uploads/2018/11/amazing-scenary-of-prince-tianzi-mountain-china-1024x683.jpeg'
+    //         })
+    //     })
+    //     .then((res) => {
+    //         if (res.ok) {
+    //             return res.json();
+    //         }
+    //         /* отклоняем промис, чтобы перейти
+    //         в блок catch, если сервер вернул ошибку */
+    //         return Promise.reject(`Что-то пошло не так: ${res.status}`);
+    //     })
+    //     .catch((err) => {
+    //         console.log(err); // выведем ошибку в консоль
+    //     }); 
+    // }
+
+
+    // updateUserAvatar() {
+    //     return fetch('https://mesto.nomoreparties.co/v1/cohort-63/users/me/avatar', {
+    //         method: 'PATCH',
+    //         headers: {
+    //             authorization: 'd654bd4b-bb05-4698-98ab-52d1f65a5443',
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify({
+    //             name: 'Горы Тяньцзи',
+    //             link: 'https://vandruy.by/wp-content/uploads/2018/11/amazing-scenary-of-prince-tianzi-mountain-china-1024x683.jpeg'
+    //         })
+    //     })
+    //     .then((res) => {
+    //         if (res.ok) {
+    //             return res.json();
+    //         }
+    //         /* отклоняем промис, чтобы перейти
+    //         в блок catch, если сервер вернул ошибку */
+    //         return Promise.reject(`Что-то пошло не так: ${res.status}`);
+    //     })
+    //     .catch((err) => {
+    //         console.log(err); // выведем ошибку в консоль
+    //     });
+    // }
+
 }
-// api.getAllCards()
+
+    const api = new Api({
+        baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-63',
+        headers: {
+          authorization: 'd654bd4b-bb05-4698-98ab-52d1f65a5443',
+          'Content-Type': 'application/json'
+        }
+      });

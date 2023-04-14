@@ -73,6 +73,29 @@
     </div>
 
 
+    <div class="popup popup_delete">
+      <div class="popup__container">
+      <form class="popup__form popup__form_delete" name="delete" novalidate>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button type="submit" class="popup__save-button" aria-label="Да" disabled>Да</button>
+      </form>
+        <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
+      </div>
+    </div>
+
+
+    <div class="popup popup_update-avatar">
+      <div class="popup__container">
+      <form class="popup__form popup__form_update-avatar" name="update" novalidate>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <input type="url" id ="link" class="popup__input popup__input_type_avatar" name="link" required placeholder="Ссылка на картинку">
+        <button type="submit" class="popup__save-button" aria-label="Сохранить" disabled>Сохранить</button>
+      </form>
+        <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
+      </div>
+    </div>
+
+
         <template id="card__template">
           <li class="element">
             <img class="element__photo" src="#" alt="#">

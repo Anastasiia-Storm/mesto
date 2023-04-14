@@ -37,7 +37,7 @@ import './index.css';
 
 
 const api  = new Api();
-api.getUserInfo().then((data) => {
+api.addNewCard().then((data) => {
   console.log(data);
 })
 
