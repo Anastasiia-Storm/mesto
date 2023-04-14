@@ -4,10 +4,50 @@ import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import FormValidator from "../components/FormValidator.js";
+import Api from "../components/Api.js"; "../components/Api.js";
 import { initialCards, buttonOpenFormEdit, buttonOpenFormAddCard, buttonCloseFormEdit, buttonCloseFormAddCard, buttonCloseImageModal, imageModalWindow,
   inputName, inputJob, validationConfig } from "../utils/constants.js";
 
 import './index.css';
+
+
+// fetch('https://mesto.nomoreparties.co/v1/cohort-63/cards', {
+//     method: 'GET',
+//     headers: {
+//       authorization: 'd654bd4b-bb05-4698-98ab-52d1f65a5443'
+//     }
+//   })
+//     .then(res => res.json())
+//     .then((result) => {
+//       console.log(result);
+//     });
+  
+  
+//     fetch('https://nomoreparties.co/v1/cohort-63/users/me', {
+//     method: 'GET',
+//     headers: {
+//       authorization: 'd654bd4b-bb05-4698-98ab-52d1f65a5443'
+//     }
+//   })
+//     .then(res => res.json())
+//     .then((result) => {
+//       console.log(result);
+//     });
+  
+
+
+const api  = new Api();
+api.getUserInfo().then((data) => {
+  console.log(data);
+})
+
+
+
+      // const api  = new Api();
+      // api.apiGetCards().then((data) => {
+      // console.log(data);
+      // })
+
 
 const popupEditFormValidation = document.querySelector('.popup_edit-profile'); 
 const profileEditCardValidator = new FormValidator(validationConfig, popupEditFormValidation); 

@@ -26,6 +26,10 @@ export const initialCards = [
 ];
 
 
+export const token = 'd654bd4b-bb05-4698-98ab-52d1f65a5443';
+// export const server =
+
+
 /** Контейнеры */
 export const profileFormModalWindow = document.querySelector('.popup_edit-profile');
 export const cardFormModalWindow = document.querySelector('.popup_add-profile');
