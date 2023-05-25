@@ -1,7 +1,9 @@
 export default class Card {
-  constructor(data, templateSelector, {handleCardClick}) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
+  constructor(data, templateSelector, { handleCardClick, userId }) { // Передаю данные в виде объекта, а в самом классе присвоить полям нужные свойства:
+    this._data = data;
     this._name = data.name;
     this._link = data.link;
+    this._userId = userId;
     this._handleCardClick = handleCardClick;
     this._templateSelector = templateSelector;
     // this._cardTemplate = document.querySelector(this._templateSelector).content.querySelector('.card__template');

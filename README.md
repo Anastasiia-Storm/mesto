@@ -7,4 +7,4 @@
 Также в данной работе мы разбиваем проект на модули и учимся собирать его с помощью Webpack.
 
 Ссылка на GitHub Pages
-https://anastasiiastorm.github.io/mesto
+https://anastasiia-storm.github.io/mesto/
