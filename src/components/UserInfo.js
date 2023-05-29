@@ -1,22 +1,22 @@
 export default class UserInfo { // UserInfo получает и изменяет данные пользователя
-    constructor({ nameSelector, jobSelector }) {
-      this._name = document.querySelector(nameSelector);
-      this._job = document.querySelector(jobSelector);
+    constructor({ userInfoSelector, userAboutSelector }) {
+      this._userInfo = document.querySelector(userInfoSelector);
+      this._userAbout = document.querySelector(userAboutSelector);
     }
 
 
     /** Возвращает объект с данными пользователя */
     getUserInfo() { // Этот метод пригодится когда данные пользователя нужно будет подставить в форму при открытии.
-      const name = this._name.textContent;
-      const job = this._job.textContent;
-
-      return { name, job };
+      return {
+      name: this._userInfo.textContent,
+      about: this._userAbout.textContent
+      }
     }
     
 
     /** Принимает новые данные пользователя и добавляет их на страницу */
-    setUserInfo({ name, job }) {
-        this._name.textContent = name;
-        this._job.textContent = job;
+    setUserInfo({ name, about }) {
+      this._userInfo.textContent = name;
+      this._userAbout.textContent = about;
     }
 }

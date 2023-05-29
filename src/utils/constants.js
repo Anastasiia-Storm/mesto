@@ -61,7 +61,7 @@ export const popupContainerSelector = document.querySelector('.popup__input');
 export const buttonOpenEdit = document.querySelector('.profile__edit-button');
 
 export const inputName = document.querySelector('.popup__input_type_name');
-export const inputJob = document.querySelector('.popup__input_type_job');
+export const inputAbout = document.querySelector('.popup__input_type_about');
 
 
 export const imageModalWindow = document.querySelector('.popup_type_image');

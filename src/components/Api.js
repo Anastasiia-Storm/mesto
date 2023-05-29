@@ -44,8 +44,53 @@ export default class Api {
           return this._checkResult(res);
         });
     }
-        
-}
+
+
+    // Редкатировать профиль
+    editProfile(data) {
+      return fetch(`${this.baseUrl}/users/me`, {
+        method: 'PATCH', // PATCH — для частичного обновления ресурса. Например, при обновлении профиля пользователя;
+        headers: {
+          authorization: '8289c61b-1567-4959-abef-eb18a39b659e',
+          'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ // Поскольку метод POST отправляет данные, эти данные нужно как-то хранить в запросе. Для этого их нужно перевести в формат JSON и записать в свойство body объекта опций:
+          name: data.name,
+          about: data.about,
+      })
+      })
+      .then((res) => {
+        return this._checkResult(res);
+      });
+    }
+
+  
+    // deleteCard() {
+    //   return fetch()
+    // }
+
+    deleteLike(data) {
+      return fetch(`${this.baseUrl}/cards/${data._id}/likes`, {
+        method: 'DELETE',
+        headers: this.headers
+      })
+      .then((res) => {
+        return this._checkResult(res);
+      });
+    };
+
+
+    likeCard(data) {
+      return fetch(`${this.baseUrl}/cards/${data._id}/likes`, {
+        method: 'PUT',
+        headers: this.headers
+      })
+      .then((res) => {
+        return this._checkResult(res);
+      });
+    };
+
+  }
 
 
 export const api = new Api({
