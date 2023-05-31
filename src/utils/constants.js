@@ -27,19 +27,20 @@ export const initialCards = [
 
 
 export const token = 'd654bd4b-bb05-4698-98ab-52d1f65a5443';
-// export const server =
 
 
 /** Контейнеры */
 export const profileFormModalWindow = document.querySelector('.popup_edit-profile');
 export const cardFormModalWindow = document.querySelector('.popup_add-profile');
 export const popupContainer = document.querySelector('.popup');
+export const popupAvatar = document.querySelector('.popup_update_avatar');
 
 
 /** Кнопки и прочие DOM узлы */
 export const buttonOpenFormEdit = document.querySelector('.profile__edit-button');
 export const buttonCloseFormEdit = profileFormModalWindow.querySelector('.popup__close-button');
 export const buttonCloseFormAddCard = cardFormModalWindow.querySelector('.popup__close-button');
+export const buttonCloseAvatar = popupAvatar.querySelector('.popup__close-button');
 
 
 /** DOM узлы профиля
@@ -72,6 +73,10 @@ export const buttonSubmitSelector = document.querySelector('.popup__save-button'
 // template 
 export const cardImage = document.querySelector('.element__photo');
 export const cardTitle = document.querySelector('.element__name');
+
+
+export const avatar = document.querySelector('.profile__avatar');
+export const avatarOverlay = document.querySelector('.profile__overlay');
 
 
 export const validationConfig  = {

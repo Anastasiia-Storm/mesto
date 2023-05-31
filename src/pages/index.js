@@ -4,10 +4,11 @@ import UserInfo from "../components/UserInfo.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import FormValidator from "../components/FormValidator.js";
+import PopupDelete from "../components/PopupDelete.js";
 // import Api from "../components/Api.js";
 import { api } from "../components/Api.js";
-import { buttonOpenFormEdit, buttonOpenFormAddCard, buttonCloseFormEdit, buttonCloseFormAddCard, buttonCloseImageModal, imageModalWindow,
-  inputName, inputAbout, validationConfig } from "../utils/constants.js";
+import { buttonOpenFormEdit, buttonOpenFormAddCard, buttonCloseFormEdit, buttonCloseFormAddCard, buttonCloseImageModal, buttonCloseAvatar, imageModalWindow,
+  inputName, inputAbout, validationConfig, avatarOverlay } from "../utils/constants.js";
 
 import './index.css';
 
@@ -26,6 +27,9 @@ const popupImageModal = new PopupWithImage('.popup_type_image');
 popupImageModal.setEventListeners();
 
 
+// const popupDelete = new PopupDelete('.popup_type_delete-card');
+
+
 let userId
 
 
@@ -35,39 +39,40 @@ const creatCard = (data) => {
   {
     handleCardClick: (cardData) => {
       popupImageModal.openCardImage(cardData)
-   }, userId,
+   }, 
 
     handleCardLike: (card) => {
       if(card.checkUserId()) {
         api.deleteLike(data)
         .then((res) => {
           card.deleteLike();
-          card.countLikes(res);
+          card.numberOfLikes(res);
 			  });
 		  } else {
         api.likeCard(data)
         .then((res) => {
-          card.setLike();
-          card.countLikes(res);
+          card.likeCard();
+          card.numberOfLikes(res);
 			  })
 		  }
 	  }, 
 
-	  handleDeleteClick: (card) => {
-      popupDeleteConfirmation.setSubmitCallback(() => {
+	  handleDeleteIconClick: (card) => {
+      popupDelete.submitCallback(() => {
         api.deleteCard(card._data._id)
         .then(() => {
           card.removeCard()
         })
 		    .then(() => {
-          popupDeleteConfirmation.close();
+          popupDelete.close();
         })
 		    .catch((err) => {
           console.log(err); 
         })
 		  })
-		  popupDeleteConfirmation.open();
-	  }
+		  popupDelete.open();
+	  },
+    userId,
 })
   const addCard = card.generateCard(); 
 
@@ -77,7 +82,7 @@ const creatCard = (data) => {
 
 const defaultCardList = new Section({
   renderer: (item) => {
-    const card = creatCard(item)
+    const card = creatCard(item, userId)
     defaultCardList.addItem(card);
   },
 },
@@ -85,19 +90,33 @@ const defaultCardList = new Section({
 );
 
 
-api.getInitialCards()
-.then((cards) => {
-  defaultCardList.renderItems(cards)
-  .catch((err) => {
-    console.log(err); // выведем ошибку в консоль
-  });
-});
-
-
 const userInfo = new UserInfo({
   userInfoSelector: '.profile__name',
   userAboutSelector: '.profile__job',
+  userAvatarSelector: '.profile__avatar'
 });
+
+
+Promise.all([
+	api.informationAboutUsers(),
+	api.getInitialCards()
+])
+.then(([user, cards]) => {
+	const name = user.name;
+	const about = user.about;
+	const avatar = user.avatar;
+	userId = user._id;
+	userInfo.setUserInfo({ //get user info from server 
+		name,
+		about,
+		avatar,
+	});
+	defaultCardList.renderItems(cards)
+})
+.catch((err) => {
+    console.log(err); 
+  });
+
 
 
 const popupEditForm = new PopupWithForm('.popup_edit-profile',
@@ -108,6 +127,9 @@ const popupEditForm = new PopupWithForm('.popup_edit-profile',
       api.editProfile(data)
       .then(() => {
         userInfo.setUserInfo({ name, about })
+      })
+      .then(() => {
+        popupEditForm.close();
       })
       .catch((err) => {
         console.log(err); // выведем ошибку в консоль
@@ -137,17 +159,52 @@ const popupAddForm = new PopupWithForm('.popup_add-profile',
 popupAddForm.setEventListeners();
 
 
+
+const avatarForm = new PopupWithForm('.popup_update_avatar',
+  {
+    handleSubmit: ({ avatar }) => {
+      
+      const data = { avatar };
+      api.changeAvatar(data)
+      .then(() => {
+        userInfo.setUserInfo({
+          avatar
+        });
+      })
+      .then(() => {
+        avatarForm.close();
+      })
+      .catch((err) => {
+        console.log(err); // выведем ошибку в консоль
+      });
+    }
+  }
+); 
+
+
+
+
+
+
 /* Позволяет получить или перезаписать текстовое содержимое элемента **/
 buttonOpenFormEdit.addEventListener('click', () => {
   popupEditForm.open();
   const inputValue = userInfo.getUserInfo();
+
   inputName.value = inputValue.name; 
   inputAbout.value = inputValue.about;
+
+  // const popupEditFormOpen = popupEditForm
+  // popupEditFormOpen.open();
 });
 
 buttonOpenFormAddCard.addEventListener('click', () => {
   popupAddForm.open(); 
   newAddCardProfileValidator.disableSubmitButton();
+});
+
+avatarOverlay.addEventListener('click', () => {
+  avatarForm.open();
 });
 
 buttonCloseFormEdit.addEventListener('click', () => {
@@ -160,4 +217,8 @@ buttonCloseFormAddCard.addEventListener('click', () => {
 
 buttonCloseImageModal.addEventListener('click', () => { 
   imageModalWindow.close(); 
+});
+
+buttonCloseAvatar.addEventListener('click', () => {
+  avatarForm.close();
 });

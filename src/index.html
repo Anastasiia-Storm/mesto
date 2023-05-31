@@ -13,6 +13,7 @@
     <section class="profile">
       <div class="profile__info">
       <div class="profile__avatar"></div>
+      <div class="profile__overlay"></div>
       <div class="profile__description">
         <h1 class="profile__name">Жак-Ив Кусто</h1>
         <button type="button" class="profile__edit-button" aria-label="Редактировать"></button>
@@ -46,7 +47,6 @@
       </div>
     </div>
   
-    
   
     <div class="popup popup_add-profile">
       <div class="popup__container">
@@ -74,35 +74,38 @@
 
     <div class="popup popup_type_delete-card">
       <div class="popup__container popup__container_type_delete-card">
-        <h2 class="popup__caption">Вы уверены?</h2>
-        <button type="button" class="popup__close-button" value=" " aria-label="Закрыть"></button>
-        <input type="submit" class="popup__save-button popup__delete-card-button" value="Да" aria-label="Да">
+      <form class="popup__form popup__form_delete-card" name="add" novalidate>
+        <h2 class="popup__title">Вы уверены?</h2>
+        <button type="submit" class="popup__save-button" aria-label="Сохранить" disabled>Да</button>
+      </form>
+        <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
       </div>
     </div>
 
 
     <div class="popup popup_update_avatar">
-		<div class="popup__container popup__container_update_avatar">
-			<h2 class="popup__title">Обновить аватар</h2>
-			<button type="button" class="popup__close-button" value=" " aria-label="Закрыть"></button>
-			<form action="test" method="get" class="popup__form popup__form_avatar" name="avatarform" id="avatar-form"
-				novalidate>
-			<input type="url" class="popup__form popup__form_avatar popup__input" value="" name="avatar"
-			id="avatar-link-input" placeholder="Ссылка на картинку" required>
-			<span class="popup__form-item popup__form-item_error avatar-link-input-error"></span>
-			<input type="submit" class="popup__submit-button popup__save-button popup__save-button_type_avatar" value="Сохранить" aria-label="Сохранить">
-			</form>
-			</div>
-	</div>
+      <div class="popup__container popup__container_update_avatar">
+      <form class="popup__form popup__form_update_avatar" name="add" novalidate>
+        <h2 class="popup__title">Обновить аватар</h2>
+        <input type="url" id ="link" class="popup__input popup__input_type_url" name="link" required placeholder="Ссылка">
+        <span id="link-error" class="popup__input-error"></span>
+        <button type="submit" class="popup__save-button" aria-label="Сохранить" disabled>Сохранить</button>
+      </form>
+        <button type="button" class="popup__close-button" aria-label="Закрыть"></button>
+      </div>
+    </div>
 
 
         <template id="card__template">
           <li class="element">
             <img class="element__photo" src="#" alt="#">
-            <button type="button" class="element__delete" aria-label="Удалить"></button>
+            <button type="button" class="element__delete-button" aria-label="Удалить"></button>
             <div class="element__info">
               <h2 class="element__name"></h2>
-              <button type="button" class="element__like" aria-label="Лайк"></button>
+              <div class="element__like-container">
+                <button type="button" class="element__like-button" aria-label="Лайк"></button>
+                <div class="element__likes-number"></div>
+              </div>
             </div>
           </li>
         </template> 
